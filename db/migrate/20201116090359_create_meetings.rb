@@ -6,7 +6,7 @@ class CreateMeetings < ActiveRecord::Migration[6.0]
       t.string :description
       t.string :trello_board
       t.string :title
-      t.integar :duration
+      t.integer :duration
 
       t.timestamps
     end
