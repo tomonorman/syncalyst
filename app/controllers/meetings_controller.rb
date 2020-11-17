@@ -1,5 +1,4 @@
 class MeetingsController < ApplicationController
-  before_action :set_meeting, only: :create
   def index
     @meetings = policy_scope(current_user.meetings)
   end
@@ -10,7 +9,9 @@ class MeetingsController < ApplicationController
   end
 
   def create
+    @meeting = Meeting.new(meeting_params)
     @meeting.user = current_user
+    authorize @meeting
     if @meeting.save
       redirect_to meeting_path(@meeting)
     else
@@ -19,6 +20,10 @@ class MeetingsController < ApplicationController
   end
 
   private
+
+  def meeting_params
+    params.require(:meeting).permit(:date_time, :description, :trello_board, :title, :duration)
+  end
 
   def set_meeting
     @meeting = Meeting.new(params[:id])
