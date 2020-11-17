@@ -1,4 +1,62 @@
 <h2>Next Meeting:</h2>
 <div class="meeting-card-big">
-  <%= @next_meeting.title %>
+    <h2>
+      <%= @next_meeting.title %> <span class="meeting-italic"> <%= @next_meeting.duration %> min.</span>
+    </h2>
+  <div class="container">
+    <div class="row">
+      <!-- left side of the grid -->
+      <div class="col-12 col-lg-4 d-flex flex-column align-items-start justify-content-center">
+          <h3>Date:</h3>
+          <p><%= @next_meeting.date_time.strftime("%b %e, %l:%M %p") %></p>
+          <h3>Attendances:</h3>
+          <!-- if there are any attendances -->
+          <% if @next_meeting.attendances.any? %>
+          <div class="container-fluid">
+            <div class="scrolling-wrapper row flex-row flex-nowrap mt-4 pb-4">
+              <!-- show avatar -->
+                  <% @next_meeting.attendances.each do |attenance| %>
+                  <div class="col-12 col-md-6 col-lg-3 ml-1">
+                    <div class="item">
+                      <%= cl_image_tag(attenance.user.photo.key,
+                       crop: :thumb, gravity: :face, class:'avatar') %>
+                      </div>
+                    </div>
+                <% end %>
+
+            </div>
+          </div>
+          <!-- no attendances for a meeting -->
+          <% else %>
+            <p>There is nobody attending yet...</p>
+          <% end %>
+      </div>
+
+      <!-- right side of the grid -->
+      <div class="col-12 col-lg-8">
+        <h3>Agenda:</h3>
+         <div class="container-fluid">
+          <div class="scrolling-wrapper row flex-row flex-nowrap mt-4 pb-4">
+            <!-- if there are any agendas -->
+            <% if @next_meeting.agendas.any? %>
+                <% @next_meeting.agendas.each do |agenda| %>
+                <div class="col-12 col-md-6 col-lg-3 ml-1">
+                  <div class="item">
+                    <p><%= agenda.title.slice(0..25) %>
+                      <% if agenda.title.length > 28 %>
+                      ...
+                      <% end %>
+                    </p>
+                    </div>
+                  </div>
+              <% end %>
+              <!-- if no agendas -->
+            <% else %>
+              <p>No agendas yet...</p>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
