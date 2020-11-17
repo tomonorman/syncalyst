@@ -14,7 +14,7 @@
       </div>
     </div>
     <div class="col-12 col-md-6">
-      <p class="mt-4">Hi <%= @meeting.user.nickname %>! You have the following meeting coming up:</p>
+      <p class="mt-4">Hi <%= current_user.nickname %>! You have the following meeting coming up:</p>
       <h1><%= @meeting.title  %></h1>
       <h3><%= @meeting.date_time.strftime("%A, %d %b %Y at %l:%M %p") %> <span style="font-size: 16px;">(<%= @meeting.duration%> mins.)</span></h3>
       <h3>Talking About:</h3>
