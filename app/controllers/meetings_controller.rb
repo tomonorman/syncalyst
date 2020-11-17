@@ -3,7 +3,6 @@ class MeetingsController < ApplicationController
     @user_host_meetings = policy_scope(current_user.meetings)
     @meetings_attending = current_user.attendances.map(&:meeting)
     @next_meeting = (@user_host_meetings + @meetings_attending).min_by(&:date_time)
-    raise
   end
 
   def new
