@@ -1,4 +1,5 @@
 require "open-uri"
+require 'faker'
 # This file should contain all the record creation needed to seed the database with its default values.
 # The data can then be loaded with the rails db:seed command (or created alongside the database with db:setup).
 #
@@ -12,14 +13,14 @@ Agenda.destroy_all
 puts "destroy all the tasks.."
 Task.destroy_all
 
+puts "destroy all the attendances.."
+Attendance.destroy_all
+
 puts "destroy all the meetings.."
 Meeting.destroy_all
 
 puts "destroy all the users.."
 User.destroy_all
-
-puts "destroy all the attendances.."
-Attendance.destroy_all
 
 puts "Creating users.."
 
@@ -67,6 +68,8 @@ puts "Creating meetings.."
   )
 end
 
+meetings = Meeting.all
+
 puts "...Created #{Meeting.count} meetings!"
 
 puts "Creating attendances.."
@@ -80,3 +83,20 @@ puts "Creating attendances.."
 end
 
 puts "...Created #{Attendance.count} attendances!"
+
+puts "Creating agendas.."
+
+AGENDA_TITLE = ['Tasks done yesterday', 'Ideas about UIUX', 'Announcements']
+
+meetings.each do |meeting|
+  AGENDA_TITLE.each do |title|
+    Agenda.create!(
+      meeting_id: meeting.id,
+      title: title,
+      transcription: Faker::Lorem.sentences(number: 1),
+      est_duration: 10,
+    )
+  end
+end
+
+puts "...Created #{Agenda.count} agendas!"
