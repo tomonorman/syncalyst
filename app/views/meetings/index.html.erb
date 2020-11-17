@@ -1,10 +1,3 @@
 <h1>Dashboard</h1>
-<ul>
-<% @meetings.each do |meeting| %>
-  <li>
-    <p><%= meeting.title %></p>
-    <p><%= meeting.date_time %></p>
-    <p>ID: <%= meeting.id %></p>
-  </li>
-  <% end %>
-</ul>
+<%= link_to 'New meeting', new_meeting_path  %>
+

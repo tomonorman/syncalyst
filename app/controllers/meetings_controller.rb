@@ -12,7 +12,7 @@ class MeetingsController < ApplicationController
   def create
     @meeting.user = current_user
     if @meeting.save
-      redirect_to meetings_path
+      redirect_to meeting_path(@meeting)
     else
       render 'new'
     end
