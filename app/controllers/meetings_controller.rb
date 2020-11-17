@@ -13,7 +13,8 @@ class MeetingsController < ApplicationController
     @meeting.user = current_user
     authorize @meeting
     if @meeting.save
-      redirect_to meeting_path(@meeting)
+      redirect_to meetings_path
+      # redirect_to meeting_path(@meeting)
     else
       render 'new'
     end
