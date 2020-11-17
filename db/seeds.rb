@@ -55,3 +55,28 @@ user3.photo.attach(io: file, filename: 'user3.jpg', content_type: 'image/jpg')
 puts "...Created #{User.count} users!"
 
 puts "Creating meetings.."
+
+5.times do
+  Meeting.create!(
+    user_id: rand(User.first.id..User.last.id),
+    date_time: Time.new(2020, rand(11..12), rand(26..30), rand(10..18), [0, 15, 30, 45].sample, 0),
+    description: 'Syncalyst phase 1 standups to track progress and discuss about ideas.',
+    trello_board: 'https://trello.com/b/hmiXsuho/syncalyst',
+    title: 'Syncalyst daily standups',
+    duration: 30
+  )
+end
+
+puts "...Created #{Meeting.count} meetings!"
+
+puts "Creating attendances.."
+
+10.times do
+  Attendance.create!(
+    user_id: rand(User.first.id..User.last.id),
+    meeting_id: rand(Meeting.first.id..Meeting.last.id),
+    status: [true, true, false].sample
+  )
+end
+
+puts "...Created #{Attendance.count} attendances!"
