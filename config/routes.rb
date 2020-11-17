@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   devise_for :users
   root to: 'pages#home'
-  resources :meetings, only: [:index, :show, :edit] do
+  resources :meetings, only: [:index, :show, :edit, :create, :new] do
     resources :attendances, only: [:create]
     resources :agendas, only: [:create]
     resources :tasks, only: [:create]
