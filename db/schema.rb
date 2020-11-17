@@ -11,6 +11,7 @@
 # It's strongly recommended that you check this file into your version control system.
 
 ActiveRecord::Schema.define(version: 2020_11_17_015926) do
+
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -35,7 +36,6 @@ ActiveRecord::Schema.define(version: 2020_11_17_015926) do
     t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
   end
 
-
   create_table "agendas", force: :cascade do |t|
     t.bigint "meeting_id", null: false
     t.string "title"
@@ -46,7 +46,7 @@ ActiveRecord::Schema.define(version: 2020_11_17_015926) do
     t.datetime "updated_at", precision: 6, null: false
     t.index ["meeting_id"], name: "index_agendas_on_meeting_id"
   end
-  
+
   create_table "attendances", force: :cascade do |t|
     t.boolean "status", default: false
     t.bigint "user_id", null: false
@@ -93,5 +93,11 @@ ActiveRecord::Schema.define(version: 2020_11_17_015926) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
-  add_foreign_key "agendas", "meetings", "attendances", "tasks", "users", "active_storage_attachments", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "agendas", "meetings"
+  add_foreign_key "attendances", "meetings"
+  add_foreign_key "attendances", "users"
+  add_foreign_key "meetings", "users"
+  add_foreign_key "tasks", "meetings"
+  add_foreign_key "tasks", "users"
 end
