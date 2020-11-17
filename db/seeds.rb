@@ -100,3 +100,16 @@ meetings.each do |meeting|
 end
 
 puts "...Created #{Agenda.count} agendas!"
+
+puts "Creating tasks.."
+TASK = ['create components', 'add edit user image feature', 'add delete user feature']
+
+meetings.each do |meeting|
+  Task.create!(
+    user_id: rand(User.first.id..User.last.id),
+    meeting_id: meeting.id,
+    description: TASK.sample,
+  )
+end
+
+puts "...Created #{Task.count} tasks!"
