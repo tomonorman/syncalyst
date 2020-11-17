@@ -4,4 +4,12 @@ class MeetingPolicy < ApplicationPolicy
       scope.all
     end
   end
+
+  def new?
+    true
+  end
+
+  def create?
+    user
+  end
 end
