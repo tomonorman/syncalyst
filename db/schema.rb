@@ -10,23 +10,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_11_16_090359) do
+ActiveRecord::Schema.define(version: 2020_11_17_015926) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
-
-
-  create_table "meetings", force: :cascade do |t|
-    t.bigint "user_id", null: false
-    t.datetime "date_time"
-    t.string "description"
-    t.string "trello_board"
-    t.string "title"
-    t.integer "duration"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["user_id"], name: "index_meetings_on_user_id"
-   
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -49,6 +36,39 @@ ActiveRecord::Schema.define(version: 2020_11_16_090359) do
     t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
   end
 
+  create_table "agendas", force: :cascade do |t|
+    t.bigint "meeting_id", null: false
+    t.string "title"
+    t.text "transcription"
+    t.text "description"
+    t.integer "est_duration"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["meeting_id"], name: "index_agendas_on_meeting_id"
+  end
+
+  create_table "meetings", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.datetime "date_time"
+    t.string "description"
+    t.string "trello_board"
+    t.string "title"
+    t.integer "duration"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_meetings_on_user_id"
+  end
+
+  create_table "tasks", force: :cascade do |t|
+    t.bigint "meeting_id", null: false
+    t.string "description"
+    t.bigint "user_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["meeting_id"], name: "index_tasks_on_meeting_id"
+    t.index ["user_id"], name: "index_tasks_on_user_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -63,7 +83,9 @@ ActiveRecord::Schema.define(version: 2020_11_16_090359) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
-
-  add_foreign_key "meetings", "users"
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "agendas", "meetings"
+  add_foreign_key "meetings", "users"
+  add_foreign_key "tasks", "meetings"
+  add_foreign_key "tasks", "users"
 end
