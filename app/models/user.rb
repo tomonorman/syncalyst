@@ -9,4 +9,5 @@ class User < ApplicationRecord
   has_many :meetings, through: :attendances
   has_many :meetings
   has_many :attendances_as_owner, through: :meetings, source: :attendances
+
 end
