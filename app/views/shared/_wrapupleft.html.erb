@@ -12,6 +12,7 @@
   <% end %>
   <div class="task-list">
     <h2>Task list</h2>
+    <p>Trello board: <%= @meeting.trello_board %> </p>
     <% @meeting.tasks.each do |task| %>
       <div class="row">
         <div class="col-8 col-md-6">
