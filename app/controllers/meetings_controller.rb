@@ -32,4 +32,9 @@ class MeetingsController < ApplicationController
     @meeting = Meeting.new(params[:id])
     authorize @meeting
   end
+
+  def show
+    @meeting = Meeting.find(params[:id])
+    authorize @meeting
+  end
 end

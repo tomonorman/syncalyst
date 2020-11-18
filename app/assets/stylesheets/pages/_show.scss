@@ -1,0 +1,13 @@
+.agenda-card {
+ width: 88%;
+ height: 80vh;
+ background-color: #FBFAFA;
+ border-radius: 4px;
+ transform: perspective(800px) rotateY(16deg);
+ box-shadow: 2px 2px 2px 2px rgba(112, 51, 255, 0.4);
+ transition: 0.4s ease-in;
+}
+
+.agenda-card:hover {
+  transform: none;
+}
