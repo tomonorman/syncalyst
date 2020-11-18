@@ -1,4 +1,3 @@
- 
 <p class="mt-4">Hi <%= current_user.nickname %>! You have the following meeting coming up:</p>
 <h1><%= @meeting.title  %></h1>
 <h3><%= @meeting.date_time.strftime("%A, %d %b %Y at %l:%M %p") %> <span style="font-size: 16px;">(<%= @meeting.duration%> mins.)</span></h3>
@@ -13,4 +12,4 @@
     <%= cl_image_tag "#{attendance.user.photo.key}", alt: "alttext", class: "avatar mx-1" %>
   <% end %>
 </div>
-<button class="btn btn-primary btn-block mt-5">Everyone here? Lets get started!</button>
+<%= link_to "Everyone here? Let's get started!", start_meeting_path(@meeting), :method=> :put, class: "btn btn-primary btn-block mt-5"  %>
