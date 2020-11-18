@@ -1,0 +1,10 @@
+<div class="inprogress-card mt-4">
+  <h1>Let's wrap up!</h1>
+  <% @meeting.attendances.each do |attendance|  %>
+    <div class="wrapup-list-item">
+      <%= cl_image_tag "#{attendance.user.photo.key}", alt: "task-user-avatar", class: "avatar mx-1" %>
+      <p>Assign task to <%= attendance.user.nickname %>...</p>
+    </div>
+  <% end %>
+</ul>
+</div>
