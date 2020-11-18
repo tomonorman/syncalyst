@@ -2,7 +2,9 @@ class MeetingsController < ApplicationController
   def index
     @user_host_meetings = policy_scope(current_user.meetings)
     @meetings_attending = current_user.attendances.map(&:meeting)
-    @next_meeting = (@user_host_meetings + @meetings_attending).min_by(&:date_time)
+    @all_current_meetings = (@user_host_meetings + @meetings_attending).select { |meeting| meeting.date_time > Date.today }
+    # @next_meeting = (@user_host_meetings + @meetings_attending).min_by(&:date_time)
+    @next_meeting = @all_current_meetings.min_by(&:date_time)
   end
 
   def new

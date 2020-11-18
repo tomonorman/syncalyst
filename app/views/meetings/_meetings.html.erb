@@ -1,0 +1,22 @@
+<h1>This is the upcoming meeting</h1>
+<div class="container-fluid">
+  <div class="scrolling-wrapper row flex-row flex-nowrap mt-4 pb-4">
+    <!-- if there are any agendas -->
+    <% if @all_current_meetings.any? %>
+        <% @all_current_meetings.each do |meeting| %>
+        <div class="col-12 col-md-6 col-lg-3 ml-1">
+          <div class="item">
+            <p><%= meeting.title.slice(0..25) %>
+              <% if meeting.title.length > 28 %>
+              ...
+              <% end raise %>
+            </p>
+            </div>
+          </div>
+      <% end %>
+      <!-- if no agendas -->
+    <% else %>
+      <p>Nothing upcoming yet...</p>
+    <% end %>
+  </div>
+</div>
