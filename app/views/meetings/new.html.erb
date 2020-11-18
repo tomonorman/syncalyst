@@ -1,0 +1,19 @@
+<div class="container">
+  <div class="meeting-white-background shadow">
+    <div class="row justify-content-center mt-4">
+      <div class="form-box col-12 col-md-10">
+        <h2 class="mt-4">New Meeting</h2>
+        <%= simple_form_for(@meeting) do |f| %>
+          <%= f.input :title, label: 'Meeting name', placeholder: "Standup Meeting" %>
+          <%= f.input :description, as: :text, placeholder: "We will be discussing what we are going to do today." %>
+          <%= f.input :date_time, label: "Date", html5: true %>
+          <%= f.input :duration, placeholder: "Your meeting length in minutes" %>
+          <%= f.input :trello_board, placeholder: 'Enter your Trello Board URL to Sync!' %>
+          <div class="text-center">
+          <%= f.button :submit, 'Create', class: "btn btn-primary btn-lg mb-4 px-4" %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
