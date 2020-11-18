@@ -3,8 +3,24 @@
   <% @meeting.attendances.each do |attendance|  %>
     <div class="wrapup-list-item">
       <%= cl_image_tag "#{attendance.user.photo.key}", alt: "task-user-avatar", class: "avatar mx-1" %>
-      <p>Assign task to <%= attendance.user.nickname %>...</p>
+      <div class="task-form">
+        <%= simple_form_for([@meeting, @task]) do |f| %>
+          <%= f.input :description, placeholder: "Assign task to #{attendance.user.nickname}...", label: false %>
+        <% end %>
+      </div>
     </div>
   <% end %>
-</ul>
+  <div class="task-list">
+    <h2>Task list</h2>
+    <% @meeting.tasks.each do |task| %>
+      <div class="row">
+        <div class="col-8 col-md-6">
+          <%= task.user.nickname %>
+        </div>
+        <div class="col-8 col-md-6">
+          <%= task.description %>
+        </div>
+      </div>
+    <% end %>
+  </div>
 </div>
