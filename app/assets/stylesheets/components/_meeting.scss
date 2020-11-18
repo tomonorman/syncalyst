@@ -1,8 +1,11 @@
 .meeting-card-big {
-  width: 90%;
   background-color: $white;
   border-radius: 8px;
-  padding: 8px;
+  padding: 16px;
+  p {
+    padding: 0;
+    margin: 0;
+  }
 }
 
 .scrolling-wrapper{
@@ -11,4 +14,15 @@
 
 .meeting-italic {
   font-style: italic;
+}
+
+.agenda-meeting-card {
+  padding: 8px;
+  border-radius: 8px;
+  border: 2px solid $purple;
+  height: 56px;
+  p {
+    padding: 0;
+    margin: 0;
+  }
 }
