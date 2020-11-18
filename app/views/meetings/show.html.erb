@@ -20,7 +20,9 @@
       <h3>Talking About:</h3>
       <p><%= @meeting.description %></p>
       <h3>Hosted By:</h3>
-      <%= cl_image_tag "#{@meeting.user.photo.key}", alt: "alttext", class: "avatar" %>
+      <div d-flex>
+        <%= cl_image_tag "#{@meeting.user.photo.key}", alt: "alttext", class: "avatar mx-1" %>
+      </div>
       <h3>Joining</h3>
       <div class="d-flex">
         <p>ADD!</p>
