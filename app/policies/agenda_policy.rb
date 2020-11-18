@@ -4,4 +4,8 @@ class AgendaPolicy < ApplicationPolicy
       scope.all
     end
   end
+
+  def create?
+    user
+  end
 end
