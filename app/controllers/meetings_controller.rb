@@ -8,6 +8,8 @@ class MeetingsController < ApplicationController
   def show
     @agenda = Agenda.new
     @agenda.meeting = @meeting
+    @task = Task.new
+    @task.meeting = @meeting
   end
 
   def new
