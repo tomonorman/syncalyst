@@ -29,8 +29,13 @@ import 'aos/dist/aos.css';
 // Internal imports, e.g:
 // import { initSelect2 } from '../components/init_select2';
 import { initNavbar } from '../components/navbar';
+import { initAgendaBtn } from '../components/agenda_btn';
+import { initAgenda } from '../components/agendacard';
 
 document.addEventListener('turbolinks:load', () => {
   initNavbar();
+  initAgenda();
+  initAgendaBtn();
   AOS.init();
 });
+

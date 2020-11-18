@@ -16,4 +16,8 @@ class MeetingPolicy < ApplicationPolicy
   def create?
     user
   end
+
+  def start?
+    record.user == user
+  end
 end

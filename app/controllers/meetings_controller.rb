@@ -1,6 +1,13 @@
 class MeetingsController < ApplicationController
+  before_action :set_meeting, only: [:show, :start]
+
   def index
     set_all_meetings
+  end
+
+  def show
+    @agenda = Agenda.new
+    @agenda.meeting = @meeting
   end
 
   def new
@@ -19,19 +26,20 @@ class MeetingsController < ApplicationController
     end
   end
 
-  def show
-    @meeting = Meeting.find(params[:id])
-    authorize @meeting
+  def start
+    @meeting.start = true
+    @meeting.save
+    redirect_to meeting_path(@meeting)
   end
 
   private
 
   def meeting_params
-    params.require(:meeting).permit(:date_time, :description, :trello_board, :title, :duration)
+    params.require(:meeting).permit(:date_time, :description, :trello_board, :title, :duration, :start, :finish)
   end
 
   def set_meeting
-    @meeting = Meeting.new(params[:id])
+    @meeting = Meeting.find(params[:id])
     authorize @meeting
   end
 

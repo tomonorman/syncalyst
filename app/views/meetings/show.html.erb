@@ -1,36 +1,18 @@
 <div class="container">
   <div class="row">
     <div class="col-12 col-md-6">
-      <div data-aos="fade-right" data-aos-duration="2000">
-        <div class="agenda-card mt-4">
-          <p>Hi Jess How are you?</p>
-          <ul>
-            <li>Agenda Item 1</li>
-            <li>Agenda Item 2</li>
-            <li>Agenda Item 3</li>
-            <li>Agenda Item 4</li>
-          </ul>
-        </div>
-      </div>
+      <% if @meeting.start %>
+        <%= render 'shared/transcription' %>
+      <% else %>
+        <%= render 'shared/agenda' %>
+      <% end %>
     </div>
     <div class="col-12 col-md-6">
-      <p class="mt-4">Hi <%= current_user.nickname %>! You have the following meeting coming up:</p>
-      <h1><%= @meeting.title  %></h1>
-      <h3><%= @meeting.date_time.strftime("%A, %d %b %Y at %l:%M %p") %> <span style="font-size: 16px;">(<%= @meeting.duration%> mins.)</span></h3>
-      <h3>Talking About:</h3>
-      <p><%= @meeting.description %></p>
-      <h3>Hosted By:</h3>
-      <div d-flex>
-        <%= cl_image_tag "#{@meeting.user.photo.key}", alt: "alttext", class: "avatar mx-1" %>
-      </div>
-      <h3>Joining</h3>
-      <div class="d-flex">
-        <p>ADD!</p>
-        <% @meeting.attendances.each do |attendance| %>
-          <%= cl_image_tag "#{attendance.user.photo.key}", alt: "alttext", class: "avatar mx-1" %>
-        <% end %>
-      </div>
-      <button class="btn btn-primary btn-block mt-5">Everyone here? Lets get started!</button>
+      <% if @meeting.start %>
+        <%= render 'shared/inprogress' %>
+      <% else %>
+        <%= render 'shared/premeeting' %>
+      <% end %>
     </div>
   </div>
 </div>
