@@ -3,11 +3,12 @@ const initAgendaBtn = () => {
   const addAgendaBtn = document.querySelector(".add-agenda-btn");
   const agendaInput = document.querySelector(".agenda-input");
 
-addAgendaBtn.addEventListener("click", event => {
-    event.preventDefault();
-    agendaInput.classList.toggle('active');
-    console.log('hello');
-  });
+  if (addAgendaBtn) {
+    addAgendaBtn.addEventListener("click", event => {
+        event.preventDefault();
+        agendaInput.classList.toggle('active');
+    });
+  }
 };
 
 

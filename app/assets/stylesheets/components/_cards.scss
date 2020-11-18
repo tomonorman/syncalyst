@@ -49,19 +49,22 @@
 }
 
 .agenda-cards-inprogress {
-  background-color: $body-bg;
+  background-color: $light-gray;
   border-left: 4px solid $yellow;
   border-radius: $border-radius;
   -webkit-box-shadow: 0 8px 6px -6px rgba(0, 0, 0, 0.25);
   -moz-box-shadow: 0 8px 6px -6px rgba(0, 0, 0, 0.25);
   box-shadow: 0 8px 6px -6px rgba(0, 0, 0, 0.25);
   cursor: pointer;
-  padding: 8px 16px;
-  width: 60%;
+  width: 80%;
+  height: 70px;
+  padding: 12px;
   transition: 0.2s ease-out;
+
 }
 
 .agenda-cards-inprogress.active {
   transform: translateX(48px);
   background: linear-gradient(rgba($purple,.1), rgba($purple,.1));
+
 }
