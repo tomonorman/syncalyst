@@ -4,6 +4,7 @@ class MeetingsController < ApplicationController
     @meetings_attending = current_user.attendances.map(&:meeting)
     @all_current_meetings = (@user_host_meetings + @meetings_attending).select { |meeting| meeting.date_time > Date.today }
     # @next_meeting = (@user_host_meetings + @meetings_attending).min_by(&:date_time)
+    @previous_meetings = (@user_host_meetings + @meetings_attending).select { |meeting| meeting.date_time < Date.today }
     @next_meeting = @all_current_meetings.min_by(&:date_time)
   end
 

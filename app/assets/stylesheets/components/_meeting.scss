@@ -1,4 +1,5 @@
 .meeting-card-big {
+  position: relative;
   background-color: $white;
   border-radius: 8px;
   padding: 16px;
@@ -32,6 +33,7 @@
   padding: 8px;
   border-radius: 8px;
   border: 2px solid $purple;
+  height: 120px;
   p {
     padding: 0;
     margin: 0;
