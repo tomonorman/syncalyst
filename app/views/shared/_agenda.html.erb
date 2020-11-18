@@ -1,23 +1,27 @@
 <div data-aos="fade-right" data-aos-duration="2000">
   <div class="agenda-card mt-4">
     <div class="agenda">
-      <h2>Agenda</h2>
+      <h2 class="m-3">Agenda</h2>
       <ul>
-        <li>
-          <form class="agenda-form">
-            <button class="add-agenda-btn agenda-cards btn btn-secondary m-1">add</button>
-            <div class="agenda-input">
-              <input type='text'>
-            </div>
-          </form>
-        </li>
         <% @meeting.agendas.each do |agenda| %>
           <li>
-            <div class="agenda-cards btn btn-secondary m-1">
-              <p><%= agenda.title %></p>
+            <div class="agenda-cards btn btn-secondary m-1 d-flex justify-content-between">
+              <div class="agenda-info">
+                <p><%= agenda.title %></p>
+                <p><%= agenda.description %></p>
+              </div>
+              <div class="agenda-time">
+                <p><%= agenda.est_duration %> min.</p>
+              </div>
             </div>
           </li>
         <% end %>
+        <li>
+          <div class="agenda-form">
+            <button class="add-agenda-btn agenda-cards btn btn-secondary m-1">add</button>
+            <%= render 'agendas/new' %>
+          </div>
+        </li>
       </ul>
     </div>
   </div>
