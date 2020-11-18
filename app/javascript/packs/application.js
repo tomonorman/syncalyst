@@ -27,7 +27,10 @@ import "bootstrap";
 // Internal imports, e.g:
 // import { initSelect2 } from '../components/init_select2';
 import { initNavbar } from '../components/navbar';
+import { initAgendaBtn } from '../components/agenda_btn';
 
 document.addEventListener('turbolinks:load', () => {
   initNavbar();
+  initAgendaBtn();
 });
+

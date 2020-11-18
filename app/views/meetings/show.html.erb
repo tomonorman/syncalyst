@@ -1,0 +1,20 @@
+<div class="agenda">
+  <h2>Agenda</h2>
+  <ul>
+    <li>
+      <form class="agenda-form">
+        <button class="add-agenda-btn agenda-cards btn btn-secondary m-1">add</button>
+        <div class="agenda-input">
+          <input type='text'>
+        </div>
+      </form>
+    </li>
+    <% @meeting.agendas.each do |agenda| %>
+      <li>
+        <div class="agenda-cards btn btn-secondary m-1">
+          <p><%= agenda.title %></p>
+        </div>
+      </li>
+    <% end %>
+  </ul>
+</div>
