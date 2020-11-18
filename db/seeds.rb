@@ -93,7 +93,7 @@ meetings.each do |meeting|
     Agenda.create!(
       meeting_id: meeting.id,
       title: title,
-      transcription: Faker::Lorem.sentences(number: 1),
+      transcription: Faker::Lorem.sentences(number: 10),
       est_duration: 10,
     )
   end

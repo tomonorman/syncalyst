@@ -8,7 +8,6 @@ addAgendaBtn.addEventListener("click", event => {
     agendaInput.classList.toggle('active');
     console.log('hello');
   });
-
 };
 
 
