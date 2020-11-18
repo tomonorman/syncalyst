@@ -4,7 +4,7 @@
     <p>You don't have any meetings yet...</p>
   <% else %>
   <%= link_to 'View', meeting_path(@next_meeting), class: 'btn btn-primary btn-lg meeting-btn px-4' %>
-    <h2><%= @next_meeting.title %> <span class="meeting-italic"> <%= @next_meeting.duration %> min.</span></h2>
+    <h2><%= @next_meeting.title %> <span class="meeting-italic ml-5"> <%= @next_meeting.duration %> min.</span></h2>
       <!-- top-grid -->
     <div class="row col-12">
       <!-- left side of the grid -->
