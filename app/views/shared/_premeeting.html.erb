@@ -12,4 +12,6 @@
     <%= cl_image_tag "#{attendance.user.photo.key}", alt: "alttext", class: "avatar mx-1" %>
   <% end %>
 </div>
-<%= link_to "Everyone here? Let's get started!", start_meeting_path(@meeting), :method=> :put, class: "btn btn-primary btn-block mt-5"  %>
+<% if @meeting.user == current_user %>
+  <%= link_to "Everyone here? Let's get started!", start_meeting_path(@meeting), :method=> :put, class: "btn btn-primary btn-block mt-5"  %>
+<% end %>
