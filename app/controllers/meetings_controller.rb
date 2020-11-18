@@ -1,12 +1,6 @@
 class MeetingsController < ApplicationController
   def index
-    @user_host_meetings = policy_scope(current_user.meetings)
-    @meetings_attending = current_user.attendances.map(&:meeting)
-    @all_current_meetings = (@user_host_meetings + @meetings_attending).select { |meeting| meeting.date_time > Date.today }
-    # @next_meeting = (@user_host_meetings + @meetings_attending).min_by(&:date_time)
-    @previous_meetings = (@user_host_meetings + @meetings_attending).select { |meeting| meeting.date_time < Date.today }
-    @next_meeting = @all_current_meetings.min_by(&:date_time)
-    # raise
+    set_all_meetings
   end
 
   def new
@@ -19,8 +13,7 @@ class MeetingsController < ApplicationController
     @meeting.user = current_user
     authorize @meeting
     if @meeting.save
-      redirect_to meetings_path
-      # redirect_to meeting_path(@meeting)
+      redirect_to meeting_path(@meeting)
     else
       render 'new'
     end
@@ -42,4 +35,17 @@ class MeetingsController < ApplicationController
     authorize @meeting
   end
 
+  def set_all_meetings
+    @user_host_meetings = policy_scope(current_user.meetings)
+    @meetings_attending = current_user.attendances.map(&:meeting)
+    @all_current_meetings =
+      (@user_host_meetings + @meetings_attending)
+      .select { |meeting| meeting.date_time > Date.today }
+      .sort_by(&:date_time)
+    @previous_meetings =
+      (@user_host_meetings + @meetings_attending)
+      .select { |meeting| meeting.date_time < Date.today }
+      .sort_by(&:date_time)
+    @next_meeting = @all_current_meetings.min_by(&:date_time)
+  end
 end

@@ -5,14 +5,10 @@
       <!-- if there are any meetings -->
       <% if @previous_meetings.any? %>
           <% @previous_meetings.each do |meeting| %>
-          <div class="col-12 col-md-6 col-lg-3 ml-1">
+          <div class="col-12 col-md-6 col-lg-4 ml-1">
             <div class="upcoming-meeting-card ">
               <%= link_to 'View', meeting_path(meeting), class: 'btn btn-primary btn-sm meeting-btn'  %>
-              <h3><%= meeting.title.slice(0..25) %>
-                <% if meeting.title.length > 28 %>
-                ...
-                <% end  %>
-
+             <h3><%= meeting.title.slice(0..20)%><% if meeting.title.length >= 23 %>...<% end  %>
               </h3>
               <p> <%= meeting.date_time.strftime("%A, %d %b at %l:%M %p") %></p>
               </div>
