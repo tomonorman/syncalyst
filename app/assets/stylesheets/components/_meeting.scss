@@ -26,3 +26,20 @@
     margin: 0;
   }
 }
+
+.upcoming-meeting-card {
+  position: relative;
+  padding: 8px;
+  border-radius: 8px;
+  border: 2px solid $purple;
+  p {
+    padding: 0;
+    margin: 0;
+  }
+}
+
+.meeting-btn {
+  position: absolute;
+  top: 4px;
+  right: 8px;
+}
