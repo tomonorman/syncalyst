@@ -7,7 +7,10 @@
 <%= cl_image_tag "#{@meeting.user.photo.key}", alt: "alttext", class: "avatar" %>
 <h3>Joining</h3>
 <div class="d-flex">
-  <p>ADD!</p>
+  <!-- if current user is the meeting owner, show button to invite-->
+  <% if current_user == @meeting.user %>
+    <%= render 'shared/invite' %>
+  <% end %>
   <% @meeting.attendances.each do |attendance| %>
     <%= cl_image_tag "#{attendance.user.photo.key}", alt: "alttext", class: "avatar mx-1" %>
   <% end %>
