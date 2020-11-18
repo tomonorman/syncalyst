@@ -1,7 +1,20 @@
-<h1>Dashboard</h1>
-<%= link_to new_meeting_path class: 'btn btn-primary' do %>
-<div class="btn btn-primary">
-  New Meeting <i class="fas fa-plus"></i>
+<div class="container">
+  <div class="d-flex justify-content-between">
+    <h1><%= current_user.nickname %>'s Dashboard</h1>
+    <%= link_to new_meeting_path class: 'btn btn-primary' do %>
+    <div class="btn btn-primary  btn-lg px-4">
+      New Meeting <i class="fas fa-plus"></i>
+    </div>
+  <% end %>
   </div>
-<% end %>
+  <div class="top-section">
+  <%= render "upcoming" %>
+  </div>
+  <div class="middle-section">
+  <%= render "current_meetings"  %>
+  </div>
+  <div class="bottom-section">
+  <%= render "previous_meetings" %>
+  </div>
+</div>
 

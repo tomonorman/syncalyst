@@ -1,0 +1,49 @@
+.meeting-card-big {
+  position: relative;
+  background-color: $white;
+  border-radius: 8px;
+  padding: 16px;
+  margin: 16px 0;
+  p {
+    padding: 0;
+    margin: 0;
+  }
+}
+
+.scrolling-wrapper{
+  overflow-x: auto;
+}
+
+.meeting-italic {
+  font-style: italic;
+}
+
+.agenda-meeting-card {
+  padding: 8px;
+  border-radius: 8px;
+  border: 2px solid $purple;
+  height: 56px;
+  p {
+    padding: 0;
+    margin: 0;
+  }
+}
+
+.upcoming-meeting-card {
+  position: relative;
+  padding: 8px;
+  border-radius: 8px;
+  border: 2px solid $purple;
+  height: 120px;
+  width: 100%;
+  p {
+    padding: 0;
+    margin: 0;
+  }
+}
+
+.meeting-btn {
+  position: absolute;
+  top: 4px;
+  right: 8px;
+}
