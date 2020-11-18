@@ -1,6 +1,14 @@
 class MeetingsController < ApplicationController
+
+  before_action :set_meeting, only: [:show]
+
   def index
     @meetings = policy_scope(current_user.meetings)
+  end
+  
+   def show
+    @agenda = Agenda.new()
+    @agenda.meeting = @meeting
   end
 
   def new
@@ -27,11 +35,6 @@ class MeetingsController < ApplicationController
   end
 
   def set_meeting
-    @meeting = Meeting.new(params[:id])
-    authorize @meeting
-  end
-
-  def show
     @meeting = Meeting.find(params[:id])
     authorize @meeting
   end

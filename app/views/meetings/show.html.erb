@@ -3,13 +3,26 @@
     <div class="col-12 col-md-6">
       <div data-aos="fade-right" data-aos-duration="2000">
         <div class="agenda-card mt-4">
-          <p>Hi Jess How are you?</p>
-          <ul>
-            <li>Agenda Item 1</li>
-            <li>Agenda Item 2</li>
-            <li>Agenda Item 3</li>
-            <li>Agenda Item 4</li>
-          </ul>
+          <div class="agenda">
+            <h2>Agenda</h2>
+            <ul>
+              <li>
+                <form class="agenda-form">
+                  <button class="add-agenda-btn agenda-cards btn btn-secondary m-1">add</button>
+                  <div class="agenda-input">
+                    <input type='text'>
+                  </div>
+                </form>
+              </li>
+              <% @meeting.agendas.each do |agenda| %>
+                <li>
+                  <div class="agenda-cards btn btn-secondary m-1">
+                    <p><%= agenda.title %></p>
+                  </div>
+                </li>
+              <% end %>
+            </ul>
+          </div>          
         </div>
       </div>
     </div>
@@ -31,4 +44,3 @@
       <button class="btn btn-primary btn-block mt-5">Everyone here? Lets get started!</button>
     </div>
   </div>
-</div>
