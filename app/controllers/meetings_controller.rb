@@ -22,6 +22,11 @@ class MeetingsController < ApplicationController
     end
   end
 
+  def show
+    @meeting = Meeting.find(params[:id])
+    authorize @meeting
+  end
+
   private
 
   def meeting_params
@@ -33,8 +38,4 @@ class MeetingsController < ApplicationController
     authorize @meeting
   end
 
-  def show
-    @meeting = Meeting.find(params[:id])
-    authorize @meeting
-  end
 end
