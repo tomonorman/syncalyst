@@ -1,12 +1,18 @@
 <div class="container">
   <div class="row">
     <div class="col-12 col-md-6">
-      <!-- <%= render 'shared/agenda' %> -->
-      <%= render 'shared/transcription' %>
+      <% if @meeting.start %>
+        <%= render 'shared/transcription' %>
+      <% else %>
+        <%= render 'shared/agenda' %>
+      <% end %>
     </div>
     <div class="col-12 col-md-6">
-      <!-- <%= render 'shared/premeeting' %> -->
-      <%= render 'shared/inprogress' %>
+      <% if @meeting.start %>
+        <%= render 'shared/inprogress' %>
+      <% else %>
+        <%= render 'shared/premeeting' %>
+      <% end %>
     </div>
   </div>
 </div>
