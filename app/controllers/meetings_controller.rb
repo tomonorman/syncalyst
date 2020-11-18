@@ -1,13 +1,12 @@
 class MeetingsController < ApplicationController
-
   before_action :set_meeting, only: [:show]
 
   def index
     @meetings = policy_scope(current_user.meetings)
   end
-  
-   def show
-    @agenda = Agenda.new()
+
+  def show
+    @agenda = Agenda.new
     @agenda.meeting = @meeting
   end
 
