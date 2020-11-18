@@ -20,7 +20,10 @@
             <% if @meeting.attendances.any? %>
               <% invited = @meeting.attendances.map(&:user) %>
               <% uninvited = User.all - invited  %>
-              <% uninvited.each do |user| %>
+              <% if uninvited.empty? %>
+                <p>There are no more people to invite.</p>
+              <% else %>
+                <% uninvited.each do |user| %>
                 <li class="list-group-item list-group-item-action">
                   <div class="avatar-card d-flex align-items-center justify-content-around">
                     <div class="user-name d-flex flex-column justify-content-center align-items-center">
@@ -42,6 +45,7 @@
                     <% end %>
                   </div>
                 </li>
+              <% end %>
             <% end %>
 
             <% else %>
@@ -74,7 +78,6 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
       </div>
     </div>
   </div>
