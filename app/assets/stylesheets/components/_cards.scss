@@ -1,5 +1,5 @@
-.agenda-cards {
-  background-color: $body-bg;
+.agenda-cards, .collapsible {
+  background-color: $light-gray;
   border-left: 4px solid $yellow;
   border-radius: $border-radius;
   -webkit-box-shadow: 0 8px 6px -6px rgba(0, 0, 0, 0.25);
@@ -8,29 +8,52 @@
   cursor: pointer;
 }
 
+.agenda-cards:hover, .collapsible:hover {
+  transform: translateX(-12px);
+    transition: 0.2s ease-out;
+    color: $white;
+    background-color: $purple;
+}
+
 .agenda ul {
   list-style-type: none;
 }
 
-.agenda-cards:hover {
-  transform: translateX(-12px);
-  transition: 0.2s ease-out;
-  background: linear-gradient(rgba($purple,.1), rgba($purple,.1));
-}
-
 .agenda-form {
   position: relative;
-  width: 250px;
+  width: 200px;
 }
 
 .agenda-input {
   position: absolute;
-  top: 0;
-  left: -300px;
+  top: 50px;
+  left: -350px;
   width: 100%;
   overflow: hidden;
   transition: all .1s ease-in;
 }
 .agenda-input.active {
-  left: 0;
+  left: 10px;
 }
+
+/* Style the button that is used to open and close the collapsible content */
+// .collapsible {
+//   cursor: pointer;
+//   padding: 18px;
+//   width: 100%;
+//   border: none;
+//   text-align: left;
+//   outline: none;
+//   font-size: 15px;
+// }
+
+/* Add a background color to the button if it is clicked on (add the .active class with JS), and when you move the mouse over it (hover) */
+// .active, .collapsible:hover {
+//   background-color: $light-gray;
+// }
+
+/* Style the collapsible content. Note: hidden by default */
+// .agenda-input {
+//   display: none;
+//   overflow: hidden;
+// }

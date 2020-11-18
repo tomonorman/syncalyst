@@ -6,23 +6,31 @@
           <div class="agenda">
             <h2>Agenda</h2>
             <ul>
-              <li>
+              <% @meeting.agendas.each do |agenda| %>
+                <li>
+                  <div class="agenda-cards btn btn-secondary m-1">
+                    <p><%= agenda.title %></p>
+                    <p><%= agenda.description %></p>
+                    <p><%= agenda.est_duration %></p>
+                  </div>
+                </li>
+              <% end %>
+              <!--   <li>
                 <form class="agenda-form">
                   <button class="add-agenda-btn agenda-cards btn btn-secondary m-1">add</button>
                   <div class="agenda-input">
                     <input type='text'>
                   </div>
                 </form>
+              </li> -->
+              <li>
+                <div class="agenda-form">
+                  <button class="add-agenda-btn agenda-cards btn btn-secondary m-1 collapsible">add</button>
+                  <%= render 'agendas/new' %>
+                </div>
               </li>
-              <% @meeting.agendas.each do |agenda| %>
-                <li>
-                  <div class="agenda-cards btn btn-secondary m-1">
-                    <p><%= agenda.title %></p>
-                  </div>
-                </li>
-              <% end %>
             </ul>
-          </div>          
+          </div>
         </div>
       </div>
     </div>
@@ -44,3 +52,4 @@
       <button class="btn btn-primary btn-block mt-5">Everyone here? Lets get started!</button>
     </div>
   </div>
+</div>
