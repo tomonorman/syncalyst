@@ -4,8 +4,8 @@ Rails.application.routes.draw do
 
   put 'meetings/:id/start', to: 'meetings#start', as: :start_meeting
   put 'meetings/:id/finish', to: 'meetings#finish'
+  post 'meetings/:id/:user_id', to: 'attendances#create', as: :invite_attendance
   resources :meetings, only: [:index, :show, :edit, :create, :new] do
-    resources :attendances, only: [:create]
     resources :agendas, only: [:create]
     resources :tasks, only: [:create]
   end

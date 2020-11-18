@@ -7,13 +7,70 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+        <h5 class="modal-title" id="exampleModalLongTitle">Invite people to your meeting!</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
       <div class="modal-body">
-        ...
+        <% User.all %>
+        <% @meeting.attendances %>
+          <ul class="list-group">
+            <!-- if there are attendance for the meeting... -->
+            <% if @meeting.attendances.any? %>
+              <% invited = @meeting.attendances.map(&:user) %>
+              <% uninvited = User.all - invited  %>
+              <% uninvited.each do |user| %>
+                <li class="list-group-item list-group-item-action">
+                  <div class="avatar-card d-flex align-items-center justify-content-around">
+                    <div class="user-name d-flex flex-column justify-content-center align-items-center">
+                      <p><%= user.nickname %></p>
+                      <%= cl_image_tag "#{user.photo.key}", alt: "alttext", class: "avatar mx-1" %>
+                    </div>
+                    <div class="user-bundle d-flex flex-column align-items-center">
+                      <div class="user-info d-flex justify-content-between">
+                        <p>Jobtitle:</p>
+                        <p><%= user.job_title %></p>
+                      </div>
+                      <div class="user-info d-flex justify-content-between">
+                        <p>email:</p>
+                        <p><%= user.email %></p>
+                      </div>
+                    </div>
+                    <%= link_to invite_attendance_path(@meeting,user), class: 'btn btn-primary',method: :post  do %>
+                      <i class="fas fa-user-plus"></i>
+                    <% end %>
+                  </div>
+                </li>
+            <% end %>
+
+            <% else %>
+            <!-- if there are no attendances yet... -->
+            <% User.all.each do |user| %>
+              <li class="list-group-item list-group-item-action">
+                <div class="avatar-card d-flex align-items-center justify-content-around">
+                  <div class="user-name d-flex flex-column justify-content-center align-items-center">
+                    <p><%= user.nickname %></p>
+                    <%= cl_image_tag "#{user.photo.key}", alt: "alttext", class: "avatar mx-1" %>
+                  </div>
+                  <div class="user-bundle d-flex flex-column align-items-center">
+                    <div class="user-info d-flex justify-content-between">
+                      <p>Jobtitle:</p>
+                      <p><%= user.job_title %></p>
+                    </div>
+                    <div class="user-info d-flex justify-content-between">
+                      <p>email:</p>
+                      <p><%= user.email %></p>
+                    </div>
+                  </div>
+                  <%= link_to invite_attendance_path(@meeting,user), class: 'btn btn-primary',method: :post  do %>
+                    <i class="fas fa-user-plus"></i>
+                  <% end %>
+                </div>
+              </li>
+              <% end %>
+            <% end %>
+          </ul>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
