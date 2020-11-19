@@ -19,7 +19,7 @@
             <!-- if there are attendance for the meeting... -->
             <% if @meeting.attendances.any? %>
               <% invited = @meeting.attendances.map(&:user) %>
-              <% uninvited = User.all - invited  %>
+              <% uninvited = User.all - invited - [current_user] %>
               <% if uninvited.empty? %>
                 <p>There are no more people to invite.</p>
               <% else %>
