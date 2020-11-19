@@ -1,0 +1,27 @@
+<div class="inprogress-card mt-4">
+  <h1>Let's wrap up!</h1>
+  <% @meeting.attendances.each do |attendance|  %>
+    <div class="wrapup-list-item">
+      <%= cl_image_tag "#{attendance.user.photo.key}", alt: "task-user-avatar", class: "avatar mx-1" %>
+      <div class="task-form">
+        <%= simple_form_for([@meeting, @task]) do |f| %>
+          <%= f.input :description, placeholder: "Assign task to #{attendance.user.nickname}...", label: false %>
+        <% end %>
+      </div>
+    </div>
+  <% end %>
+  <div class="task-list">
+    <h2>Task list</h2>
+    <p>Trello board: <%= @meeting.trello_board %> </p>
+    <% @meeting.tasks.each do |task| %>
+      <div class="row">
+        <div class="col-8 col-md-6">
+          <%= task.user.nickname %>
+        </div>
+        <div class="col-8 col-md-6">
+          <%= task.description %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>

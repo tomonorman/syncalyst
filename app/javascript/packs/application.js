@@ -31,11 +31,13 @@ import 'aos/dist/aos.css';
 import { initNavbar } from '../components/navbar';
 import { initAgendaBtn } from '../components/agenda_btn';
 import { initAgenda } from '../components/agendacard';
+import { initTrello } from '../components/init_trello';
 
 document.addEventListener('turbolinks:load', () => {
   initNavbar();
   initAgenda();
   initAgendaBtn();
+  initTrello();
   AOS.init();
 });
 
