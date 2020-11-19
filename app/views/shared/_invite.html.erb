@@ -19,16 +19,16 @@
             <!-- if there are attendance for the meeting... -->
             <% if @meeting.attendances.any? %>
               <% invited = @meeting.attendances.map(&:user) %>
-              <% uninvited = User.all - invited  %>
+              <% uninvited = User.all - invited - [current_user] %>
               <% if uninvited.empty? %>
                 <p>There are no more people to invite.</p>
               <% else %>
                 <% uninvited.each do |user| %>
                 <li class="list-group-item list-group-item-action">
-                  <div class="avatar-card d-flex align-items-center justify-content-around">
+                  <div class="avatar-card d-flex align-items-center justify-content-between">
                     <div class="user-name d-flex flex-column justify-content-center align-items-center">
                       <p><%= user.nickname %></p>
-                      <%= cl_image_tag "#{user.photo.key}", alt: "alttext", class: "avatar mx-1" %>
+                      <%= cl_image_tag "#{user.photo.key}", alt: "alttext", class: "avatar mx-1 align-self-start" %>
                     </div>
                     <div class="user-bundle d-flex flex-column align-items-center">
                       <div class="user-info d-flex justify-content-between">
@@ -50,12 +50,12 @@
 
             <% else %>
             <!-- if there are no attendances yet... -->
-            <% User.all.each do |user| %>
+            <% (User.all - [current_user]).each do |user| %>
               <li class="list-group-item list-group-item-action">
-                <div class="avatar-card d-flex align-items-center justify-content-around">
+                <div class="avatar-card d-flex align-items-center justify-content-between">
                   <div class="user-name d-flex flex-column justify-content-center align-items-center">
                     <p><%= user.nickname %></p>
-                    <%= cl_image_tag "#{user.photo.key}", alt: "alttext", class: "avatar mx-1" %>
+                    <%= cl_image_tag "#{user.photo.key}", alt: "alttext", class: "avatar mx-1 align-self-start" %>
                   </div>
                   <div class="user-bundle d-flex flex-column align-items-center">
                     <div class="user-info d-flex justify-content-between">
