@@ -1,5 +1,6 @@
+// https://trello.com/b/hmiXsuho/syncalyst.json
 const initCard = () => {
-  const myList = 'INSERT YOUR IDLIST HERE';
+  const myList = '5fb4e5f006c65105637a41a6';
   const taskCreation = document.querySelector("#new_task");
 
   const creationSuccess = function (data) {
@@ -15,7 +16,9 @@ const initCard = () => {
     pos: 'top'
   };
 
-  window.Trello.post('/cards/', newCard, creationSuccess);
+  taskCreation.addEventListener("submit", event => {
+    window.Trello.post('/cards/', newCard, creationSuccess);
+  });
 }
 
 export { initCard }
