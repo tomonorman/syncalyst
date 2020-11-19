@@ -10,18 +10,20 @@ const initCard = () => {
     console.log(JSON.stringify(data, null, 2));
   };
 
+if (taskForm) {
   taskForm.addEventListener("submit", event => {
-    const newCard = {
-      name: newTaskDesc.value,
-      desc: 'new desc',
-      // Place this card at the top of our list
-      idList: myList,
-      pos: 'top'
-    };
-    // event.preventDefault();
-    window.Trello.post('/cards/', newCard, creationSuccess);
-    console.log('working');
-  });
+      const newCard = {
+        name: newTaskDesc.value,
+        desc: 'new desc',
+        // Place this card at the top of our list
+        idList: myList,
+        pos: 'top'
+      };
+      // event.preventDefault();
+      window.Trello.post('/cards/', newCard, creationSuccess);
+    });
+}
+
 
   // popup window to add a new card
   // const url = 'https://trello.com/add-card?url=http://localhost:3000/meetings/34&name=new&idList=5fb4e5f006c65105637a41a6';
