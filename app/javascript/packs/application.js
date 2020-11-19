@@ -32,11 +32,13 @@ import { initNavbar } from '../components/navbar';
 import { initAgendaBtn } from '../components/agenda_btn';
 import { initAgenda } from '../components/agendacard';
 import { initTrello } from '../components/init_trello';
+import { recordAudio } from '../components/record_audio';
 
 document.addEventListener('turbolinks:load', () => {
   initNavbar();
   initAgenda();
   initAgendaBtn();
+  recordAudio();
   initTrello();
   AOS.init();
 });

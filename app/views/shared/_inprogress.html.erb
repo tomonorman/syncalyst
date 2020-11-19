@@ -12,11 +12,32 @@
           <div class="agenda-time">
             <p><%= agenda.est_duration %> min.</p>
           </div>
+         <button class="record">Record</button>
+        <button class="stop">stop</button>
+        <%= simple_form_for(agenda) do |f| %>
+          <%= f.input :audio, as: :hidden %>
+          <%= f.submit %>
+
+        <% end %>
         </div>
+          <!-- <p> -->
+            <!-- <audio id="audio" controls="" ></audio> -->
+          <!-- </p> -->
+
+        <% if agenda.audio.attached? %>
+        <%#= cl_video_tag agenda.audio.key %>
+          <audio controls>
+            <source src="<%= cl_video_path(agenda.audio.key) %>" >
+            <!-- <source src="https://res.cloudinary.com/ddmnum8yz/video/upload/v1605770627/xn2fjyccj1aqj2vu0vo3jc41pok3.webm" > -->
+            </audio>
+        <% end %>
+
       </li>
     <% end %>
   </ul>
 </div>
+
+
 <% if @meeting.user == current_user %>
   <div class="d-flex justify-content-center">
     <button style="width: 94%;" class="btn btn-primary btn-block mt-5">Ready to Wrap Up?</button>

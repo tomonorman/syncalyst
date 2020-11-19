@@ -10,5 +10,6 @@ Rails.application.routes.draw do
     resources :tasks, only: [:create]
   end
   resources :attendances, only: [:edit]
-  resources :agendas, only: [:edit, :start, :finish]
+  resources :agendas, only: [:edit, :start, :finish, :update]
+
 end
