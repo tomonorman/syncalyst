@@ -9,6 +9,10 @@ class MeetingPolicy < ApplicationPolicy
     true
   end
 
+  def summary?
+    true
+  end
+
   def new?
     true
   end
