@@ -5,7 +5,6 @@ class TasksController < ApplicationController
     @task = Task.new(task_params)
     authorize @task
     @task.meeting = @meeting
-    @task.user = current_user
     if @task.save
       redirect_to meeting_path(@meeting)
     end
@@ -14,6 +13,6 @@ class TasksController < ApplicationController
   private
 
   def task_params
-    params.require(:task).permit(:description, :meeting, :user)
+    params.require(:task).permit(:description, :meeting, :user_id)
   end
 end
