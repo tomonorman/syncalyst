@@ -1,21 +1,34 @@
+// get idlist from https://trello.com/b/hmiXsuho/syncalyst.json
+
 const initCard = () => {
-  const myList = 'INSERT YOUR IDLIST HERE';
-  const taskCreation = document.querySelector("#new_task");
+  const myList = '5fb4e5f006c65105637a41a6';
+  const taskForm = document.getElementById('new_task');
+  const newTaskDesc = document.getElementById('task_description');
 
   const creationSuccess = function (data) {
     console.log('Card created successfully.');
     console.log(JSON.stringify(data, null, 2));
   };
 
-  const newCard = {
-    name: 'New Test Card',
-    desc: 'This is the description of our new card.',
-    // Place this card at the top of our list
-    idList: myList,
-    pos: 'top'
-  };
+  taskForm.addEventListener("submit", event => {
+    const newCard = {
+      name: newTaskDesc.value,
+      desc: 'new desc',
+      // Place this card at the top of our list
+      idList: myList,
+      pos: 'top'
+    };
+    // event.preventDefault();
+    window.Trello.post('/cards/', newCard, creationSuccess);
+    console.log('working');
+  });
 
-  window.Trello.post('/cards/', newCard, creationSuccess);
-}
+  // popup window to add a new card
+  // const url = 'https://trello.com/add-card?url=http://localhost:3000/meetings/34&name=new&idList=5fb4e5f006c65105637a41a6';
+
+  // window.Trello.addCard({
+  //   url: url
+  // });
+};
 
 export { initCard }

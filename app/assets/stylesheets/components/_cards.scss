@@ -1,4 +1,4 @@
-.agenda-cards {
+.agenda-cards, .task-cards {
   background-color: $light-gray;
   border-left: 4px solid $yellow;
   border-radius: $border-radius;
@@ -20,7 +20,7 @@
   list-style-type: none;
 }
 
-.agenda-cards:hover {
+.agenda-cards:hover, .task-cards:hover {
   transform: translateX(-12px);
     transition: 0.2s ease-out;
     color: $white;
