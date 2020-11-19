@@ -1,9 +1,10 @@
 // get idlist from https://trello.com/b/hmiXsuho/syncalyst.json
 
-const initCard = () => {
+const initTrelloCard = () => {
   const myList = '5fb4e5f006c65105637a41a6';
   const taskForm = document.getElementById('new_task');
   const newTaskDesc = document.getElementById('task_description');
+  // const taskMemeber =
 
   const creationSuccess = function (data) {
     console.log('Card created successfully.');
@@ -13,9 +14,10 @@ const initCard = () => {
   taskForm.addEventListener("submit", event => {
     const newCard = {
       name: newTaskDesc.value,
-      desc: 'new desc',
-      // Place this card at the top of our list
+      // desc: 'new desc',
+      //idMembers: [taskMember],
       idList: myList,
+      // Place this card at the top of our list
       pos: 'top'
     };
     // event.preventDefault();
@@ -31,4 +33,4 @@ const initCard = () => {
   // });
 };
 
-export { initCard }
+export { initTrelloCard }

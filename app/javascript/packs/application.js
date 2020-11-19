@@ -29,17 +29,17 @@ import 'aos/dist/aos.css';
 // Internal imports, e.g:
 // import { initSelect2 } from '../components/init_select2';
 import { initNavbar } from '../components/navbar';
-import { initAgendaBtn } from '../components/agenda_btn';
+import { initAgendaForm } from '../components/init_agenda_form';
 import { initAgenda } from '../components/agendacard';
-import { initTrello } from '../components/init_trello';
-import { initCard } from '../components/init_card';
+import { authorizeTrello } from '../components/authorize_trello';
+import { initTrelloCard } from '../components/init_trello_card';
 
 document.addEventListener('turbolinks:load', () => {
   initNavbar();
   initAgenda();
-  initAgendaBtn();
-  initTrello();
-  initCard();
+  initAgendaForm();
+  authorizeTrello();
+  initTrelloCard();
   AOS.init();
 });
 

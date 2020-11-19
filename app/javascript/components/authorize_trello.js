@@ -1,4 +1,4 @@
-const initTrello = () => {
+const authorizeTrello = () => {
   const authenticationSuccess = () => {
     console.log('Successful authentication');
   };
@@ -19,4 +19,4 @@ const initTrello = () => {
   });
 }
 
-export { initTrello }
+export { authorizeTrello }
