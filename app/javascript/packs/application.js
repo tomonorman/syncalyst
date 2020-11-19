@@ -37,7 +37,7 @@ document.addEventListener('turbolinks:load', () => {
   initNavbar();
   initAgenda();
   initAgendaBtn();
-  initTrello();
+  // initTrello();
   AOS.init();
 });
 
