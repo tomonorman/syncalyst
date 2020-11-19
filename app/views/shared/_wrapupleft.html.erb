@@ -6,7 +6,7 @@
       <div class="task-form">
         <%= simple_form_for([@meeting, @task]) do |f| %>
           <%= f.input :user_id, label: false , :input_html => { :value => attendance.user.id, :type => 'hidden' } %>
-          <%= f.input :description, placeholder: "Press enter to assign task to #{attendance.user.nickname}", label: false %>
+          <%= f.input :description, placeholder: "Press enter to assign task to #{attendance.user.nickname}", label: false, class: "task-description" %>
         <% end %>
       </div>
     </div>
