@@ -4,7 +4,7 @@
     <ul>
       <% @meeting.agendas.each do |agenda| %>
         <div class="transcription transcription-display">
-          <li><%= agenda.transcription %></li>
+          <li><%= simple_format(agenda.transcription) %></li>
         </div>
       <% end %>
     </ul>

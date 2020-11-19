@@ -1,5 +1,5 @@
 class MeetingsController < ApplicationController
-  before_action :set_meeting, only: [:show, :start, :finish]
+  before_action :set_meeting, only: [:show, :summary, :start, :finish]
 
   def index
     set_all_meetings
@@ -10,6 +10,9 @@ class MeetingsController < ApplicationController
     @agenda.meeting = @meeting
     @task = Task.new
     @task.meeting = @meeting
+  end
+
+  def summary
   end
 
   def new
