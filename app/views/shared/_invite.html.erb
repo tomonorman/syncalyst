@@ -50,7 +50,7 @@
 
             <% else %>
             <!-- if there are no attendances yet... -->
-            <% User.all.each do |user| %>
+            <% (User.all - [current_user]).each do |user| %>
               <li class="list-group-item list-group-item-action">
                 <div class="avatar-card d-flex align-items-center justify-content-around">
                   <div class="user-name d-flex flex-column justify-content-center align-items-center">
