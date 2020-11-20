@@ -6,7 +6,7 @@
 <p><%= @meeting.description %></p>
 <h4>Hosted By:</h4>
 <%= cl_image_tag "#{@meeting.user.photo.key}", alt: "alttext", class: "avatar" %>
-<h4>Joining</h4>
+<h4 class="mt-1">Joining</h4>
 <div class="d-flex">
   <!-- if current user is the meeting owner, show button to invite-->
   <% if current_user == @meeting.user %>
@@ -17,6 +17,6 @@
   <% end %>
 </div>
 <% if @meeting.user == current_user %>
-  <%= link_to "Everyone here? Let's get started!", start_meeting_path(@meeting), :method=> :put, class: "btn btn-primary btn-block mt-5"  %>
+  <%= link_to "Everyone here? Let's get started!", start_meeting_path(@meeting), :method=> :put, class: "btn btn-primary btn-block mt-4"  %>
 <% end %>
 
