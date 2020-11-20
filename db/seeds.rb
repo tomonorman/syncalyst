@@ -96,6 +96,7 @@ puts "...Created #{User.count} users!"
 
 puts "Creating meetings.."
 
+
 users.each do |user|
   Meeting.create!(
     user_id: user.id,
@@ -146,7 +147,7 @@ meetings.each do |meeting|
       meeting_id: meeting.id,
       title: title,
       transcription: TRANSCRIPTION[i],
-      est_duration: 10,
+      est_duration: 10
     )
     i += 1
   end
@@ -166,3 +167,40 @@ meetings.each do |meeting|
 end
 
 puts "...Created #{Task.count} tasks!"
+
+meeting = Meeting.create!(
+  user_id: user3.id,
+  date_time: Time.new(2020, 11, 20, 18, 0, 0),
+  description: 'Weekly Progress Sharing on Product Development',
+  trello_board: 'https://trello.com/b/hmiXsuho/syncalyst',
+  title: 'Project Syncabuddy Weekly Meeting',
+  duration: 10
+)
+
+Agenda.create!(
+  meeting_id: meeting.id,
+  title: "Tasks completed last week",
+  transcription: "Jess: it should start recording and transcribing automatically. Last week I have made a new button on the agenda page. Let's go to the next item on the agenda",
+  est_duration: 2
+)
+
+Agenda.create!(
+  meeting_id: meeting.id,
+  title: "Issues from last week",
+  transcription: "Jess: But we have one problem. That its loading the page very slowly so we need to fix it.",
+  est_duration: 2
+)
+
+Agenda.create!(
+  meeting_id: meeting.id,
+  title: "New Ideas from Jess",
+  transcription: "Jess: Let's talk about other new ideas. How about adding a search function? How about you Tomo?",
+  est_duration: 2
+)
+
+Agenda.create!(
+  meeting_id: meeting.id,
+  title: "New Ideas from Tomo",
+  transcription: "Tomo: We need to add more animations.",
+  est_duration: 2
+)
