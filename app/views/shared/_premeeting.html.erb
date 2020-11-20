@@ -1,11 +1,12 @@
 <p class="mt-4">Hi <%= current_user.nickname %>! You have the following meeting coming up:</p>
-<h1><%= @meeting.title  %></h1>
-<h3><%= @meeting.date_time.strftime("%A, %d %b %Y at %l:%M %p") %> <span style="font-size: 16px;">(<%= @meeting.duration%> mins.)</span></h3>
+<h1 class="font-weight-bold"><%= @meeting.title  %></h1>
+<p style="font-size: 24px" ><%= @meeting.date_time.strftime("%A, %d %b %Y at %l:%M %p") %> <span style="font-size: 16px;">(<%= @meeting.duration%> mins.)</span></p>
+<hr>
 <h3>Talking About:</h3>
 <p><%= @meeting.description %></p>
-<h3>Hosted By:</h3>
+<h4>Hosted By:</h4>
 <%= cl_image_tag "#{@meeting.user.photo.key}", alt: "alttext", class: "avatar" %>
-<h3>Joining</h3>
+<h4 class="mt-1">Joining</h4>
 <div class="d-flex">
   <!-- if current user is the meeting owner, show button to invite-->
   <% if current_user == @meeting.user %>
@@ -16,6 +17,6 @@
   <% end %>
 </div>
 <% if @meeting.user == current_user %>
-  <%= link_to "Everyone here? Let's get started!", start_meeting_path(@meeting), :method=> :put, class: "btn btn-primary btn-block mt-5"  %>
+  <%= link_to "Everyone here? Let's get started!", start_meeting_path(@meeting), :method=> :put, class: "btn btn-primary btn-block mt-4"  %>
 <% end %>
 

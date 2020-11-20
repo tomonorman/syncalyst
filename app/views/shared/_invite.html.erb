@@ -30,15 +30,27 @@
                       <p><%= user.nickname %></p>
                       <%= cl_image_tag "#{user.photo.key}", alt: "alttext", class: "avatar mx-1 align-self-start" %>
                     </div>
-                    <div class="user-bundle d-flex flex-column align-items-center">
-                      <div class="user-info d-flex justify-content-between">
-                        <p>Jobtitle:</p>
-                        <p><%= user.job_title %></p>
+                    <div class="user-bundle d-flex align-items-center">
+                      <div class="d-flex flex-column justify-content-start">
+                         <p>Jobtitle:</p>
+                         <p>Email:</p>
                       </div>
-                      <div class="user-info d-flex justify-content-between">
-                        <p>email:</p>
+                        <div class="d-flex flex-column justify-content-end">
+                        <p><%= user.job_title %></p>
                         <p><%= user.email %></p>
                       </div>
+                      <% if false %>
+                          <div class="user-info d-flex justify-content-between">
+                          <p>Jobtitle:</p>
+                          <p><%= user.job_title %></p>
+                        </div>
+                        <div class="user-info d-flex justify-content-between">
+                          <p>email:</p>
+                          <p><%= user.email %></p>
+                        </div>
+                      <% end %>
+
+
                     </div>
                     <%= link_to invite_attendance_path(@meeting,user), class: 'btn btn-primary',method: :post  do %>
                       <i class="fas fa-user-plus"></i>
@@ -58,14 +70,11 @@
                     <%= cl_image_tag "#{user.photo.key}", alt: "alttext", class: "avatar mx-1 align-self-start" %>
                   </div>
                   <div class="user-bundle d-flex flex-column align-items-center">
-                    <div class="user-info d-flex justify-content-between">
-                      <p>Jobtitle:</p>
-                      <p><%= user.job_title %></p>
-                    </div>
-                    <div class="user-info d-flex justify-content-between">
-                      <p>email:</p>
-                      <p><%= user.email %></p>
-                    </div>
+                      <div class="d-flex flex-column">
+                         <p>Jobtitle: <%= user.job_title %></p>
+                          <p>email:  <%= user.email %></p>
+                      </div>
+
                   </div>
                   <%= link_to invite_attendance_path(@meeting,user), class: 'btn btn-primary',method: :post  do %>
                     <i class="fas fa-user-plus"></i>
