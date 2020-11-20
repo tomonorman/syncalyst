@@ -5,20 +5,28 @@
       <%= cl_image_tag "#{attendance.user.photo.key}", alt: "task-user-avatar", class: "avatar mx-1" %>
       <div class="task-form">
         <%= simple_form_for([@meeting, @task]) do |f| %>
-          <%= f.input :description, placeholder: "Assign task to #{attendance.user.nickname}...", label: false %>
+          <%= f.input :user_id, label: false , :input_html => { :value => attendance.user.id, :type => 'hidden' } %>
+          <%= f.input :description, placeholder: "Press enter to assign task to #{attendance.user.nickname}", label: false, class: "task-description" %>
         <% end %>
       </div>
     </div>
   <% end %>
-  <div class="task-list">
+  <div class="task-heading d-flex justify-content-between align-items-center">
     <h2>Task list</h2>
-    <p>Trello board: <%= @meeting.trello_board %> </p>
+    <% if @meeting.trello_board == "" %>
+      no trello board attached
+    <% else %>
+      <%= link_to 'Link to Trello', @meeting.trello_board, target: "_blank", class: "btn btn-primary" %>
+    <% end %>
+  </div>
+  <div class="task-list mt-4">
     <% @meeting.tasks.each do |task| %>
-      <div class="row">
-        <div class="col-8 col-md-6">
+      <div class="task-cards d-flex justify-content-between btn btn-secondary align-items-center m-1">
+        <div class="avatar d-flex justify-content-start align-items-center">
+          <%= cl_image_tag "#{task.user.photo.key}", alt: "task-user-avatar", class: "avatar mx-1" %>
           <%= task.user.nickname %>
         </div>
-        <div class="col-8 col-md-6">
+        <div class="task-info">
           <%= task.description %>
         </div>
       </div>

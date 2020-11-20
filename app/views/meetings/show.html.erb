@@ -1,20 +1,24 @@
 <div class="container">
   <div class="row">
-    <div class="col-12 col-md-6">
-      <%= render 'shared/wrapupleft' %>
+    <!-- <div class="col-12 col-md-6">
+      <%=# render 'shared/wrapupleft' %>
     </div>
     <div class="col-12 col-md-6">
-      <%= render 'shared/wrapupright' %>
-    </div>
+      <%=# render 'shared/wrapupright' %>
+    </div> -->
     <div class="col-12 col-lg-6">
-      <% if @meeting.start %>
+      <% if @meeting.finish %>
+        <%= render 'shared/wrapupleft' %>
+      <% elsif @meeting.start %>
         <%= render 'shared/transcription' %>
       <% else %>
         <%= render 'shared/agenda' %>
       <% end %>
     </div>
     <div class="col-12 col-lg-6">
-      <% if @meeting.start %>
+      <% if@meeting.finish %>
+        <%= render 'shared/wrapupright' %>
+      <% elsif @meeting.start %>
         <%= render 'shared/inprogress' %>
       <% else %>
         <%= render 'shared/premeeting' %>

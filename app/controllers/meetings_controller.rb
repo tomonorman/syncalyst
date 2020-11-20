@@ -1,5 +1,5 @@
 class MeetingsController < ApplicationController
-  before_action :set_meeting, only: [:show, :start]
+  before_action :set_meeting, only: [:show, :summary, :start, :finish]
 
   def index
     set_all_meetings
@@ -10,6 +10,9 @@ class MeetingsController < ApplicationController
     @agenda.meeting = @meeting
     @task = Task.new
     @task.meeting = @meeting
+  end
+
+  def summary
   end
 
   def new
@@ -34,6 +37,12 @@ class MeetingsController < ApplicationController
     redirect_to meeting_path(@meeting)
   end
 
+  def finish
+    @meeting.finish = true
+    @meeting.save
+    redirect_to meeting_path(@meeting)
+  end
+
   private
 
   def meeting_params
@@ -50,12 +59,12 @@ class MeetingsController < ApplicationController
     @meetings_attending = current_user.attendances.map(&:meeting)
     @all_current_meetings =
       (@user_host_meetings + @meetings_attending)
-      .select { |meeting| meeting.date_time > Date.today }
-      .sort_by(&:date_time)
+    .select { |meeting| meeting.date_time > Date.today }
+    .sort_by(&:date_time)
     @previous_meetings =
       (@user_host_meetings + @meetings_attending)
-      .select { |meeting| meeting.date_time < Date.today }
-      .sort_by(&:date_time)
+    .select { |meeting| meeting.date_time < Date.today }
+    .sort_by(&:date_time)
     @next_meeting = @all_current_meetings.min_by(&:date_time)
   end
 end

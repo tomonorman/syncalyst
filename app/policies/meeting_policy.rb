@@ -9,6 +9,10 @@ class MeetingPolicy < ApplicationPolicy
     true
   end
 
+  def summary?
+    true
+  end
+
   def new?
     true
   end
@@ -18,6 +22,10 @@ class MeetingPolicy < ApplicationPolicy
   end
 
   def start?
+    record.user == user
+  end
+
+  def finish?
     record.user == user
   end
 end

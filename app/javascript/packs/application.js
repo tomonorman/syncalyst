@@ -33,6 +33,7 @@ import { initAgendaBtn } from '../components/agenda_btn';
 import { initAgenda } from '../components/agendacard';
 import { initTrello } from '../components/init_trello';
 import { recordAudio } from '../components/record_audio';
+import { initCard } from '../components/init_card';
 
 document.addEventListener('turbolinks:load', () => {
   initNavbar();
@@ -40,6 +41,7 @@ document.addEventListener('turbolinks:load', () => {
   initAgendaBtn();
   recordAudio();
   initTrello();
+  initCard();
   AOS.init();
 });
 
