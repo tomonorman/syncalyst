@@ -11,6 +11,18 @@
   padding: 12px;
 }
 
+.task-cards-complete {
+  background-color: $light-gray;
+  border-left: 4px solid $yellow;
+  border-radius: $border-radius;
+  -webkit-box-shadow: 0 8px 6px -6px rgba(0, 0, 0, 0.25);
+  -moz-box-shadow: 0 8px 6px -6px rgba(0, 0, 0, 0.25);
+  box-shadow: 0 8px 6px -6px rgba(0, 0, 0, 0.25);
+  width: 95%;
+  height: 70px;
+  padding: 12px;
+}
+
 .agenda-info p {
   line-height: 50%;
   text-align: left;
@@ -68,3 +80,5 @@
   background: linear-gradient(rgba($purple,.1), rgba($purple,.1));
 
 }
+
+
