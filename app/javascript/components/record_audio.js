@@ -45,8 +45,9 @@ const stopRecording = () => {
 
 
 const recordAudio = () => {
-      const li = document.querySelectorAll('.agenda-cards-inprogress');
-      li.forEach((item) => {
+  const li = document.querySelectorAll('.agenda-cards-inprogress');
+  if (li) {
+     li.forEach((item) => {
         // console.log(item);
 
         recordButton = item.querySelector('.record');
@@ -81,6 +82,8 @@ const recordAudio = () => {
 
 
       })
+  }
+
 
   };
 
