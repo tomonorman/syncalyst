@@ -1,4 +1,4 @@
-const initAgendaBtn = () => {
+const initAgendaForm = () => {
   const agendaForm = document.querySelector(".agenda-form");
   const addAgendaBtn = document.querySelector(".add-agenda-btn");
   const agendaInput = document.querySelector(".agenda-input");
@@ -12,4 +12,4 @@ const initAgendaBtn = () => {
 };
 
 
-export { initAgendaBtn };
+export { initAgendaForm };
