@@ -8,4 +8,8 @@ class AgendaPolicy < ApplicationPolicy
   def create?
     user
   end
+
+  def update?
+    record.meeting.user == user
+  end
 end
