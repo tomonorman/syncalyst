@@ -3,6 +3,8 @@
     <%= f.input :title, label: 'Title' %>
     <%= f.input :description, label: 'Description', placeholder: 'a summary to have a better idea of this topic' %>
     <%= f.input :est_duration, label: 'Time (mins)', placeholder: 'Estimated time needed for this section' %>
-    <%= f.submit %>
+    <div class="">
+    <%= f.submit 'Create', :class => 'btn btn-primary' %>
+    </div>
   </div>
 <% end %>
