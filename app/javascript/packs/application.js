@@ -41,7 +41,7 @@ document.addEventListener('turbolinks:load', () => {
   initAgendaForm();
   authorizeTrello();
   initTrelloCard();
-  recordAudio();
+  // recordAudio();
   AOS.init();
 });
 
