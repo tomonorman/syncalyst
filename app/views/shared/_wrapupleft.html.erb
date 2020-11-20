@@ -1,5 +1,12 @@
 <div class="inprogress-card mt-4">
-  <h1>Let's wrap up!</h1>
+  <div class="d-flex justify-content-between align-items-center">
+    <h1>Let's wrap up!</h1>
+    <% if @meeting.trello_board == "" %>
+      no trello board attached
+    <% else %>
+      <%= link_to 'Open Trello', @meeting.trello_board, target: "_blank", class: "btn btn-primary" %>
+    <% end %>
+  </div>
   <% @meeting.attendances.each do |attendance|  %>
     <div class="wrapup-list-item">
       <%= cl_image_tag "#{attendance.user.photo.key}", alt: "task-user-avatar", class: "avatar mx-1" %>
@@ -13,11 +20,6 @@
   <% end %>
   <div class="task-heading d-flex justify-content-between align-items-center">
     <h2>Task list</h2>
-    <% if @meeting.trello_board == "" %>
-      no trello board attached
-    <% else %>
-      <%= link_to 'Link to Trello', @meeting.trello_board, target: "_blank", class: "btn btn-primary" %>
-    <% end %>
   </div>
   <div class="task-list mt-4">
     <% @meeting.tasks.each do |task| %>
