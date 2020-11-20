@@ -1,6 +1,14 @@
 <div class="d-flex justify-content-center">
   <div class="inprogress-card mt-4">
-    <h1>Transcription</h1>
+    <div class="d-flex justify-content-between">
+      <h1>Transcription</h1>
+      <div class="bouncer">
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
+    </div>
     <ul>
       <% @meeting.agendas.each do |agenda| %>
         <div class="transcription transcription-display">
