@@ -14,7 +14,7 @@ const transcription = (index) => {
 
 let n = -1;
 let i = 0;
-const txt = ["Hi Jess. This will follow you while you are talking and this should be on a new line", "This will appear on the second agenda", "This will appear on the third agenda", "this will appear on the 4th agenda"];
+const txt = ["Hi Jess. This will follow you while you are talking and this should be on the first agenda", "This will appear on the second agenda", "This will appear on the third agenda", "this will appear on the 4th agenda"];
 const speed = 100;
 
 const typeWriter = () => {
