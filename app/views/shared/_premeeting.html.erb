@@ -1,11 +1,11 @@
 <p class="mt-4">Hi <%= current_user.nickname %>! You have the following meeting coming up:</p>
-<h1><%= @meeting.title  %></h1>
-<h3><%= @meeting.date_time.strftime("%A, %d %b %Y at %l:%M %p") %> <span style="font-size: 16px;">(<%= @meeting.duration%> mins.)</span></h3>
+<h1 class="font-weight-bold"><%= @meeting.title  %></h1>
+<h3 class="font-italic"><%= @meeting.date_time.strftime("%A, %d %b %Y at %l:%M %p") %> <span style="font-size: 16px;">(<%= @meeting.duration%> mins.)</span></h3>
 <h3>Talking About:</h3>
 <p><%= @meeting.description %></p>
-<h3>Hosted By:</h3>
+<h4>Hosted By:</h4>
 <%= cl_image_tag "#{@meeting.user.photo.key}", alt: "alttext", class: "avatar" %>
-<h3>Joining</h3>
+<h4>Joining</h4>
 <div class="d-flex">
   <!-- if current user is the meeting owner, show button to invite-->
   <% if current_user == @meeting.user %>
