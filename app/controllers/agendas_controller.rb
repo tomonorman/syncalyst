@@ -9,9 +9,19 @@ class AgendasController < ApplicationController
     authorize @agenda
   end
 
+  def update
+    @agenda = Agenda.find(params[:id])
+    authorize @agenda
+    # @agenda.audio = params[:audio]
+    # binding.pry
+    @agenda.update(agenda_params)
+    redirect_to meeting_path(@agenda.meeting)
+
+  end
+
   private
 
   def agenda_params
-    params.require(:agenda).permit(:title, :description, :est_duration, :transcription)
+    params.require(:agenda).permit(:title, :description, :est_duration, :transcription, :audio)
   end
 end
