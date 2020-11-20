@@ -10,14 +10,12 @@ const blobToFile = (theBlob, fileName) => {
 const onRecordingReady = (item, e) => {
   // let audio = document.getElementById('audio');
   // audio.src = URL.createObjectURL(e.data);
-  // console.log('data is ready!');
-  // console.log(item);
+  console.log('data is ready!');
   // console.log(e.data);
   const result = blobToFile(e.data,'audio.mp4');
   const form = item.querySelector('.edit_agenda');
-  // console.log(form);
+  console.log(form);
   const formData = new FormData(form);
-    // console.log(formData);
     formData.set('agenda[audio]', result, 'helloworld.wav');
 
     var request = new XMLHttpRequest();
@@ -29,11 +27,10 @@ const onRecordingReady = (item, e) => {
     };
 }
 
-const startRecording = (event) => {
-  console.log(event.currentTarget)
+const startRecording = () => {
   console.log('clicked start!');
   recordButton.disabled = true;
-  stopButton.disabled = false;
+  // stopButton.disabled = false;
 
   recorder.start();
 }
@@ -48,36 +45,42 @@ const stopRecording = () => {
 
 
 const recordAudio = () => {
-  navigator.mediaDevices.getUserMedia({
+      const li = document.querySelectorAll('.agenda-cards-inprogress');
+      li.forEach((item) => {
+        // console.log(item);
+
+        recordButton = item.querySelector('.record');
+          recordButton.addEventListener('click', (event) => {
+            navigator.mediaDevices.getUserMedia({
             audio: true
-    })
-      .then(function (stream) {
-        const li = document.querySelectorAll('.agenda-cards-inprogress');
-        li.forEach((item) => {
-          // console.log(item);
+          })
+            .then(function (stream) {
+              recordButton.disabled = false;
+              recorder = new MediaRecorder(stream);
+              startRecording();
+              stopButton = item.querySelector('.stop');
+              console.log(stopButton);
 
-          recordButton = item.querySelector('.record');
-            stopButton = item.querySelector('.stop');
+              // recordButton.addEventListener('click', startRecording);
+              stopButton.addEventListener('click', stopRecording);
+              console.log(recorder);
 
-      // get audio stream from user's mic
-        recordButton.disabled = false;
-        recordButton.addEventListener('click', startRecording);
-        stopButton.addEventListener('click', stopRecording);
-        recorder = new MediaRecorder(stream);
+              // listen to dataavailable, which gets triggered whenever we have
+              // an audio blob available
+              // console.log(item);
+              recorder.addEventListener('dataavailable', (event) => {
+                onRecordingReady(item, event);
+            });
+          });
 
-        // listen to dataavailable, which gets triggered whenever we have
-        // an audio blob available
-        recorder.addEventListener('dataavailable', (event) => {
-          console.log(item);
-          onRecordingReady(item, event);
-        });
-      });
+              });
+          // console.log(stopButton);
+
+          // get audio stream from user's mic
 
 
 
       })
-
-
 
   };
 
