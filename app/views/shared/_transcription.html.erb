@@ -9,12 +9,9 @@
         <div></div>
       </div>
     </div>
-    <ul>
-      <% @meeting.agendas.each do |agenda| %>
-        <div class="transcription transcription-display">
-          <!-- <li><%= simple_format(agenda.transcription) %></li> -->
-        </div>
-      <% end %>
-    </ul>
+    <% @meeting.agendas.each do |agenda| %>
+      <div class="transcription transcription-display">
+      </div>
+    <% end %>
   </div>
 </div>
