@@ -1,10 +1,10 @@
-<%= simple_form_for [@meeting, @agenda] do |f| %>
+<%= simple_form_for [@meeting, @agenda], remote: true do |f| %>
   <div class="agenda-input">
     <%= f.input :title, label: 'Title' %>
     <%= f.input :description, label: 'Description', placeholder: 'a summary to have a better idea of this topic' %>
     <%= f.input :est_duration, label: 'Time (mins)', placeholder: 'Estimated time needed for this section' %>
     <div class="text-center">
-    <%= f.submit 'Create', :class => 'btn btn-primary' %>
+    <%= f.submit 'Create', :class => 'btn btn-primary', :remote => true %>
     </div>
   </div>
 <% end %>
