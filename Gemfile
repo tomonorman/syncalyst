@@ -26,6 +26,12 @@ gem 'redis', '~> 4.0'
 gem 'cloudinary', '~> 1.16.0'
 gem 'faker'
 
+gem 'google-api-client'
+gem 'omniauth'
+gem 'omniauth-google-oauth2'
+
+
+
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
 
