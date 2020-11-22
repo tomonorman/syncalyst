@@ -10,7 +10,7 @@
       </div>
     </div>
     <% @meeting.agendas.each do |agenda| %>
-      <div class="transcription transcription-display">
+      <div data-agenda="<%= agenda.id %>" class="transcription transcription-display">
       </div>
     <% end %>
   </div>

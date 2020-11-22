@@ -46,6 +46,7 @@ const initSpeech = () => {
   $("#stop-btn").click(function (event) {
     recognition.stop();
     console.log(content);
+    // somehow send content to rails. FETCH Request?
     content = '';
   })
 
