@@ -37,7 +37,6 @@ const initSpeech = () => {
   }
 
   $("#start-btn").click(function (event) {
-    console.log('hello');
     if(content.length) {
       content += '';
     }
@@ -46,6 +45,7 @@ const initSpeech = () => {
 
   $("#stop-btn").click(function (event) {
     recognition.stop();
+    console.log(content);
     content = '';
   })
 
