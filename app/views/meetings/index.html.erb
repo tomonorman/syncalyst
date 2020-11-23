@@ -1,18 +1,20 @@
 <div class="container">
-  <div class="d-flex align-items-end">
+  <div class="new-meeting">
     <%= link_to new_meeting_path class: 'btn btn-primary' do %>
-      <div class="btn btn-primary  btn-lg px-4">
+      <div class="btn btn-primary btn-lg px-4 create-meeting-btn">
         New Meeting <i class="fas fa-plus"></i>
       </div>
     <% end %>
   </div>
   <div class="top-section">
-    <%= render "upcoming" %>
+    <%= render "next_meeting" %>
   </div>
-  <div class="middle-section">
-    <%= render "current_meetings"  %>
-  </div>
-  <div class="bottom-section">
-    <%= render "previous_meetings" %>
+  <div class="row">
+    <div class="col-6 bottom-left-section">
+      <%= render "upcoming_meetings"  %>
+    </div>
+    <div class="col-6 bottom-right-section">
+      <%= render "previous_meetings" %>
+    </div>
   </div>
 </div>

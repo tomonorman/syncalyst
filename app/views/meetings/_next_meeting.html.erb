@@ -1,9 +1,9 @@
-<h2>Next Meeting:</h2>
+<h2 class="mt-4">Next Meeting:</h2>
 <div class="meeting-card-big shadow p-4">
   <% if @next_meeting.nil? %>
     <p>You don't have any meetings yet.</p>
   <% else %>
-    <%= link_to 'Go to the Meeting Page >>', meeting_path(@next_meeting), class: 'btn btn-primary btn-lg meeting-btn px-4' %>
+    <%= link_to 'Go to the page of this meeting', meeting_path(@next_meeting), class: 'btn btn-primary btn-lg meeting-btn px-4' %>
     <h2 class="font-weight-bold"><%= @next_meeting.title %>  (<span class="font-italic ml-1 font-weight-bold"><%= @next_meeting.duration %> min.</span>)</h2>
     <!-- top-grid -->
     <div class="row mt-4">
