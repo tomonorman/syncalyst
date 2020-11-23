@@ -1,10 +1,10 @@
-<h2 class="mt-4">Previous meetings</h2>
+<h2 class="mt-4">Upcoming meetings</h2>
 <div class="meeting-card-big shadow">
   <div class="container-fluid">
     <div class="scrolling-wrapper row flex-row flex-nowrap">
       <!-- if there are any meetings -->
-      <% if @previous_meetings.any? %>
-        <% @previous_meetings.each do |meeting| %>
+      <% if @all_current_meetings.any? %>
+        <% @all_current_meetings.each do |meeting| %>
           <div class="col-6 col-md-6 col-lg-6 ml-1">
             <div class="upcoming-meeting-card ">
               <%= link_to meeting_path(meeting) do %>
@@ -16,7 +16,7 @@
         <% end %>
         <!-- if no meetings -->
       <% else %>
-        <p>No previous meetings yet...</p>
+        <p>Nothing upcoming yet.</p>
       <% end %>
     </div>
   </div>
