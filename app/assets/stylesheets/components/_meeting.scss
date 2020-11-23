@@ -1,13 +1,33 @@
+.new-meeting {
+  position: relative;
+}
+.create-meeting-btn {
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
 .meeting-card-big {
   position: relative;
-  background-color: $white;
-  border-radius: 8px;
-  padding: 16px;
+  background-color: rgba($white, .95);
+  border-radius: $border-radius;
+  padding: 20px;
   margin: 16px 0;
+  height: 300px;
   p {
     padding: 0;
     margin: 0;
+    font-weight: lighter;
+    font-size: 20px;
   }
+  h3 {
+    font-weight: lighter;
+  }
+}
+
+.agenda-list li {
+  font-weight: lighter;
+  font-size: 20px;
 }
 
 .scrolling-wrapper{
@@ -18,32 +38,44 @@
   font-style: italic;
 }
 
-.agenda-meeting-card {
-  padding: 8px;
-  border-radius: 8px;
-  border: 2px solid $purple;
-  height: 56px;
-  p {
-    padding: 0;
-    margin: 0;
-  }
-}
-
 .upcoming-meeting-card {
+  background-color: $light-gray;
   position: relative;
-  padding: 8px;
-  border-radius: 8px;
-  border: 2px solid $purple;
-  height: 120px;
+  border-left: 4px solid $yellow;
+  border-radius: $border-radius;
+  -webkit-box-shadow: 0 8px 6px -6px rgba(0, 0, 0, 0.25);
+  -moz-box-shadow: 0 8px 6px -6px rgba(0, 0, 0, 0.25);
+  box-shadow: 0 8px 6px -6px rgba(0, 0, 0, 0.25);
+  cursor: pointer;
+  height: 250px;
   width: 100%;
+  padding: 12px;
+  text-decoration: none;
+
   p {
     padding: 0;
     margin: 0;
+    font-weight: lighter;
+    font-size: 20px;
+    color: rgba($gray, 0.6);
   }
+  h3 {
+    font-weight: lighter;
+    color: rgba($gray, 0.6);
+  }
+  a {
+    color: rgba($gray, 0.6);
+    &:hover{text-decoration: none;
+    color: $white;}
+  }
+
+  &:hover{transform: translateX(-12px);
+    transition: 0.2s ease-out;
+    color: $white;}
 }
 
 .meeting-btn {
   position: absolute;
-  top: 8px;
-  right: 8px;
+  bottom: 20px;
+  right: 20px;
 }
