@@ -5,7 +5,7 @@ const transcription = (index) => {
     transcription.innerHTML = "";
   });
   transcriptionItems[index].classList.remove("transcription-display");
-  transcriptionItems[index].insertAdjacentHTML("beforeend", "<div class='form-group'><textarea class='form-control' id='textbox' rows='10'></textarea></div><div class='form-group'><button id='start-btn' class='btn btn-primary btn-block'>start</button><button id='stop-btn' class='btn btn-primary btn-block'>stop</button><p id='instructions'>Press start to record</p></div>")
+  transcriptionItems[index].insertAdjacentHTML("beforeend", "<div class='form-group' id='content-form'><textarea class='form-control' id='textbox' rows='10'></textarea></div><div class='form-group'><button type='button' id='start-btn' class='btn btn-primary btn-block'>start</button><button type='button' id='stop-btn' class='btn btn-primary btn-block'>stop</button><p id='instructions'>Press start to record</p></div>")
 };
 
 const initSpeech = () => {
@@ -44,9 +44,21 @@ const initSpeech = () => {
   })
 
   $("#stop-btn").click(function (event) {
+    event.preventDefault();
     recognition.stop();
     console.log(content);
-    // somehow send content to rails. FETCH Request?
+    // send content to rails:
+    const contentForm = document.querySelector("#content-form")
+    const agendaId = contentForm.parentElement.dataset.agenda
+    $.ajax({
+      url: `/agendas/${agendaId}`,
+      data: {"transcription": content},
+      type: "PATCH",
+      success: function (data) {
+        console.log(data);
+      }
+    });
+    // reset content
     content = '';
   })
 
