@@ -33,11 +33,11 @@ const initNav = () => {
       const start = document.querySelector("#next");
       start.click();
     }
-    else if (transcript.includes("start")) {
+    else if (transcript.includes("start meeting")) {
       const startAgenda = document.querySelector("#start-agenda");
       startAgenda.click();
     }
-    else if (transcript.includes("first")) {
+    else if (transcript.includes("first on the agenda")) {
       const item = document.querySelector("#agenda0");
       item.click();
     }
