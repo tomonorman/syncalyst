@@ -37,6 +37,10 @@ const initNav = () => {
       const startAgenda = document.querySelector("#start-agenda");
       startAgenda.click();
     }
+    else if (transcript.includes("first")) {
+      const item = document.querySelector("#agenda0");
+      item.click();
+    }
   }
 }
 

@@ -8,7 +8,7 @@ const transcription = (index) => {
   transcriptionItems[index].insertAdjacentHTML("beforeend", "<div class='form-group' id='content-form'><textarea class='form-control' id='textbox' rows='10'></textarea></div><div class='form-group'><button type='button' id='stop-btn' class='btn btn-primary btn-block'>stop</button><p id='instructions'>Press start to record</p></div>")
 };
 
-const initSpeech = () => {
+const initSpeech = (i) => {
   var speechRecognition = window.webkitSpeechRecognition;
   let recognition = new speechRecognition();
   var textbox = $("#textbox");
@@ -41,7 +41,6 @@ const initSpeech = () => {
       content += '';
   }
   recognition.start();
-
   $("#stop-btn").click(function (event) {
     event.preventDefault();
     recognition.stop();
@@ -59,6 +58,13 @@ const initSpeech = () => {
     });
     // reset content
     content = '';
+    const item = document.querySelector(`#agenda${i}`);
+    if (item === null) {
+      const wrapUp = document.querySelector("#wrap-up");
+      wrapUp.click();
+    } else {
+      item.click();
+    }
   })
 
   textbox.on('input', function () {
@@ -66,10 +72,9 @@ const initSpeech = () => {
   })
 }
 
-
 const initAgenda = () => {
   const agendaItems = document.querySelectorAll(".agenda-cards-inprogress");
-
+  let i = 1;
   if (agendaItems) {
     agendaItems.forEach((item) => {
       item.addEventListener('click', (event) => {
@@ -83,7 +88,8 @@ const initAgenda = () => {
         const array = Array.from(agendaItems);
         const index = array.indexOf(event.currentTarget);
         transcription(index);
-        initSpeech();
+        initSpeech(i);
+        i += 1;
       });
     });
   }
