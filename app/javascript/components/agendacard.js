@@ -5,7 +5,7 @@ const transcription = (index) => {
     transcription.innerHTML = "";
   });
   transcriptionItems[index].classList.remove("transcription-display");
-  transcriptionItems[index].insertAdjacentHTML("beforeend", "<div class='form-group' id='content-form'><textarea class='form-control' id='textbox' rows='10'></textarea></div><div class='form-group'><button type='button' id='start-btn' class='btn btn-primary btn-block'>start</button><button type='button' id='stop-btn' class='btn btn-primary btn-block'>stop</button><p id='instructions'>Press start to record</p></div>")
+  transcriptionItems[index].insertAdjacentHTML("beforeend", "<div class='form-group' id='content-form'><textarea class='form-control' id='textbox' rows='10'></textarea></div><div class='form-group'><button type='button' id='stop-btn' class='btn btn-primary btn-block'>stop</button><p id='instructions'>Press start to record</p></div>")
 };
 
 const initSpeech = () => {
@@ -23,6 +23,7 @@ const initSpeech = () => {
 
   recognition.onspeechend = function() {
     instructions.text("No Activity");
+    console.log("finished")
   }
 
   recognition.onerror = function() {
@@ -36,12 +37,10 @@ const initSpeech = () => {
     textbox.val(content);
   }
 
-  $("#start-btn").click(function (event) {
-    if(content.length) {
+   if(content.length) {
       content += '';
-    }
-    recognition.start();
-  })
+  }
+  recognition.start();
 
   $("#stop-btn").click(function (event) {
     event.preventDefault();
@@ -74,6 +73,7 @@ const initAgenda = () => {
   if (agendaItems) {
     agendaItems.forEach((item) => {
       item.addEventListener('click', (event) => {
+        event.preventDefault();
         agendaItems.forEach((card) => {
           if (card.classList.contains("active")) {
             card.classList.remove("active");
@@ -82,11 +82,15 @@ const initAgenda = () => {
         event.currentTarget.classList.add("active");
         const array = Array.from(agendaItems);
         const index = array.indexOf(event.currentTarget);
+        // event.currentTarget.setAttribute("id", `agenda${index}`)
         transcription(index);
         initSpeech();
+
+
       });
     });
   }
 }
+
 
 export { initAgenda }

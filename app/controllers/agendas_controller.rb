@@ -15,7 +15,6 @@ class AgendasController < ApplicationController
     # @agenda.audio = params[:audio]
     # binding.pry
     @agenda.update(update_params)
-    redirect_to meeting_path(@agenda.meeting)
   end
 
   private
