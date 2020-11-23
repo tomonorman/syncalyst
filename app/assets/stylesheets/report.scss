@@ -1,0 +1,17 @@
+.task-table {
+  width: 100%;
+  background: #FBFAFA;
+  &:nth-child(even) {
+  background-color: gray;
+  }
+}
+
+.task-header-row {
+  border-bottom: 2px solid lightgray;
+}
+.task-content-cell {
+  border-bottom: 2px solid lightgray;
+  border-style: dotted;
+  text-align: center;
+  padding: 4px;
+}

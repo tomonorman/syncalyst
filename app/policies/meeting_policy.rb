@@ -13,6 +13,9 @@ class MeetingPolicy < ApplicationPolicy
     true
   end
 
+  def report?
+    true
+  end
   def new?
     true
   end

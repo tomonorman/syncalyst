@@ -1,0 +1,36 @@
+<div class="report-head">
+  <h1><%= @meeting.title %></h1>
+  <h2>Meeting info:</h2>
+  <p>Date & Time: <%= @meeting.date_time.strftime("%A, %d %b %Y at %l:%M %p") %></p>
+  <p>Meeting owner: <%= @meeting.user.nickname %></p>
+</div>
+<div class="report-content">
+  <h2>Meeting Minutes</h2>
+  <% @meeting.agendas.each do |agenda| %>
+    <h3><%= agenda.title %> ( <%= agenda.est_duration %> min. )</h3>
+    <% if agenda.description %>
+      <%= agenda.description %>
+    <% else %>
+      <% nil %>
+    <% end %>
+    <p><strong>Discussion at the meeting:</strong><br>
+      <%= agenda.transcription %></p>
+  <% end %>
+  <h1>Task Assignment</h1>
+  <table class="task-table">
+    <tr class="task-header-row">
+      <th>Owner</th>
+      <th>Details</th>
+    </tr>
+    <% @meeting.tasks.each do |task| %>
+      <tr class="task-content-row">
+        <td class="task-content-cell">
+          <p><%= task.user.nickname %></p>
+        </td>
+        <td class="task-content-cell">
+          <p><%= task.description %></p>
+        </td>
+      </tr>
+    <% end %>
+  </table>
+</div>

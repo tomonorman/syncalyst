@@ -1,5 +1,5 @@
 class MeetingsController < ApplicationController
-  before_action :set_meeting, only: [:show, :summary, :start, :finish]
+  before_action :set_meeting, only: [:show, :summary, :report, :start, :finish]
 
   def index
     set_all_meetings
@@ -13,6 +13,26 @@ class MeetingsController < ApplicationController
   end
 
   def summary
+  end
+
+  def report
+    respond_to do |format|
+      format.html
+      format.pdf do
+        render pdf: "#{@meeting.date_time.strftime('%Y%m%d')}_#{@meeting.title}_#{@meeting.user.nickname}",
+          # Excluding ".pdf" extension
+          page_size: 'A4',
+          template: "meetings/report.html.erb",
+          layout: "pdf.html",
+          lowquality: true,
+          zoom: 1,
+          dpi: 75,
+        footer: {
+          font_size: 6,
+          line: true,
+        right: 'This is an automatically generated file from Syncalyst'}
+      end
+    end
   end
 
   def new
