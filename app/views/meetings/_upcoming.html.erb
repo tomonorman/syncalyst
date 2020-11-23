@@ -3,66 +3,61 @@
   <% if @next_meeting.nil? %>
     <p>You don't have any meetings yet...</p>
   <% else %>
-  <%= link_to 'View', meeting_path(@next_meeting), class: 'btn btn-primary btn-lg meeting-btn px-4' %>
+    <%= link_to 'View', meeting_path(@next_meeting), id: 'next', class: 'btn btn-primary btn-lg meeting-btn px-4' %>
     <h2><%= @next_meeting.title %>  (<span class="font-italic ml-1"><%= @next_meeting.duration %> min.</span>)</h2>
-      <!-- top-grid -->
+    <!-- top-grid -->
     <div class="row col-12">
       <!-- left side of the grid -->
       <div class="col-12 col-lg-4 d-flex flex-column align-items-start ">
-          <h3>Date:</h3>
-          <p class="align-middle"><%= @next_meeting.date_time.strftime("%b %e, %l:%M %p") %></p>
+        <h3>Date:</h3>
+        <p class="align-middle"><%= @next_meeting.date_time.strftime("%b %e, %l:%M %p") %></p>
       </div>
-
       <!-- right side of the grid -->
       <div class="col-12 col-lg-8">
-          <h3>Attendances:</h3>
-          <div class="container-fluid">
-            <div class="scrolling-wrapper row flex-row flex-nowrap pb-4">
+        <h3>Attendances:</h3>
+        <div class="container-fluid">
+          <div class="scrolling-wrapper row flex-row flex-nowrap pb-4">
             <% if @next_meeting.attendances.any? %>
               <div class="d-flex align-middle">
-                  <% @next_meeting.attendances.each do |attenance| %>
-                      <%= cl_image_tag(attenance.user.photo.key,
+                <% @next_meeting.attendances.each do |attenance| %>
+                  <%= cl_image_tag(attenance.user.photo.key,
                         width: 300,
                        crop: :thumb, gravity: :face, class:'avatar mr-2' )%>
                 <% end %>
-                </div>
-          <% else %>
-            <p>There is nobody attending yet...</p>
-          <% end %>
-
-            </div>
-          </div>
-      </div>
-    </div>
-
-    <!-- bottom-section -->
-    <div class="col-12">
-      <h3>Agenda:</h3>
-         <div class="container-fluid">
-          <div class="scrolling-wrapper row flex-row flex-nowrap mt-4 pb-4">
-            <!-- if there are any agendas -->
-            <% if @next_meeting.agendas.any? %>
-                <% @next_meeting.agendas.each do |agenda| %>
-                <div class="col-12 col-md-6 col-lg-3 ml-1">
-                  <div class="item">
-                    <div class="agenda-meeting-card d-flex justify-content-center align-items-center">
-                      <p><%= agenda.title.slice(0..25) %>
-                        <% if agenda.title.length > 28 %>
-                        ...
-                        <% end %>
-                      </p>
-                    </div>
-                    </div>
-                  </div>
-              <% end %>
-              <!-- if no agendas -->
+              </div>
             <% else %>
-              <p>No agendas yet...</p>
+              <p>There is nobody attending yet...</p>
             <% end %>
           </div>
         </div>
+      </div>
     </div>
-
+    <!-- bottom-section -->
+    <div class="col-12">
+      <h3>Agenda:</h3>
+      <div class="container-fluid">
+        <div class="scrolling-wrapper row flex-row flex-nowrap mt-4 pb-4">
+          <!-- if there are any agendas -->
+          <% if @next_meeting.agendas.any? %>
+            <% @next_meeting.agendas.each do |agenda| %>
+              <div class="col-12 col-md-6 col-lg-3 ml-1">
+                <div class="item">
+                  <div class="agenda-meeting-card d-flex justify-content-center align-items-center">
+                    <p><%= agenda.title.slice(0..25) %>
+                      <% if agenda.title.length > 28 %>
+                        ...
+                      <% end %>
+                    </p>
+                  </div>
+                </div>
+              </div>
+            <% end %>
+            <!-- if no agendas -->
+          <% else %>
+            <p>No agendas yet...</p>
+          <% end %>
+        </div>
+      </div>
+    </div>
   <% end %>
 </div>
-

@@ -82,11 +82,8 @@ const initAgenda = () => {
         event.currentTarget.classList.add("active");
         const array = Array.from(agendaItems);
         const index = array.indexOf(event.currentTarget);
-        // event.currentTarget.setAttribute("id", `agenda${index}`)
         transcription(index);
         initSpeech();
-
-
       });
     });
   }

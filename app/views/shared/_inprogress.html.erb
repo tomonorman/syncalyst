@@ -1,23 +1,23 @@
 <h1 class="text-center">Meeting in Progress!</h1>
 <h3 class= "ml-3">Agenda Items</h3>
 <div class="agenda">
-  <ul>
-    <% @meeting.agendas.each do |agenda| %>
-      <li>
-        <div class="agenda-cards-inprogress btn btn-secondary m-1 d-flex justify-content-between">
-          <div class="agenda-info">
-            <p><%= agenda.title %></p>
-            <p><%= agenda.description %></p>
-          </div>
-          <div class="agenda-time">
-            <p><%= agenda.est_duration %> min.</p>
-          </div>
-          <!-- <button class="record btn-primary btn btn-xs">Record</button> -->
-          <!-- <button class="stop btn-warning btn btn-xs">stop</button> -->
-        </div>
-      </li>
-    <% end %>
-  </ul>
+  <!-- <ul> -->
+  <% @meeting.agendas.each do |agenda| %>
+    <!-- <li> -->
+    <div class="agenda-cards-inprogress btn btn-secondary m-1 d-flex justify-content-between">
+      <div class="agenda-info">
+        <p><%= agenda.title %></p>
+        <p><%= agenda.description %></p>
+      </div>
+      <div class="agenda-time">
+        <p><%= agenda.est_duration %> min.</p>
+      </div>
+      <!-- <button class="record btn-primary btn btn-xs">Record</button> -->
+      <!-- <button class="stop btn-warning btn btn-xs">stop</button> -->
+    </div>
+    <!-- </li> -->
+  <% end %>
+  <!-- </ul> -->
 </div>
 <% if @meeting.user == current_user %>
   <div class="d-flex justify-content-center">
