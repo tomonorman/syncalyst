@@ -1,20 +1,18 @@
 <div class="container">
-  <div class="d-flex justify-content-between">
-    <h1><%= current_user.nickname %>'s Dashboard</h1>
+  <div class="d-flex align-items-end">
     <%= link_to new_meeting_path class: 'btn btn-primary' do %>
-    <div class="btn btn-primary  btn-lg px-4">
-      New Meeting <i class="fas fa-plus"></i>
-    </div>
-  <% end %>
+      <div class="btn btn-primary  btn-lg px-4">
+        New Meeting <i class="fas fa-plus"></i>
+      </div>
+    <% end %>
   </div>
   <div class="top-section">
-  <%= render "upcoming" %>
+    <%= render "upcoming" %>
   </div>
   <div class="middle-section">
-  <%= render "current_meetings"  %>
+    <%= render "current_meetings"  %>
   </div>
   <div class="bottom-section">
-  <%= render "previous_meetings" %>
+    <%= render "previous_meetings" %>
   </div>
 </div>
-
