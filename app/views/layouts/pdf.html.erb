@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <!-- image_tag wicked_pdf_asset_pack_path("assets/images/syncalyst_long_logo.png") -->
+    <title>Syncalyst | Meeting Report | <%= @meeting.title %></title>
+    <%= wicked_pdf_stylesheet_link_tag "report" %>
+    <link rel="stylesheet" type="text/css" href="assets/stylesheets/report.scss">
+  </head>
+  <body>
+    <%= yield %>
+  </body>
+</html>

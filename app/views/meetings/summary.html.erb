@@ -6,5 +6,6 @@
     <h2 class="m-3">Tasks created and sent to Trello!</h2>
     <%= render 'shared/summary-task' %>
   </div>
+  <%= link_to "Export PDF", meeting_report_path(format: :pdf), class: "btn btn-primary w-30" %>
   <%= link_to "All good? Bye Bye!", meetings_path, class: "btn btn-primary btn-block mt-5"  %>
 </div>
