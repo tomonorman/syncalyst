@@ -1,7 +1,7 @@
 <div class="d-flex justify-content-end">
   <div class="inprogress-card mt-4">
     <div class="d-flex justify-content-between align-items-center">
-      <h1>Let's wrap up!</h1>
+      <h2>Let's wrap up!</h2>
       <% if false %>
         <% if @meeting.trello_board == "" %>
           no trello board attached
@@ -11,12 +11,13 @@
       <% end %>
     </div>
     <% @meeting.attendances.each do |attendance|  %>
-      <div class="wrapup-list-item">
-          <% if attendance.user.photo.attached? %>
-          <%= cl_image_tag "#{attendance.user.photo.key}", alt: "alttext", class: "avatar mx-1 align-self-start" %>
-          <% else %>
-          <%= image_tag "avatar.jpg", alt: "avatar", class: 'avatar mx-1 align-self-start' %>
-          <% end %>
+      <!-- <div class="wrapup-list-item"> -->
+      <div class="d-flex justify-content-between align-items-center">
+        <% if attendance.user.photo.attached? %>
+          <%= cl_image_tag "#{attendance.user.photo.key}", alt: "alttext", class: "avatar mr-2" %>
+        <% else %>
+          <%= image_tag "avatar.jpg", alt: "avatar", class: 'avatar mr-2' %>
+        <% end %>
         <div class="task-form">
           <%= simple_form_for([@meeting, @task]) do |f| %>
             <%= f.input :user_id, label: false , :input_html => { :value => attendance.user.id, "data-trelloid" => attendance.user.trello_member_id, :type => 'hidden' } %>
@@ -24,6 +25,7 @@
           <% end %>
         </div>
       </div>
+      <!-- </div> -->
     <% end %>
     <div class="task-heading d-flex justify-content-between align-items-center">
       <h2>Task list</h2>
@@ -32,11 +34,11 @@
       <% @meeting.tasks.each do |task| %>
         <div class="task-cards d-flex justify-content-between btn btn-secondary align-items-center m-1">
           <div class="avatar d-flex justify-content-start align-items-center">
-              <% if attendance.user.photo.attached? %>
-              <%= cl_image_tag "#{attendance.user.photo.key}", alt: "alttext", class: "avatar mx-1 align-self-start" %>
-              <% else %>
-              <%= image_tag "avatar.jpg", alt: "avatar", class: 'avatar mx-1 align-self-start' %>
-              <% end %>
+            <% if task.user.photo.attached? %>
+              <%= cl_image_tag "#{task.user.photo.key}", alt: "alttext", class: "avatar mx-1" %>
+            <% else %>
+              <%= image_tag "avatar.jpg", alt: "avatar", class: 'avatar mx-1' %>
+            <% end %>
             <%= task.user.nickname %>
           </div>
           <div class="task-info">
