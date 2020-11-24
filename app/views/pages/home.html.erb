@@ -1,6 +1,24 @@
-<div class="container mt-3">
-  <div class="construction">
-    <h1><i class="fas fa-tools"></i> Syncalyst</h1>
-    <p>Coming Soon!</p>
+<div class="homepage-banner">
+  <div class="container d-flex align-items-start flex-column">
+    <h1>Syncalyst</h1>
+    <p>Less Stress<br>
+      More Impactful Meetings</p>
+    <%= link_to 'Contact Us', 'mailto:demo@syncalyst.com?subject=Demo Request from homepage',  class: 'btn btn-primary' %>
   </div>
+  <img src="https://mockuphone.com/upload/053c018a528734fa230657dca0821aa0/macbookair13/macbookair13_front.png" alt="mackbookair13_mockup" class="banner-img">
+</div>
+<div class="homepage-info d-flex justify-content-around">
+  <div>
+    <%= image_tag("pcaward.png", height: '70', width: '150', alt: "pc_award") %>
+  </div>
+  <div>
+    <%= image_tag("lewagon-award.png", height: '80', width: '160', alt: "lewagon_award") %>
+  </div>
+  <div>
+    <%= image_tag("award_googleplay.png", height: '70', width: '150', alt: "googleplay_award") %>
+  </div>
+  <div>
+    <%= image_tag("award-apple.png", height: '70', width: '150', alt: "apple_award") %>
+  </div>
+</div>
 </div>
