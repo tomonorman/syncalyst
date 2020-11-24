@@ -81,6 +81,9 @@ class MeetingsController < ApplicationController
       (@user_host_meetings + @meetings_attending)
     .select { |meeting| meeting.date_time > Date.today }
     .sort_by(&:date_time)
+    # .slice(1..@all_current_meetings.size)
+    @all_upcoming_meetings = @all_current_meetings.slice(1..@all_current_meetings.length)
+    # raise
     @previous_meetings =
       (@user_host_meetings + @meetings_attending)
     .select { |meeting| meeting.date_time < Date.today }

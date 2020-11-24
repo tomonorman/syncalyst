@@ -35,9 +35,28 @@
   border: 2px solid $purple;
   height: 120px;
   width: 100%;
+  padding: 16px;
+  text-decoration: none;
   p {
     padding: 0;
     margin: 0;
+  }
+}
+
+.upcoming-meeting-card-host {
+  border-left: 4px solid $purple;
+}
+
+.upcoming-meeting-card-host-tag {
+  position: absolute;
+  bottom: 4px;
+  right: 4px;
+
+  p {
+  font-size: 14px;
+  color: $purple;
+  font-style: italic;
+
   }
 }
 

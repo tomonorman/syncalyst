@@ -3,7 +3,7 @@
   <% if @next_meeting.nil? %>
     <p>You don't have any meetings yet.</p>
   <% else %>
-    <%= link_to 'Go to the page of this meeting', meeting_path(@next_meeting), id: "next", class: 'btn btn-primary btn-lg meeting-btn px-4' %>
+    <%= link_to 'View Details', meeting_path(@next_meeting), id: "next", class: 'btn btn-primary btn-lg meeting-btn px-4' %>
     <h2 class="font-weight-bold"><%= @next_meeting.title %>  (<span class="font-italic ml-1 font-weight-bold"><%= @next_meeting.duration %> min.</span>)</h2>
     <!-- top-grid -->
     <div class="row mt-4">
@@ -38,10 +38,14 @@
           <div class="scrolling-wrapper row flex-row flex-nowrap pb-4">
             <% if @next_meeting.attendances.any? %>
               <div class="d-flex align-middle">
-                <% @next_meeting.attendances.each do |attenance| %>
-                  <%= cl_image_tag(attenance.user.photo.key,
+                <% @next_meeting.attendances.each do |attendance| %>
+                <% if attendance.user.photo.attached? %>
+                     <%= cl_image_tag(attendance.user.photo.key,
                         width: 300,
                        crop: :thumb, gravity: :face, class:'avatar mr-2' )%>
+                    <% else %>
+                    <%= image_tag "avatar.jpg", alt: "avatar", class: 'avatar mr-2' %>
+                    <% end %>
                 <% end %>
               </div>
             <% else %>
