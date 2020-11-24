@@ -1,20 +1,20 @@
-<div class="row">
+<div class="p-2 d-flex flex-column align-items-center">
+  <h2 class="m-3">Tasks created and sent to Trello!</h2>
   <% @meeting.tasks.each do |task| %>
     <div class="col-6">
-      <div class="task-cards-complete d-flex mx-3 my-3 justify-content-between  align-items-center m-1">
+      <div class="task-cards-complete d-flex justify-content-between align-items-center my-3">
         <div class="avatar d-flex justify-content-start align-items-center">
-           <% if task.user.photo.attached? %>
-          <%= cl_image_tag "#{task.user.photo.key}", alt: "alttext", class: "avatar mx-1" %>
+          <%= cl_image_tag "#{task.user.photo.key}", alt: "task-user-avatar", class: "avatar mx-1" %>
+          <% if task.user.photo.attached? %>
+            <%= cl_image_tag "#{task.user.photo.key}", alt: "alttext", class: "avatar mx-1" %>
           <% else %>
-          <%= image_tag "avatar.jpg", alt: "avatar", class: 'avatar mx-1' %>
+            <%= image_tag "avatar.jpg", alt: "avatar", class: 'avatar mx-1' %>
           <% end %>
-
           <%= task.user.nickname %>
         </div>
         <div class="task-info">
           <%= task.description %>
         </div>
       </div>
-    </div>
-  <% end %>
-</div>
+    <% end %>
+  </div>

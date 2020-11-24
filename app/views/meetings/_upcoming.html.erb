@@ -20,14 +20,13 @@
             <% if @next_meeting.attendances.any? %>
               <div class="d-flex align-middle">
                 <% @next_meeting.attendances.each do |attendance| %>
-                    <% if attendance.user.photo.attached? %>
-                     <%= cl_image_tag(attendance.user.photo.key,
+                  <% if attendance.user.photo.attached? %>
+                    <%= cl_image_tag(attendance.user.photo.key,
                         width: 300,
                        crop: :thumb, gravity: :face, class:'avatar mr-2' )%>
-                    <% else %>
+                  <% else %>
                     <%= image_tag "avatar.jpg", alt: "avatar", class: 'avatar mr-2' %>
-                    <% end %>
-
+                  <% end %>
                 <% end %>
               </div>
             <% else %>
