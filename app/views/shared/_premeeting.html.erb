@@ -13,7 +13,11 @@
     <%= render 'shared/invite' %>
   <% end %>
   <% @meeting.attendances.each do |attendance| %>
-    <%= cl_image_tag "#{attendance.user.photo.key}", alt: "alttext", class: "avatar mx-1" %>
+     <% if attendance.user.photo.attached? %>
+      <%= cl_image_tag "#{attendance.user.photo.key}", alt: "alttext", class: "avatar mx-1 align-self-start" %>
+      <% else %>
+      <%= image_tag "avatar.jpg", alt: "avatar", class: 'avatar mx-1 align-self-start' %>
+      <% end %>
   <% end %>
 </div>
 <% if @meeting.user == current_user %>
