@@ -1,29 +1,43 @@
 const initNav = () => {
-
-  window.onload = (event) => {
-    console.log("Hello From Speech Recognition")
-    recognition.start();
-  }
-
+  console.log("Hello From Speech Recognition")
   var speechRecognition = window.webkitSpeechRecognition;
   let recognition = new speechRecognition();
   // var textbox = $("#textbox");
-  // let instructions = $("#instructions");
+  let activity = $("#activity");
   let content = '';
+  let recognizing = false;
 
   recognition.continuous = true;
+  recognition.start();
 
   recognition.onstart = function() {
-    console.log("Voice Recognition is on");
+    activity.text("Voice Recognition on, click to turn off");
+    recognizing = true;
   }
 
   recognition.onspeechend = function() {
-    console.log("Voice Recognition is off");
+    activity.text("Voice Recognition is off");
+    recognizing = false;
   }
 
   recognition.onerror = function() {
-    console.log("Try again");
+    activity.text("Voice Recognition Off, click to turn on");
+    recognizing = false;
   }
+   const taskhidden = document.querySelector('#taskhidden');
+   if (taskhidden) {
+    recognition.stop();
+    console.log("stopped");
+    }
+
+  const running = document.querySelector("#activity");
+  running.addEventListener('click', (event) => {
+    if (recognizing == true) {
+      recognition.abort();
+    } else if (recognizing == false) {
+      recognition.start();
+    }
+  });
 
   recognition.onresult = function (event) {
     var  current = event.resultIndex;
@@ -40,6 +54,10 @@ const initNav = () => {
     else if (transcript.includes("first on the agenda")) {
       const item = document.querySelector("#agenda0");
       item.click();
+    }
+    else if (transcript.includes("thank you everyone")) {
+      const spin = document.querySelector("#spin");
+      spin.classList.add("spin");
     }
   }
 }

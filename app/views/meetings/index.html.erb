@@ -1,14 +1,30 @@
-<div class="container">
+<!-- <div class="container">
 
   <div class="top-section">
-    <%= render "next_meeting" %>
+    <%#= render "next_meeting" %>
   </div>
   <div class="row">
-    <div class="col-6 bottom-left-section">
-      <%= render "upcoming_meetings"  %>
+    <div class="col-6 bottom-left-section"> -->
+      <%#= render "upcoming_meetings"  %>
+<div id="spin">
+  <div class="container">
+    <div class="new-meeting">
+      <%= link_to new_meeting_path class: 'btn btn-primary' do %>
+        <div class="btn btn-primary btn-lg px-4 create-meeting-btn">
+          New Meeting <i class="fas fa-plus"></i>
+        </div>
+      <% end %>
     </div>
-    <div class="col-6 bottom-right-section">
-      <%= render "previous_meetings" %>
+    <div class="top-section">
+      <%= render "next_meeting" %>
+    </div>
+    <div class="row">
+      <div class="col-6 bottom-left-section">
+        <%= render "upcoming_meetings"  %>
+      </div>
+      <div class="col-6 bottom-right-section">
+        <%= render "previous_meetings" %>
+      </div>
     </div>
   </div>
 </div>
