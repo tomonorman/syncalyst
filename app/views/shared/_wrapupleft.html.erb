@@ -12,7 +12,11 @@
     </div>
     <% @meeting.attendances.each do |attendance|  %>
       <div class="wrapup-list-item">
-        <%= cl_image_tag "#{attendance.user.photo.key}", alt: "task-user-avatar", class: "avatar mx-1" %>
+          <% if attendance.user.photo.attached? %>
+          <%= cl_image_tag "#{attendance.user.photo.key}", alt: "alttext", class: "avatar mx-1" %>
+          <% else %>
+          <%= image_tag "avatar.jpg", alt: "avatar", class: 'avatar mx-1' %>
+          <% end %>
         <div class="task-form">
           <%= simple_form_for([@meeting, @task]) do |f| %>
             <%= f.input :user_id, label: false , :input_html => { :value => attendance.user.id, "data-trelloid" => attendance.user.trello_member_id, :type => 'hidden' } %>
@@ -28,7 +32,11 @@
       <% @meeting.tasks.each do |task| %>
         <div class="task-cards d-flex justify-content-between btn btn-secondary align-items-center m-1">
           <div class="avatar d-flex justify-content-start align-items-center">
-            <%= cl_image_tag "#{task.user.photo.key}", alt: "task-user-avatar", class: "avatar mx-1" %>
+               <% if task.user.photo.attached? %>
+                <%= cl_image_tag "#{task.user.photo.key}", alt: "alttext", class: "avatar mx-1" %>
+                <% else %>
+                <%= image_tag "avatar.jpg", alt: "avatar", class: 'avatar mx-1' %>
+                <% end %>
             <%= task.user.nickname %>
           </div>
           <div class="task-info">
