@@ -1,5 +1,6 @@
+
 <p class="mt-4">Hi <%= current_user.nickname %>! You have the following meeting coming up:</p>
-<h1 class="font-weight-bold"><%= @meeting.title  %></h1>
+<h1 class="" style="font-size: 3.5em; font-weight: 900;"><%= @meeting.title  %></h1>
 <p style="font-size: 24px" ><%= @meeting.date_time.strftime("%A, %d %b %Y at %l:%M %p") %> <span style="font-size: 16px;">(<%= @meeting.duration%> mins.)</span></p>
 <hr>
 <h3>Talking About:</h3>
@@ -23,3 +24,4 @@
 <% if @meeting.user == current_user %>
   <%= link_to "Everyone here? Let's get started!", start_meeting_path(@meeting), :method=> :put, id: "start-agenda", class: "btn btn-primary btn-block mt-4"  %>
 <% end %>
+

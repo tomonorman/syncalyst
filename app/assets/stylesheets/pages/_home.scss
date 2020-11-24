@@ -1,1 +1,47 @@
 // Specific CSS for your home-page
+.homepage-banner {
+  position: relative;
+  // background-image: url('/assets/background.png');
+  background-size: cover;
+  background-position: center;
+  padding: 200px 0;
+  width: 100%;
+  height: 100vh;
+}
+
+.banner-img {
+  position: absolute;
+  top: -40px;
+  right: 40px;
+  width: 650px;
+  height: 650px;
+}
+
+.homepage-banner h1 {
+  margin: 0;
+  color: rgba($gray, .5);
+  text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
+  font-size: 40px;
+  font-weight: bold;
+  letter-spacing: 2px;
+}
+
+.homepage-banner p {
+  font-size: 28px;
+  color: rgba($gray, .5);
+  opacity: .7;
+  text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
+}
+
+.homepage-info {
+  background-color: white;
+  height: 160px;
+  border-radius: $border-radius;
+  padding: 40px;
+  margin: 32px 50px;
+  box-shadow: 0 8px 6px -6px rgba(0, 0, 0, 0.25);
+  p {
+    padding: 0;
+    margin: 0;
+  }
+}

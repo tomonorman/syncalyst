@@ -6,8 +6,8 @@
   -moz-box-shadow: 0 8px 6px -6px rgba(0, 0, 0, 0.25);
   box-shadow: 0 8px 6px -6px rgba(0, 0, 0, 0.25);
   cursor: pointer;
-  width: 95%;
-  height: 70px;
+  width: 90%;
+  height: 60px;
   padding: 12px;
 }
 
@@ -18,7 +18,7 @@
   -webkit-box-shadow: 0 8px 6px -6px rgba(0, 0, 0, 0.25);
   -moz-box-shadow: 0 8px 6px -6px rgba(0, 0, 0, 0.25);
   box-shadow: 0 8px 6px -6px rgba(0, 0, 0, 0.25);
-  width: 95%;
+  width: 75%;
   height: 70px;
   padding: 12px;
 }
@@ -26,6 +26,7 @@
 .agenda-info p {
   line-height: 50%;
   text-align: left;
+  text-align: center;
 }
 
 .agenda ul, .inprogress-card ul {
@@ -72,7 +73,6 @@
   height: 70px;
   padding: 12px;
   transition: 0.2s ease-out;
-
 }
 
 .agenda-cards-wrapup{
@@ -92,5 +92,3 @@
   background: linear-gradient(rgba($purple,.1), rgba($purple,.1));
 
 }
-
-
