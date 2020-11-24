@@ -32,7 +32,8 @@
                     <%= cl_image_tag "#{user.photo.key}", alt: "alttext", class: "avatar mx-1 align-self-start" %>
                     <% else %>
                     <%= image_tag "avatar.jpg", alt: "avatar", class: 'avatar mx-1 align-self-start' %>
-                    <% end %>                    </div>
+                    <% end %>
+                  </div>
                     <div class="user-bundle d-flex align-items-center">
                       <div class="d-flex flex-column justify-content-start">
                          <p>Jobtitle:</p>
@@ -55,7 +56,7 @@
 
 
                     </div>
-                    <%= link_to invite_attendance_path(@meeting,user), class: 'btn btn-primary',method: :post  do %>
+                    <%= link_to invite_attendance_path(@meeting,user), class: 'btn btn-primary',method: :post, remote: true  do %>
                       <i class="fas fa-user-plus"></i>
                     <% end %>
                   </div>
@@ -83,7 +84,7 @@
                       </div>
 
                   </div>
-                  <%= link_to invite_attendance_path(@meeting,user), class: 'btn btn-primary',method: :post  do %>
+                  <%= link_to invite_attendance_path(@meeting,user), class: 'btn btn-primary',method: :post, remote: true  do %>
                     <i class="fas fa-user-plus"></i>
                   <% end %>
                 </div>
