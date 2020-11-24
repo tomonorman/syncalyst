@@ -19,6 +19,6 @@
 </div>
 <% if @meeting.user == current_user %>
   <div class="d-flex justify-content-center">
-    <%= link_to "All done? Let's wrap up", finish_meeting_path(@meeting), :method=> :put, id: "wrap-up", class: "btn btn-primary btn-block mt-5"  %>
+    <%= link_to "All done? Let's wrap up", finish_meeting_path(@meeting), :method=> :put, id: "wrap-up", style: "visibility:hidden;", class: "btn btn-primary btn-block mt-5"  %>
   </div>
 <% end %>
