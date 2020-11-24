@@ -70,7 +70,7 @@
                     <% if user.photo.attached? %>
                     <%= cl_image_tag "#{user.photo.key}", alt: "alttext", class: "avatar mx-1 align-self-start" %>
                     <% else %>
-                    <%= image_tag "avatar", alt: "avatar", class: 'avatar mx-1 align-self-start' %>
+                    <%= image_tag "avatar.jpg", alt: "avatar", class: 'avatar mx-1 align-self-start' %>
                     <% end %>
                   </div>
                   <div class="user-bundle d-flex flex-column align-items-center">
