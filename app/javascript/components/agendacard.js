@@ -5,7 +5,7 @@ const transcription = (index) => {
     transcription.innerHTML = "";
   });
   transcriptionItems[index].classList.remove("transcription-display");
-  transcriptionItems[index].insertAdjacentHTML("beforeend", "<div class='form-group' id='content-form'><textarea class='form-control' id='textbox' rows='10'></textarea></div><div class='form-group'><button type='button' id='stop-btn' class='btn btn-primary btn-block'>stop</button><p id='instructions'>Press start to record</p></div>")
+  transcriptionItems[index].insertAdjacentHTML("beforeend", "<div class='form-group' id='content-form'><textarea class='form-control' id='textbox' rows='10'></textarea></div><div class='form-group'><button type='button' id='stop-btn' class='btn btn-primary btn-block'>Next Item</button><p id='instructions'>Press start to record</p></div>")
 };
 
 const initSpeech = (i) => {
@@ -40,7 +40,8 @@ const initSpeech = (i) => {
    if(content.length) {
       content += '';
   }
-  recognition.start();
+    recognition.start();
+
   $("#stop-btn").click(function (event) {
     event.preventDefault();
     recognition.stop();
@@ -79,6 +80,11 @@ const initAgenda = () => {
     agendaItems.forEach((item) => {
       item.addEventListener('click', (event) => {
         event.preventDefault();
+        const record = document.querySelector("#record");
+        record.classList.remove("record-hidden");
+        record.classList.add("blink");
+        const activity = document.querySelector("#activity");
+        activity.classList.add("record-hidden");
         agendaItems.forEach((card) => {
           if (card.classList.contains("active")) {
             card.classList.remove("active");
@@ -89,6 +95,11 @@ const initAgenda = () => {
         const index = array.indexOf(event.currentTarget);
         transcription(index);
         initSpeech(i);
+        const finish = document.querySelector(`#agenda${i}`)
+        if (finish === null) {
+          const finishbtn = document.querySelector("#stop-btn");
+          finishbtn.innerText = "Move to Task Assignment";
+        }
         i += 1;
       });
     });
