@@ -3,8 +3,8 @@
   <div class="container-fluid">
     <div class="scrolling-wrapper row flex-row flex-nowrap">
       <!-- if there are any meetings -->
-      <% if @all_current_meetings.any? %>
-        <% @all_current_meetings.each do |meeting| %>
+      <% if @all_upcoming_meetings.any? %>
+        <% @all_upcoming_meetings.each do |meeting| %>
           <div class="col-6 col-md-6 col-lg-6 ml-1">
             <div class="upcoming-meeting-card ">
               <%= link_to meeting_path(meeting) do %>
