@@ -86,8 +86,9 @@ class MeetingsController < ApplicationController
     # raise
     @previous_meetings =
       (@user_host_meetings + @meetings_attending)
-    .select { |meeting| meeting.date_time < Date.today }
+    .select { |meeting| meeting.finish == true }
     .sort_by(&:date_time)
+    # raise
     @next_meeting = @all_current_meetings.min_by(&:date_time)
   end
 end
