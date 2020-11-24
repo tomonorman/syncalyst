@@ -67,7 +67,11 @@
                 <div class="avatar-card d-flex align-items-center justify-content-between">
                   <div class="user-name d-flex flex-column justify-content-center align-items-center">
                     <p><%= user.nickname %></p>
+                    <% if user.photo.attached? %>
                     <%= cl_image_tag "#{user.photo.key}", alt: "alttext", class: "avatar mx-1 align-self-start" %>
+                    <% else %>
+                    <%= image_tag "avatar", alt: "avatar", class: 'avatar mx-1 align-self-start' %>
+                    <% end %>
                   </div>
                   <div class="user-bundle d-flex flex-column align-items-center">
                       <div class="d-flex flex-column">
