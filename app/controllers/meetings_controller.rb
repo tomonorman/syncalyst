@@ -79,13 +79,15 @@ class MeetingsController < ApplicationController
     @meetings_attending = current_user.attendances.map(&:meeting)
     @all_current_meetings =
       (@user_host_meetings + @meetings_attending)
-    .select { |meeting| meeting.date_time > Date.today }
-    .sort_by(&:date_time)
+      .select { |meeting| meeting.date_time > DateTime.now }
+      .select { |meeting| meeting.start == false }
+      .sort_by(&:date_time)
     @all_upcoming_meetings = @all_current_meetings.slice(1..@all_current_meetings.length)
     @previous_meetings =
       (@user_host_meetings + @meetings_attending)
-    .select { |meeting| meeting.finish == true }
-    .sort_by(&:date_time)
-    @next_meeting = @all_current_meetings.min_by(&:date_time)
+      .select { |meeting| meeting.finish == true }
+      .sort_by(&:date_time)
+      .reverse
+    @next_meeting = @all_current_meetings.select { |meeting| meeting.start == false }.min_by(&:date_time)
   end
 end
