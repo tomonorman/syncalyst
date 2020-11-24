@@ -1,4 +1,4 @@
-<h2 class="mt-4">Upcoming meetings</h2>
+<h2 class="my-3">Upcoming meetings:</h2>
 <div class="meeting-card-big shadow">
   <div class="container-fluid">
     <div class="scrolling-wrapper row flex-row flex-nowrap">
@@ -6,14 +6,13 @@
       <% unless @all_upcoming_meetings.nil? %>
         <% @all_upcoming_meetings.each do |meeting| %>
           <div class="col-6 col-md-6 col-lg-6 ml-1">
-
             <div class="upcoming-meeting-card <%= 'upcoming-meeting-card-host' if meeting.user == current_user %>">
               <%= link_to meeting_path(meeting) do %>
-              <% if meeting.user == current_user %>
-                 <div class="upcoming-meeting-card-host-tag">
-                   <p>Hosting</p>
-                 </div>
-              <% end %>
+                <% if meeting.user == current_user %>
+                  <div class="upcoming-meeting-card-host-tag">
+                    <p>Hosting</p>
+                  </div>
+                <% end %>
                 <h3><%= meeting.title %></h3>
                 <p> <%= meeting.date_time.strftime("%A, %d %b at %l:%M %p") %></p>
               <% end %>
