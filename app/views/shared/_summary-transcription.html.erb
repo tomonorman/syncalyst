@@ -1,17 +1,15 @@
-<h2 class="m-3">Your minutes are ready!</h2>
-<div class="row">
+<div class="p-2 d-flex flex-column align-items-center">
+  <h2 class="m-3">Your minutes are ready!</h2>
   <% i = 1 %>
   <% @meeting.agendas.each do |agenda| %>
     <% target = "#transcription#{i}" %>
     <% id = "transcription#{i}" %>
-    <div class="col-6">
-      <div class="agenda-cards btn btn-secondary mx-3 my-3 d-flex justify-content-between" data-toggle="modal" data-target=<%= target %>>
-        <div class="agenda-info">
-          <p><%= agenda.title %></p>
-        </div>
+    <div class="agenda-cards m-3 w-55" data-toggle="modal" data-target=<%= target %>>
+      <div class="agenda-info">
+        <p><%= agenda.title %></p>
       </div>
     </div>
-    <div class="modal fade" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true" id=<%= id %>>
+    <div class="modal fade" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true" id=<%= id %> >
       <div class="modal-dialog" role="document">
         <div class="modal-content">
           <div class="modal-header">
@@ -31,3 +29,4 @@
     </div>
     <% i += 1 %>
   <% end %>
+</div>

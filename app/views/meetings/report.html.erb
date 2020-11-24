@@ -14,7 +14,7 @@
       <% nil %>
     <% end %>
     <p><strong>Discussion at the meeting:</strong><br>
-      <%= agenda.transcription %></p>
+      <%= simple_format(agenda.transcription) %></p>
   <% end %>
   <h1>Task Assignment</h1>
   <table class="task-table">
