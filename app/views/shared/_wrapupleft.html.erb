@@ -14,9 +14,9 @@
       <!-- <div class="wrapup-list-item"> -->
       <div class="d-flex justify-content-between align-items-center">
         <% if attendance.user.photo.attached? %>
-          <%= cl_image_tag "#{attendance.user.photo.key}", alt: "alttext", class: "avatar mx-1" %>
+          <%= cl_image_tag "#{attendance.user.photo.key}", alt: "alttext", class: "avatar mr-2" %>
         <% else %>
-          <%= image_tag "avatar.jpg", alt: "avatar", class: 'avatar mx-1' %>
+          <%= image_tag "avatar.jpg", alt: "avatar", class: 'avatar mr-2' %>
         <% end %>
         <div class="task-form">
           <%= simple_form_for([@meeting, @task]) do |f| %>
