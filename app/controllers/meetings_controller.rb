@@ -77,15 +77,19 @@ class MeetingsController < ApplicationController
   def set_all_meetings
     @user_host_meetings = policy_scope(current_user.meetings)
     @meetings_attending = current_user.attendances.map(&:meeting)
-    @all_current_meetings =
+    all_current_meetings =
       (@user_host_meetings + @meetings_attending)
-    .select { |meeting| meeting.date_time > Date.today }
-    .sort_by(&:date_time)
-    @all_upcoming_meetings = @all_current_meetings.slice(1..@all_current_meetings.length)
+      .select { |meeting| meeting.date_time >= Time.now.utc + 9.hours }
+      .select { |meeting| meeting.start == false }
+      .sort_by(&:date_time)
+    @all_upcoming_meetings = all_current_meetings.slice(1..all_current_meetings.length)
     @previous_meetings =
       (@user_host_meetings + @meetings_attending)
-    .select { |meeting| meeting.finish == true }
-    .sort_by(&:date_time)
-    @next_meeting = @all_current_meetings.min_by(&:date_time)
+      .sort_by(&:date_time)
+      .reverse
+    @next_meeting =
+      all_current_meetings
+      .reject { |meeting| meeting.finish == true }
+      .min_by(&:date_time)
   end
 end
