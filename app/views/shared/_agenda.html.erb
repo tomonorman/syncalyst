@@ -1,32 +1,24 @@
-<div class="d-flex flex-column justify-content-center">
+<!-- <div class="d-flex flex-column justify-content-center"> -->
 <div data-aos="fade-right" data-aos-duration="2000">
   <div class="agenda-card mt-4">
     <div class="agenda">
       <h2 class="m-3">Agenda</h2>
-      <ul>
+      <ul class="row justify-content-center postitul">
         <% @meeting.agendas.each do |agenda| %>
-          <li>
-            <div class="agenda-cards btn btn-secondary m-1 d-flex justify-content-between">
-              <div class="agenda-info">
-                <p><%= agenda.title %></p>
-                <p><%= agenda.description %></p>
-              </div>
-              <div class="agenda-time">
-                <p><%= agenda.est_duration %> min.</p>
-              </div>
-            </div>
-          </li>
-        <% end %>
-        <% if @meeting.user == current_user %>
-          <li>
-            <div class="agenda-form">
-              <p class="add-agenda-btn text-center" style="font-size: 48px; color: #7033FF; cursor: pointer;"><i class="fas fa-plus"></i></p>
-              <%= render 'agendas/new' %>
-            </div>
+          <li class="postit col-4 m-2 p-2">
+            <p><%= agenda.title %></p>
+            <p><%= agenda.description %></p>
+            <p><%= agenda.est_duration %> min.</p>
           </li>
         <% end %>
       </ul>
+      <% if @meeting.user == current_user %>
+        <div class="agenda-form">
+          <p class="add-agenda-btn text-center" style="font-size: 48px; color: #7033FF; cursor: pointer;"><i class="fas fa-plus"></i></p>
+          <%= render 'agendas/new' %>
+        </div>
+      <% end %>
     </div>
   </div>
 </div>
-</div>
+<!-- </div> -->
