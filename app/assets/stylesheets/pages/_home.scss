@@ -24,7 +24,6 @@
   font-size: 40px;
   font-weight: bold;
   letter-spacing: 2px;
-
 }
 
 .homepage-banner p {
@@ -35,10 +34,11 @@
 }
 
 .homepage-info {
-  background-color: $white;
+  background-color: white;
+  height: 160px;
   border-radius: $border-radius;
-  padding: 16px;
-  margin: 24px 16px;
+  padding: 40px;
+  margin: 32px 50px;
   box-shadow: 0 8px 6px -6px rgba(0, 0, 0, 0.25);
   p {
     padding: 0;
