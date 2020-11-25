@@ -1,7 +1,7 @@
 // get idlist from https://trello.com/b/hmiXsuho/syncalyst.json
 
 const initTrelloCard = () => {
-  const myList = '5fb4e5f006c65105637a41a6';
+  const myList = '5fbdad60d7d2747a083323e7';
   const taskForm = document.querySelectorAll('.new_task');
 
   const creationSuccess = function (data) {
@@ -15,11 +15,14 @@ if (taskForm) {
       const newTaskDesc = form.querySelector('.task_description input');
       const userInput = form.querySelector('.task_user_id input');
       const user = userInput.dataset.trelloid;
-      // gets the user instance of the task
+      // gets the trello user id
+      const task = userInput.dataset.meeting;
+      // gets the meeting title
 
       const newCard = {
         name: newTaskDesc.value,
-        desc: 'task assigned from Syncalyst meeting',
+        desc: `(This is a task automatically assigned from a Syncalyst meeting)
+        Meeting: ${task}`,
         idMembers: [user],
         idList: myList,
         // Place this card at the top/bottom of our list
