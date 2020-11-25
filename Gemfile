@@ -24,7 +24,10 @@ gem 'redis', '~> 4.0'
 # gem 'bcrypt', '~> 3.1.7'
 gem 'cloudinary', '~> 1.16.0'
 gem 'faker'
-
+gem "omniauth-google-oauth2"
+# To login with google account
+gem 'google-api-client'
+# To use google api
 gem 'wicked_pdf'
 gem 'wkhtmltopdf-binary'
 # Version 0.12.x

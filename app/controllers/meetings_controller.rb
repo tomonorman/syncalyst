@@ -45,6 +45,7 @@ class MeetingsController < ApplicationController
     @meeting.user = current_user
     authorize @meeting
     if @meeting.save
+      GoogleCalendar.new(@meeting)
       redirect_to meeting_path(@meeting)
     else
       render 'new'

@@ -46,7 +46,7 @@ file = URI.open("https://scontent-nrt1-1.xx.fbcdn.net/v/t1.0-9/11010000_10207671
 user2.photo.attach(io: file, filename: 'user2.jpg', content_type: 'image/jpg')
 
 user3 = User.create!(
-  email: 'jess@gmail.com',
+  email: 'hwyann@gmail.com',
   password: 'password',
   nickname: 'Jess',
   job_title: 'Project Manager',

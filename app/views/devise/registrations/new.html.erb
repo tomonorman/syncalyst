@@ -23,7 +23,6 @@
                   required: true,
                   input_html: { autocomplete: "new-password" } %>
       <%= f.input :photo, as: :file %>
-
     </div>
     <div class="form-actions">
       <%= f.button :submit, "Sign up", class: 'btn btn-primary' %>
@@ -31,3 +30,4 @@
   <% end %>
   <%= render "devise/shared/links" %>
 </div>
+<%= link_to "Sign in with Google", user_omniauth_authorize_path(:google_oauth2) %>
