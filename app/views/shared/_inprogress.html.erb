@@ -1,7 +1,8 @@
 <h1 class="text-center">Meeting in Progress!</h1>
 <button class="record btn-primary btn btn-xs" style="display:none">Record</button>
 <button class="stopRecording btn-warning btn btn-xs" style="display: none">stop</button>
-<div class="sound-clips"></div>
+<div class="sound-clips">
+</div>
 <h3 class="ml-3">Agenda Items</h3>
 <div class="agenda">
     <% i = 0 %>
@@ -17,7 +18,8 @@
         </div>
         <div class="agenda-time">
             <p>
-                <%= agenda.est_duration %> min.</p>
+                <%= agenda.est_duration %> min.
+            </p>
         </div>
     </div>
     <% i += 1 %>
