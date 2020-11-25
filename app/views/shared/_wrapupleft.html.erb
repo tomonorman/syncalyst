@@ -1,15 +1,6 @@
 <div class="d-flex justify-content-end">
   <div class="inprogress-card mt-4">
-    <div class="d-flex justify-content-between align-items-center">
-      <h2>Let's wrap up!</h2>
-      <% if false %>
-        <% if @meeting.trello_board == "" %>
-          no trello board attached
-        <% else %>
-          <%= link_to 'Open Trello', @meeting.trello_board, target: "_blank", class: "btn btn-primary" %>
-        <% end %>
-      <% end %>
-    </div>
+    <h2>Let's wrap up!</h2>
     <% @meeting.attendances.each do |attendance|  %>
       <!-- <div class="wrapup-list-item"> -->
       <div class="d-flex justify-content-between align-items-center">

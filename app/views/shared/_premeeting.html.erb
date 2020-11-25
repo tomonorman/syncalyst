@@ -1,11 +1,19 @@
-
-<p class="mt-4">Hi <%= current_user.nickname %>! You have the following meeting coming up:</p>
-<h1 class="" style="font-size: 3.5em; font-weight: 900;"><%= @meeting.title  %></h1>
+<!-- <p class="mt-4">Hi <%= current_user.nickname %>! You have the following meeting coming up:</p> -->
+<div class="d-flex justify-content-between align-items-center">
+  <h1 class="" style="font-size: 3.5em; font-weight: 900;"><%= @meeting.title  %></h1>
+  <div class="trello-btn">
+    <% if @meeting.trello_board == "" %>
+      <p>""</p>
+    <% else %>
+      <%= link_to 'Trello board linked', @meeting.trello_board, target: "_blank", class: "btn btn-secondary" %>
+    <% end %>
+  </div>
+</div>
 <p style="font-size: 24px" ><%= @meeting.date_time.strftime("%A, %d %b %Y at %l:%M %p") %> <span style="font-size: 16px;">(<%= @meeting.duration%> mins.)</span></p>
-<hr>
-<h3>Talking About:</h3>
+<!-- <h3>Talking About:</h3> -->
 <p><%= @meeting.description %></p>
-<h4>Hosted By:</h4>
+<hr>
+<h4 class="mt-2">Hosted By:</h4>
 <%= cl_image_tag "#{@meeting.user.photo.key}", alt: "alttext", class: "avatar" %>
 <h4 class="mt-1">Joining</h4>
 <div class="d-flex">
@@ -14,14 +22,13 @@
     <%= render 'shared/invite' %>
   <% end %>
   <% @meeting.attendances.each do |attendance| %>
-     <% if attendance.user.photo.attached? %>
+    <% if attendance.user.photo.attached? %>
       <%= cl_image_tag "#{attendance.user.photo.key}", alt: "alttext", class: "avatar mx-1 align-self-start" %>
-      <% else %>
+    <% else %>
       <%= image_tag "avatar.jpg", alt: "avatar", class: 'avatar mx-1 align-self-start' %>
-      <% end %>
+    <% end %>
   <% end %>
 </div>
 <% if @meeting.user == current_user %>
   <%= link_to "Everyone here? Let's get started!", start_meeting_path(@meeting), :method=> :put, id: "start-agenda", class: "btn btn-primary btn-block mt-4"  %>
 <% end %>
-
