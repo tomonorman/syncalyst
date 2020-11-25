@@ -4,7 +4,10 @@ const transcription = (index) => {
     transcription.classList.add("transcription-display");
     transcription.innerHTML = "";
   });
-  transcriptionItems[index].classList.remove("transcription-display");
+  const show = document.querySelector("#show-btn");
+  show.addEventListener('click', (event) => {
+    transcriptionItems[index].classList.toggle("transcription-display");
+  });
   transcriptionItems[index].insertAdjacentHTML("beforeend", "<div class='form-group' id='content-form'><textarea class='form-control' id='textbox' rows='10'></textarea></div><div class='form-group'><button type='button' id='stop-btn' class='btn btn-primary btn-block'>Next Item</button><p id='instructions'>Press start to record</p></div>")
 };
 
