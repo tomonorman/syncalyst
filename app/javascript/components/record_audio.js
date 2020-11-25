@@ -45,10 +45,8 @@ const recordAudio = () => {
                     const result = blobToFile(blob, 'audio.mp4');
                     // console.log(result);
                     //gets current agenda with i
-                    let agenda = currentAgendas[i] //change this
+                    let agenda = currentAgendas[i]
                     if (agenda) {
-
-
                         let agendaId = agenda.dataset.agenda
                         let route = `/agendas/${agendaId}`;
                         //creates new form to send
