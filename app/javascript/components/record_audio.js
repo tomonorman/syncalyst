@@ -46,42 +46,46 @@ const recordAudio = () => {
                     // console.log(result);
                     //gets current agenda with i
                     let agenda = currentAgendas[i] //change this
-                    let agendaId = agenda.dataset.agenda
-                    let route = `/agendas/${agendaId}`;
-                    //creates new form to send
-                    let formHTML =
-                        `
+                    if (agenda) {
+
+
+                        let agendaId = agenda.dataset.agenda
+                        let route = `/agendas/${agendaId}`;
+                        //creates new form to send
+                        let formHTML =
+                            `
                       <form action='${route}' method="patch" class="audio-form">
                         <input type="file" name="audio">
                       </form>
                         `;
-                    soundClips.insertAdjacentHTML('beforeend',
-                        `
+                        soundClips.insertAdjacentHTML('beforeend',
+                            `
                       <form action='${route}' method="patch" class="audio-form" style="display: none">
                         <input type="file" name="audio">
                         <input type="submit">
                       </form>
                       `);
 
-                    const audioForm = soundClips.querySelector('.audio-form');
-                    console.log(audioForm);
+                        const audioForm = soundClips.querySelector('.audio-form');
+                        console.log(audioForm);
 
-                    var fd = new FormData(audioForm);
-                    fd.append('audio', result);
+                        var fd = new FormData(audioForm);
+                        fd.append('audio', result);
 
-                    var request = new XMLHttpRequest();
-                    request.open("PATCH", audioForm.action);
-                    request.send(fd);
+                        var request = new XMLHttpRequest();
+                        request.open("PATCH", audioForm.action);
+                        request.send(fd);
 
-                    request.onload = (res) => {
-                        console.log(res);
-                        soundClips.innerHTML = '';
-                        audioForm.innerHTML = '';
-                    };
+                        request.onload = (res) => {
+                            console.log(res);
+                            soundClips.innerHTML = '';
+                            audioForm.innerHTML = '';
+                        };
 
-                    i += 1;
+                        i += 1;
 
-                    chunks = [];
+                        chunks = [];
+                    }
                 }
             }
             mediaRecorder.ondataavailable = function(e) {
