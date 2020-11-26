@@ -74,11 +74,6 @@ const initSpeech = (i) => {
         const item = document.querySelector(`#agenda${i}`);
         if (item === null) {
             const wrapUp = document.querySelector("#wrap-up");
-            stopRecordingBtn.click();
-            setTimeout(function() {
-                console.log('5 seconds have passed!');
-                wrapUp.click()
-            }, 2000);
 
         } else {
             item.click();

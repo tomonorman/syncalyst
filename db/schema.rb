@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_11_19_125016) do
+ActiveRecord::Schema.define(version: 2020_11_25_160336) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -68,6 +68,7 @@ ActiveRecord::Schema.define(version: 2020_11_19_125016) do
     t.datetime "updated_at", precision: 6, null: false
     t.boolean "start", default: false
     t.boolean "finish", default: false
+    t.string "event"
     t.index ["user_id"], name: "index_meetings_on_user_id"
   end
 
@@ -92,6 +93,10 @@ ActiveRecord::Schema.define(version: 2020_11_19_125016) do
     t.string "nickname"
     t.string "job_title"
     t.string "trello_member_id"
+    t.string "name"
+    t.string "access_token"
+    t.string "expires_at"
+    t.string "refresh_token"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
