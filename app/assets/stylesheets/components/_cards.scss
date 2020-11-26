@@ -1,91 +1,11 @@
-.agenda-cards, .task-cards {
-  background-color: $light-gray;
-  border-left: 4px solid $yellow;
-  border-radius: $border-radius;
-  -webkit-box-shadow: 0 8px 6px -6px rgba(0, 0, 0, 0.25);
-  -moz-box-shadow: 0 8px 6px -6px rgba(0, 0, 0, 0.25);
-  box-shadow: 0 8px 6px -6px rgba(0, 0, 0, 0.25);
-  cursor: pointer;
-  width: 90%;
-  height: 60px;
-  padding: 12px;
-}
-
-.task-cards-complete {
-  background-color: $light-gray;
-  border-left: 4px solid $yellow;
-  border-radius: $border-radius;
-  -webkit-box-shadow: 0 8px 6px -6px rgba(0, 0, 0, 0.25);
-  -moz-box-shadow: 0 8px 6px -6px rgba(0, 0, 0, 0.25);
-  box-shadow: 0 8px 6px -6px rgba(0, 0, 0, 0.25);
-  width: 75%;
-  height: 70px;
-  padding: 12px;
-}
-
-.agenda-info p {
-  line-height: 50%;
-  text-align: left;
-  text-align: center;
-}
-
 .agenda ul, .inprogress-card ul {
   list-style-type: none;
-}
-
-.agenda-cards:hover, .task-cards:hover {
-  transform: translateX(-12px);
-    transition: 0.2s ease-out;
-    color: $white;
-    background-color: $purple;
 }
 
 .agenda ul {
   list-style-type: none;
   overflow:hidden;
   padding:0em;
-}
-
-// .agenda-form {
-//   width: 95%;
-// }
-
-// .agenda-input {
-//   // left: 10px;
-// }
-
-
-
-.agenda-cards-inprogress {
-  background-color: $light-gray;
-  border-left: 4px solid $yellow;
-  border-radius: $border-radius;
-  -webkit-box-shadow: 0 8px 6px -6px rgba(0, 0, 0, 0.25);
-  -moz-box-shadow: 0 8px 6px -6px rgba(0, 0, 0, 0.25);
-  box-shadow: 0 8px 6px -6px rgba(0, 0, 0, 0.25);
-  cursor: pointer;
-  width: 80%;
-  height: 70px;
-  padding: 12px;
-  transition: 0.2s ease-out;
-}
-
-.agenda-cards-wrapup{
-  background-color: $light-gray;
-  border-left: 4px solid $yellow;
-  border-radius: $border-radius;
-  -webkit-box-shadow: 0 8px 6px -6px rgba(0, 0, 0, 0.25);
-  -moz-box-shadow: 0 8px 6px -6px rgba(0, 0, 0, 0.25);
-  box-shadow: 0 8px 6px -6px rgba(0, 0, 0, 0.25);
-  width: 80%;
-  height: 70px;
-  padding: 12px;
-}
-
-.agenda-cards-inprogress.active {
-  transform: translateX(48px);
-  background: linear-gradient(rgba($purple,.1), rgba($purple,.1));
-
 }
 
 .postit {
@@ -147,6 +67,10 @@
   // -moz-transform:rotate(5deg);
   // position:relative;
   // top:-10px;
+}
+
+.postit-pointer {
+  cursor: pointer;
 }
 
 .attendance-card {
