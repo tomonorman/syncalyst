@@ -1,16 +1,14 @@
 const initTaskForm = () => {
 
-  const avatars = document.querySelectorAll('.mtgtableattendee');
+  const avatars = document.querySelectorAll('.task-avatar');
 
   if (avatars) {
     avatars.forEach((avatar)=>{
       avatar.addEventListener("click", event =>{
-      console.log('clicking works');
       const task_forms = document.querySelectorAll('.task-form');
       task_forms.forEach((form) => {
         if (form.dataset.userid === avatar.dataset.userid) {
           const avatarForm = form;
-          console.log(avatarForm);
           if (avatarForm.style.display === "none") {
             avatarForm.style.display = "block";
           } else {
@@ -18,11 +16,10 @@ const initTaskForm = () => {
           }
         }
         });
-
+      console.log('task form toggling');
       });
     });
   }
 };
-
 
 export { initTaskForm };

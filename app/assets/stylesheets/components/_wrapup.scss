@@ -3,11 +3,7 @@
   text-align: center;
 }
 
-.task-form {
-  width: 50%;
-  display: none;
-}
-
+// task-form moved to _meeting.scss
 .spin {
    -webkit-animation:spin 2s ease-in-out;
     -moz-animation:spin 2s ease-in-out;
