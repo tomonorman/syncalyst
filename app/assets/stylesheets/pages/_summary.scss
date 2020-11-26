@@ -1,0 +1,22 @@
+.summary-transcriptions {
+    background-color: #FBFAFA;
+    border-radius: 4px;
+    box-shadow: 2px 2px 2px 2px rgba(112, 51, 255, 0.4);
+}
+
+.audio {
+    width: 100%;
+
+    &:active {
+        color: none;
+    }
+
+    &:focus {
+        color: none;
+        border: none;
+        outline: none;
+    }
+
+
+
+}
