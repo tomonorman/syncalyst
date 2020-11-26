@@ -9,12 +9,9 @@
     margin: 0;
   }
 }
+
 .scrolling-wrapper{
   overflow-x: auto;
-}
-
-.meeting-italic {
-  font-style: italic;
 }
 
 .meeting-card-small {
@@ -31,7 +28,6 @@
     margin: 0;
   }
 }
-
 
 .upcoming-meeting-card {
   background-color: $light-gray;

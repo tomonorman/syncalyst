@@ -24,16 +24,11 @@ require("channels")
 
 // External imports
 import "bootstrap";
-import AOS from 'aos';
-import 'aos/dist/aos.css';
-// Internal imports, e.g:
-// import { initSelect2 } from '../components/init_select2';
 import { initNavbar } from '../components/navbar';
 import { initAgendaForm } from '../components/init_agenda_form';
 import { initAgenda } from '../components/agendacard';
 import { authorizeTrello } from '../components/authorize_trello';
 import { initTrelloCard } from '../components/init_trello_card';
-import { recordAudio } from '../components/record_audio';
 import { initNav } from '../components/speech-navigation';
 import { initCurrentAgenda } from '../components/currentagenda';
 
@@ -45,7 +40,5 @@ document.addEventListener('turbolinks:load', () => {
   authorizeTrello();
   initTrelloCard();
   initCurrentAgenda();
-  // recordAudio();
-  AOS.init();
 });
 
