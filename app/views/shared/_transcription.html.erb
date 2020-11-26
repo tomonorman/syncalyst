@@ -29,14 +29,20 @@
     <div class="meeting-table" style="background-image: url('<%= asset_path 'table.jpg' %>');">
       <% @meeting.attendances.each do |attendance| %>
         <% if attendance.user.photo.attached? %>
-          <div class="mtgtableattendee">
-            <%= cl_image_tag "#{attendance.user.photo.key}", alt: "alttext", class: "avatar-large mx-1 align-self-start" %>
+          <div data-userid="<%= attendance.user.id %>" class="mtgtableattendee">
+            <%= cl_image_tag "#{attendance.user.photo.key}", alt: "alttext", class: "task-avatar avatar-large mx-1 align-self-start" %>
           </div>
         <% else %>
-          <div class="mtgtableattendee">
-            <%= image_tag "avatar.jpg", alt: "avatar", class: 'avatar-large mx-1 align-self-start' %>
+          <div data-userid="<%= attendance.user.id %>" class="mtgtableattendee">
+            <%= image_tag "avatar.jpg", alt: "avatar", class: 'task-avatar avatar-large mx-1 align-self-start' %>
           </div>
         <% end %>
+        <div data-userid="<%= attendance.user.id %>" class="task-form">
+          <%= simple_form_for([@meeting, @task]) do |f| %>
+            <%= f.input :user_id, label: false , :input_html => { :value => attendance.user.id, "data-trelloid" => attendance.user.trello_member_id, "data-meeting" => attendance.meeting.title, :type => 'hidden' } %>
+            <%= f.input :description, placeholder: "Assign task to #{attendance.user.nickname}", label: false, class: "task-description" %>
+          <% end %>
+        </div>
       <% end %>
       <div class="currentagendaitem" id="currentpostit">
         <p class="p-2">Click on the first agenda item to start</p>
