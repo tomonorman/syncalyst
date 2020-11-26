@@ -1,68 +1,81 @@
+import { fadeOutEffect } from './agendacard.js'
+
 const initNav = () => {
-  console.log("Hello From Speech Recognition")
-  var speechRecognition = window.webkitSpeechRecognition;
-  let recognition = new speechRecognition();
-  let activity = $("#activity");
-  let content = '';
-  let recognizing = false;
+    console.log("Hello From Speech Recognition")
+    var speechRecognition = window.webkitSpeechRecognition;
+    let recognition = new speechRecognition();
+    let activity = $("#activity");
+    let content = '';
+    let recognizing = false;
 
-  recognition.continuous = true;
-  recognition.start();
+    recognition.continuous = true;
+    recognition.start();
 
-  recognition.onstart = function() {
-    activity.text("Voice Recognition on, click to turn off");
-    recognizing = true;
-  }
-
-  recognition.onspeechend = function() {
-    activity.text("Voice Recognition is off");
-    recognizing = false;
-  }
-
-  recognition.onerror = function() {
-    activity.text("Voice Recognition Off, click to turn on");
-    recognizing = false;
-  }
-   const taskhidden = document.querySelector('#taskhidden');
-   if (taskhidden) {
-    recognition.stop();
-    console.log("stopped");
+    recognition.onstart = function() {
+        activity.text("Voice Recognition on, click to turn off");
+        recognizing = true;
     }
 
-  const running = document.querySelector("#activity");
-  running.addEventListener('click', (event) => {
-    if (recognizing == true) {
-      recognition.abort();
-    } else if (recognizing == false) {
-      recognition.start();
+    recognition.onspeechend = function() {
+        activity.text("Voice Recognition is off");
+        recognizing = false;
     }
-  });
 
-  recognition.onresult = function (event) {
-    var  current = event.resultIndex;
-    var transcript = event.results[current][0].transcript;
-    console.log(transcript);
-    if (transcript.includes("next meeting")) {
-      const start = document.querySelector("#next");
-      start.click();
+    recognition.onerror = function() {
+        activity.text("Voice Recognition Off, click to turn on");
+        recognizing = false;
     }
-    else if (transcript.includes("start meeting")) {
-      const startAgenda = document.querySelector("#start-agenda");
-      startAgenda.click();
+    const taskhidden = document.querySelector('#taskhidden');
+    if (taskhidden) {
+        recognition.stop();
+        console.log("stopped");
     }
-    else if (transcript.includes("first on the agenda")) {
-      const item = document.querySelector("#agenda0");
-      item.click();
+
+    const running = document.querySelector("#activity");
+    running.addEventListener('click', (event) => {
+        if (recognizing == true) {
+            recognition.abort();
+        } else if (recognizing == false) {
+            recognition.start();
+        }
+    });
+
+    recognition.onresult = function(event) {
+        var current = event.resultIndex;
+        var transcript = event.results[current][0].transcript;
+        console.log(transcript);
+        if (transcript.includes("next meeting")) {
+            const start = document.querySelector("#next");
+            start.click();
+        } else if (transcript.includes("start meeting")) {
+            const startAgenda = document.querySelector("#start-agenda");
+            startAgenda.click();
+        } else if (transcript.includes("first on the agenda")) {
+            const item = document.querySelector("#agenda0");
+            item.click();
+            const recordForm = document.querySelector('.inprogress-card');
+            recordForm.insertAdjacentHTML('afterBegin', "<p class='voice-alert'><i class='fas fa-play mr-1'></i></i>Transcription has started.</p>");
+            const voiceAlert = document.querySelector('.voice-alert');
+            fadeOutEffect(voiceAlert);
+            setTimeout(function() {
+                voiceAlert.remove();
+            }, 3000);
+
+        } else if (transcript.includes("thank you everyone")) {
+            const spin = document.querySelector("#spin");
+            spin.classList.add("spin");
+        } else if (transcript.includes("next on the agenda")) {
+            const active = document.querySelector(".active")
+            active.nextElementSibling.click();
+            const recordForm = document.querySelector('.inprogress-card');
+            recordForm.insertAdjacentHTML('afterBegin', "<p class='voice-alert'><i class='fas fa-play mr-1'></i></i>Transcription has started.</p>");
+            const voiceAlert = document.querySelector('.voice-alert');
+            fadeOutEffect(voiceAlert);
+            setTimeout(function() {
+                voiceAlert.remove();
+            }, 3000);
+        }
     }
-    else if (transcript.includes("thank you everyone")) {
-      const spin = document.querySelector("#spin");
-      spin.classList.add("spin");
-    }
-    else if (transcript.includes("next on the agenda")){
-      const active = document.querySelector(".active")
-      active.nextElementSibling.click();
-    }
-  }
 }
 
 export { initNav }

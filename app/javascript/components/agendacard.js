@@ -1,11 +1,26 @@
 import { recordAudio } from './record_audio.js';
-import { initNav }     from './speech-navigation.js';
+import { initNav } from './speech-navigation.js';
 
 const stop = document.querySelector('.stop');
 const stopRecordingBtn = document.querySelector('.stopRecording');
 const recordBtn = document.querySelector('.record');
 const soundClips = document.querySelector('.sound-clips');
 const agendaItems = document.querySelectorAll(".postit");
+
+function fadeOutEffect(element) {
+    var fadeTarget = element;
+    var fadeEffect = setInterval(function() {
+        if (!fadeTarget.style.opacity) {
+            fadeTarget.style.opacity = 1;
+        }
+        if (fadeTarget.style.opacity > 0) {
+            fadeTarget.style.opacity -= 0.05;
+        } else {
+            clearInterval(fadeEffect);
+        }
+    }, 100);
+}
+
 
 
 const transcription = (index) => {
@@ -44,9 +59,19 @@ const initSpeech = (i) => {
         var transcript = event.results[current][0].transcript;
         content += transcript;
         if (transcript.includes("stop")) {
-          document.querySelector("#stop-btn").click();
+            document.querySelector("#stop-btn").click();
+            const recordForm = document.querySelector('.inprogress-card');
+            recordForm.insertAdjacentHTML('afterBegin', "<p class='voice-alert'><i class='fas fa-stop-circle mr-1'></i>Recording has stopped.</p>");
+            const voiceAlert = document.querySelector('.voice-alert');
+            fadeOutEffect(voiceAlert);
+            setTimeout(function() {
+                voiceAlert.remove();
+            }, 3000);
+
+
+
         } else {
-          textbox.val(content);
+            textbox.val(content);
         }
     }
 
@@ -119,4 +144,4 @@ const initAgenda = () => {
     }
 }
 
-export { initAgenda }
+export { initAgenda, fadeOutEffect }
