@@ -43,7 +43,11 @@ const initSpeech = (i) => {
         var current = event.resultIndex;
         var transcript = event.results[current][0].transcript;
         content += transcript;
-        textbox.val(content);
+        if (transcript.includes("stop")) {
+          document.querySelector("#stop-btn").click();
+        } else {
+          textbox.val(content);
+        }
     }
 
     if (content.length) {
