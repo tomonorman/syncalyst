@@ -1,24 +1,64 @@
-<!-- <div class="d-flex flex-column justify-content-center"> -->
-<div data-aos="fade-right" data-aos-duration="2000">
-  <div class="agenda-card mt-4">
-    <div class="agenda">
-      <h2 class="m-3">Agenda</h2>
-      <ul class="row justify-content-center postitul">
-        <% @meeting.agendas.each do |agenda| %>
-          <li class="postit col-4 m-2 p-2">
-            <p><%= agenda.title %></p>
-            <p><%= agenda.description %></p>
-            <p><%= agenda.est_duration %> min.</p>
-          </li>
-        <% end %>
-      </ul>
+<div class="d-flex justify-content-between align-items-center">
+  <p style="font-size: 24px" ><%= @meeting.title %> | <%= @meeting.date_time.strftime("%A, %d %b %Y at %l:%M %p") %> <span style="font-size: 16px;">(<%= @meeting.duration%> mins.)</span></p>
+  <div class="trello-btn">
+    <% if @meeting.trello_board == "" %>
+      <p>""</p>
+    <% else %>
+      <%= link_to 'Trello board linked', @meeting.trello_board, target: "_blank", class: "btn btn-secondary" %>
+    <% end %>
+  </div>
+  <p>Hosted By:
+    <%= cl_image_tag "#{@meeting.user.photo.key}", alt: "alttext", class: "avatar" %>
+  </h4>
+</div>
+<div class="agenda-card">
+  <div class="agenda">
+    <h2 class="mt-1 ml-1">Agenda</h2>
+    <ul class="row justify-content-center postitul">
+      <% @meeting.agendas.each do |agenda| %>
+        <li class="postit col-2 m-3 p-1">
+          <p><%= agenda.title %></p>
+          <p><%= agenda.description %></p>
+        </li>
+      <% end %>
       <% if @meeting.user == current_user %>
-        <div class="agenda-form">
-          <p class="add-agenda-btn text-center" style="font-size: 48px; color: #7033FF; cursor: pointer;"><i class="fas fa-plus"></i></p>
-          <%= render 'agendas/new' %>
+        <li class="postitform col-2 m-3 p-1">
+          <div class="agenda-form">
+            <%= simple_form_for [@meeting, @agenda] do |f| %>
+              <div class="agenda-input">
+                <%= f.input :title, label: false, placeholder: 'Agenda Item' %>
+                <%= f.input :description, label: false, placeholder: 'Additional Info' %>
+                <div class="text-center">
+                  <%= f.submit 'Create', :class => 'btn btn-primary' %>
+                </div>
+              </div>
+            <% end %>
+          </div>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+  <div class="d-flex justify-content-center">
+    <div class="meeting-table" style="background-image: url('<%= asset_path 'table.jpg' %>');">
+      <% @meeting.attendances.each do |attendance| %>
+        <% if attendance.user.photo.attached? %>
+          <div class="mtgtableattendee">
+            <%= cl_image_tag "#{attendance.user.photo.key}", alt: "alttext", class: "avatar-large mx-1 align-self-start" %>
+          </div>
+        <% else %>
+          <div class="mtgtableattendee">
+            <%= image_tag "avatar.jpg", alt: "avatar", class: 'avatar-large mx-1 align-self-start' %>
+          </div>
+        <% end %>
+      <% end %>
+      <% if current_user == @meeting.user %>
+        <%= render 'shared/invite' %>
+      <% end %>
+      <% if @meeting.user == current_user %>
+        <div class="meetingstart">
+          <%= link_to "Everyone here? Let's get started!", start_meeting_path(@meeting), :method=> :put, id: "start-agenda", class: "btn btn-primary"  %>
         </div>
       <% end %>
     </div>
   </div>
 </div>
-<!-- </div> -->

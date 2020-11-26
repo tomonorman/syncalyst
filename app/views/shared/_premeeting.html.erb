@@ -30,5 +30,5 @@
   <% end %>
 </div>
 <% if @meeting.user == current_user %>
-  <%= link_to "Everyone here? Let's get started!", start_meeting_path(@meeting), :method=> :put, id: "start-agenda", class: "btn btn-primary btn-block mt-4"  %>
+  <%= link_to "Everyone here? Let's get started!", start_meeting_path(@meeting), :method=> :put, id: "start-agenda", class: "btn btn-primary mt-4"  %>
 <% end %>

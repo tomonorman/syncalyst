@@ -77,7 +77,7 @@ const initSpeech = (i) => {
 }
 
 const initAgenda = () => {
-  const agendaItems = document.querySelectorAll(".agenda-cards-inprogress");
+  const agendaItems = document.querySelectorAll(".postit");
   let i = 1;
   if (agendaItems) {
     agendaItems.forEach((item) => {
