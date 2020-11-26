@@ -1,91 +1,103 @@
-var recordButton, stopButton, recorder;
-
-const blobToFile = (theBlob, fileName) => {
-      //A Blob() is almost a File() - it's just missing the two properties below which we will add
-      theBlob.lastModifiedDate = new Date();
-      theBlob.name = fileName;
-      return theBlob;
-}
-
-const onRecordingReady = (item, e) => {
-  // let audio = document.getElementById('audio');
-  // audio.src = URL.createObjectURL(e.data);
-  console.log('data is ready!');
-  // console.log(e.data);
-  const result = blobToFile(e.data,'audio.mp4');
-  const form = item.querySelector('.edit_agenda');
-  console.log(form);
-  const formData = new FormData(form);
-    formData.set('agenda[audio]', result, 'helloworld.wav');
-
-    var request = new XMLHttpRequest();
-    request.open("PATCH", form.action);
-    request.send(formData);
-
-    request.onload = (res) => {
-      console.log(res);
-    };
-}
-
-const startRecording = () => {
-  console.log('clicked start!');
-  recordButton.disabled = true;
-  // stopButton.disabled = false;
-
-  recorder.start();
-}
-
-const stopRecording = () => {
-  console.log('clicked stop');
-  recordButton.disabled = false;
-  stopButton.disabled = true;
-  // Stopping the recorder will eventually trigger the `dataavailable` event and we can complete the recording process
-  recorder.stop();
-}
-
-
 const recordAudio = () => {
-  const li = document.querySelectorAll('.agenda-cards-inprogress');
-  if (li) {
-     li.forEach((item) => {
-        // console.log(item);
+    let i = 0;
+    const record = document.querySelector('.record');
+    const stop = document.querySelector('.stopRecording');
+    const soundClips = document.querySelector('.sound-clips');
+    //change this
+    const currentAgendas = document.querySelectorAll('.agenda-cards-inprogress');
 
-        recordButton = item.querySelector('.record');
-          recordButton.addEventListener('click', (event) => {
-            navigator.mediaDevices.getUserMedia({
-            audio: true
-          })
-            .then(function (stream) {
-              recordButton.disabled = false;
-              recorder = new MediaRecorder(stream);
-              startRecording();
-              stopButton = item.querySelector('.stop');
-              console.log(stopButton);
+    const blobToFile = (theBlob, fileName) => {
+        theBlob.lastModifiedDate = new Date();
+        theBlob.name = fileName;
+        return theBlob;
+    }
 
-              // recordButton.addEventListener('click', startRecording);
-              stopButton.addEventListener('click', stopRecording);
-              console.log(recorder);
+    if (navigator.mediaDevices.getUserMedia) {
 
-              // listen to dataavailable, which gets triggered whenever we have
-              // an audio blob available
-              // console.log(item);
-              recorder.addEventListener('dataavailable', (event) => {
-                onRecordingReady(item, event);
-            });
-          });
+        const constraints = { audio: true };
+        let chunks = [];
 
-              });
-          // console.log(stopButton);
+        let onSuccess = function(stream) {
+            //start new stream
+            const mediaRecorder = new MediaRecorder(stream);
 
-          // get audio stream from user's mic
+            if (record) {
+                //when clicked on record
+                record.onclick = function() {
+                    mediaRecorder.start();
+                    console.log("voice recording started");
+                    stop.disabled = false;
+                    record.disabled = true;
+                }
+                //when clicked on stop
+                stop.onclick = function() {
+                    mediaRecorder.stop();
+                    console.log(mediaRecorder.state);
+                    console.log("voice recorder stopped");
+                    stop.disabled = true;
+                    record.disabled = false;
+                }
+                //when rocording stops
+                mediaRecorder.onstop = function(e) {
 
+                    const blob = new Blob(chunks, { 'type': 'audio/ogg; codecs=opus' });
+                    //turn blob into file
+                    const result = blobToFile(blob, 'audio.mp4');
+                    // console.log(result);
+                    //gets current agenda with i
+                    let agenda = currentAgendas[i]
+                    if (agenda) {
+                        let agendaId = agenda.dataset.agenda
+                        let route = `/agendas/${agendaId}`;
+                        //creates new form to send
+                        let formHTML =
+                            `
+                      <form action='${route}' method="patch" class="audio-form">
+                        <input type="file" name="audio">
+                      </form>
+                        `;
+                        soundClips.insertAdjacentHTML('beforeend',
+                            `
+                      <form action='${route}' method="patch" class="audio-form" style="display: none">
+                        <input type="file" name="audio">
+                        <input type="submit">
+                      </form>
+                      `);
 
+                        const audioForm = soundClips.querySelector('.audio-form');
+                        console.log(audioForm);
 
-      })
-  }
+                        var fd = new FormData(audioForm);
+                        fd.append('audio', result);
 
+                        var request = new XMLHttpRequest();
+                        request.open("PATCH", audioForm.action);
+                        request.send(fd);
 
-  };
+                        request.onload = (res) => {
+                            console.log(res);
+                            soundClips.innerHTML = '';
+                            audioForm.innerHTML = '';
+                        };
+
+                        i += 1;
+
+                        chunks = [];
+                    }
+                }
+            }
+            mediaRecorder.ondataavailable = function(e) {
+                chunks.push(e.data);
+            }
+        }
+        let onError = function(err) {
+            console.log('The following error occured: ' + err);
+        }
+        navigator.mediaDevices.getUserMedia(constraints).then(onSuccess, onError);
+    } else {
+        console.log('getUserMedia not supported on your browser!');
+    }
+}
 
 
 

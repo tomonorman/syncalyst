@@ -1,4 +1,6 @@
 class AgendasController < ApplicationController
+  skip_before_action :verify_authenticity_token
+
   def create
     @meeting = Meeting.find(params[:meeting_id])
     @agenda = Agenda.new(agenda_params)
@@ -15,6 +17,7 @@ class AgendasController < ApplicationController
     # @agenda.audio = params[:audio]
     # binding.pry
     @agenda.update(update_params)
+
   end
 
   private
@@ -24,6 +27,6 @@ class AgendasController < ApplicationController
   end
 
   def update_params
-    params.permit(:transcription)
+    params.permit(:transcription, :audio)
   end
 end
