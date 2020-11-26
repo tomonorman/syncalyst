@@ -1,0 +1,152 @@
+@mixin rounded-corners($radius) {
+  -moz-border-radius: $radius;
+  -webkit-border-radius: $radius;
+  -o-border-radius: $radius;
+  border-radius: $radius;
+}
+
+$color-step-grey: #cfcfcf;
+$color-step-green: #29A414;
+$color-progress-green: #75CD00;
+
+.progress-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex: 2 0 auto;
+  width: 100%;
+}
+
+$tracker-colour: #cfcfcf;
+$tracker-colour-complete: #29A414;
+$progress-marker-complete: #75CD00;
+$progress-marker-active: $purple;
+$tracker-marker-size: 34px;
+$tracker-marker-colour: #fff;
+$tracker-border-size: 2px;
+$tracker-line-size: 8px;
+$line-offset: calc((#{$tracker-marker-size}/2) + 0.9em);
+
+.progress-tracker {
+  display: flex;
+  margin: 50px auto;
+  padding: 0;
+  list-style: none;
+  counter-reset: item;
+  padding-left: 38px;
+  padding-right: 38px;
+}
+
+.progress-step {
+  display: block;
+  position: relative;
+  flex: 1 1 0%;
+  padding: 0px 12px;
+  min-width: $tracker-marker-size;
+}
+
+.progress-step:last-child {
+  flex-grow: 0;
+}
+
+.progress-step:not(:last-child)::after {
+  content: '';
+  display: block;
+  position: absolute;
+  z-index: -10;
+  top: $line-offset;
+  left: 45px;
+  width: calc(100% - 45px - 10px);
+  height: $tracker-line-size;
+   @include rounded-corners(4px);
+}
+
+
+.progress-marker {
+  box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  z-index: 20;
+  width: $tracker-marker-size;
+  height: $tracker-marker-size;
+  font-weight: bold;
+  border-radius: 50%;
+  margin-left: 20px;
+}
+
+.progress-step .progress-marker {
+  color: $tracker-marker-colour;
+  background-color: $tracker-colour;
+}
+
+.progress-step.is-active .progress-marker {
+  background-color: $progress-marker-active;
+  // transform: perspective(1px) translateZ(0);
+  transition-duration: 0.3s;
+  transform: scale(1.5) translate(0px, -20px);
+}
+
+.progress-step.is-active .progress-text {
+  font-weight: bolder;
+  // transform: perspective(1px) translateZ(0);
+  transition-duration: 0.3s;
+  // transition-property: transform;
+  transform: scale(1.5) translate(0px, -10px);
+}
+
+// .progress-step.is-complete .progress-marker {
+//   background-color: $tracker-colour-complete;
+// }
+
+// .progress-step.is-complete::after {
+//  // background-color: $tracker-colour;
+//   background: linear-gradient(to right,$progress-marker-complete, $tracker-colour);
+// }
+
+.progress-text {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  text-align: center;
+  display: inline-block;
+  white-space: nowrap;
+  font-size: 15px;
+  font-weight: lighter;
+  padding: 12px 0px;
+}
+
+// .progress-text.multi-line {
+//   display: flex;
+//   flex-direction: column;
+//   transform: translateX(calc(-50% + (#{$tracker-marker-size}/2))) translateY(-14px)
+// }
+
+// .progress-marker.multi-line{
+//   transform: translateY(-12px);
+// }
+
+
+// .count:before {
+//     content: counter(item) " ";
+//     counter-increment: item;
+//   }
+
+
+// .checkmark:after {
+//   content: " ";
+//   counter-increment: item;
+//   display: block;
+//   width: 0.3em; // the short bar of the mark is half as long as the long bar
+//   height: 0.8em;
+//   border: solid white;
+//   border-width: 0 0.1em 0.1em 0; // creates the inverted "L" shape
+//   position: absolute;
+//   left: .9em;
+//   top: 34%;
+//   margin-top: -0.2em;
+//   -webkit-transform: rotate(45deg); // tilts the shape
+//   -moz-transform: rotate(45deg);
+//   -o-transform: rotate(45deg);
+//   transform: rotate(45deg);
+// }
