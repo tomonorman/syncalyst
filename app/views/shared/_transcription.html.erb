@@ -17,7 +17,7 @@
     <ul class="row justify-content-center postitul">
       <% i = 0 %>
       <% @meeting.agendas.each do |agenda| %>
-        <li id='<%= "agenda#{i}" %>' class="postit col-2 m-3 p-1">
+        <li id='<%= "agenda#{i}" %>' data-agenda="<%= agenda.id %>" class="postit col-2 m-3 p-1">
           <p><%= agenda.title %></p>
           <p><%= agenda.description %></p>
         </li>
@@ -62,6 +62,10 @@
           <% end %>
         </div>
       </div>
+    </div>
+    <button class="record btn-primary btn btn-xs" style="display:none">Record</button>
+    <button class="stopRecording btn-warning btn btn-xs" style="display: none">stop</button>
+    <div class="sound-clips">
     </div>
   </div>
 </div>

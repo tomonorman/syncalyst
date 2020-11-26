@@ -4,7 +4,7 @@ const recordAudio = () => {
     const stop = document.querySelector('.stopRecording');
     const soundClips = document.querySelector('.sound-clips');
     //change this
-    const currentAgendas = document.querySelectorAll('.agenda-cards-inprogress');
+    const currentAgendas = document.querySelectorAll('.postit');
 
     const blobToFile = (theBlob, fileName) => {
         theBlob.lastModifiedDate = new Date();
