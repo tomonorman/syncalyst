@@ -1,5 +1,10 @@
+require "google/apis/calendar_v3"
+require "google/api_client/client_secrets.rb"
+
 class MeetingsController < ApplicationController
   before_action :set_meeting, only: [:show, :summary, :report, :start, :finish]
+  TIME_ZONE = "Asia/Tokyo"
+
 
   def index
     set_all_meetings
@@ -45,6 +50,11 @@ class MeetingsController < ApplicationController
     @meeting.user = current_user
     authorize @meeting
     if @meeting.save
+      client = get_google_calendar_client(current_user)
+      @test = client.list_events('primary')
+      event = get_event(@meeting,client)
+      # event = Google::Apis::CalendarV3::Event.new(event)
+      # client.insert_event('primary', event)
       redirect_to meeting_path(@meeting)
     else
       render 'new'
@@ -92,5 +102,80 @@ class MeetingsController < ApplicationController
       all_current_meetings
     .reject { |meeting| meeting.finish == true }
     .min_by(&:date_time)
+  end
+
+  def get_event(meeting,client)
+    end_time = meeting.date_time + meeting.duration.minutes
+    event = Google::Apis::CalendarV3::Event.new(
+      summary: meeting.title,
+      description: meeting.description,
+      start: Google::Apis::CalendarV3::EventDateTime.new(
+        date_time: "#{meeting.date_time.strftime('%F')}T#{meeting.date_time.strftime("%k")}:#{meeting.date_time.strftime("%M")}:00",
+        time_zone: TIME_ZONE
+      ),
+      end: Google::Apis::CalendarV3::EventDateTime.new(
+        date_time: "#{end_time.strftime('%F')}T#{end_time.strftime("%k")}:#{end_time.strftime("%M")}:00",
+        time_zone: TIME_ZONE
+      )
+      # sendNotifications: true,
+      # reminders: {
+      #   use_default: true
+      # }
+    )
+
+    event[:id] = meeting.event if meeting.event
+
+    event
+    client.insert_event('primary', event)
+
+  end
+
+
+  def create_meeting_event(meeting)
+    end_time = meeting.date_time + meeting.duration.minutes
+    google_event = Google::Apis::CalendarV3::Event.new(
+      summary: meeting.title,
+      description: "Meeting description: #{meeting.description}.\nMeeting link: http://localhost:3000/meetings/#{meeting.id}",
+      start: Google::Apis::CalendarV3::EventDateTime.new(
+        date_time: "#{meeting.date_time.strftime('%F')}T#{meeting.date_time.strftime("%k")}:#{meeting.date_time.strftime("%M")}:00",
+        time_zone: TIME_ZONE
+      ),
+      end: Google::Apis::CalendarV3::EventDateTime.new(
+        date_time: "#{end_time.strftime('%F')}T#{end_time.strftime("%k")}:#{end_time.strftime("%M")}:00",
+        time_zone: TIME_ZONE
+      )
+    )
+    google_event
+  end
+
+  def get_google_calendar_client(current_user)
+    client = Google::Apis::CalendarV3::CalendarService.new
+    return unless (current_user.present? && current_user.access_token.present? && current_user.refresh_token.present?)
+
+    secrets = Google::APIClient::ClientSecrets.new({
+                                                     "web" =>
+                                                     {
+                                                       "access_token" => current_user.access_token,
+                                                       "refresh_token" => current_user.refresh_token,
+                                                       "client_id" => ENV["GOOGLE_CLIENT_KEY"],
+                                                       "client_secret" => ENV["GOOGLE_CLIENT_SECRET"]
+                                                     }
+    })
+    begin
+      client.authorization = secrets.to_authorization
+      client.authorization.grant_type = "refresh_token"
+
+      if current_user.expired?
+        client.authorization.refresh!
+        current_user.update_attributes(
+          access_token: client.authorization.access_token,
+          refresh_token: client.authorization.refresh_token,
+          expires_at: client.authorization.expires_at.to_i
+        )
+      end
+    rescue => e
+      raise e.message
+    end
+    client
   end
 end

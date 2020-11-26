@@ -38,6 +38,15 @@ Devise.setup do |config|
   # available as additional gems.
   require 'devise/orm/active_record'
 
+  config.omniauth :google_oauth2, ENV["GOOGLE_CLIENT_KEY"], ENV["GOOGLE_CLIENT_SECRET"],
+  {
+    access_type: "offline",
+    prompt: "consent",
+    select_account: true,
+    scope: 'userinfo.email, calendar, calendar.events'
+  }
+
+
   # ==> Configuration for any authentication mechanism
   # Configure which keys are used when authenticating a user. The default is
   # just :email. You can configure it to use [:username, :subdomain], so for

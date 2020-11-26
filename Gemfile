@@ -41,6 +41,10 @@ gem 'devise'
 gem 'autoprefixer-rails'
 gem 'font-awesome-sass'
 gem 'simple_form'
+gem "omniauth-google-oauth2"
+gem 'google-api-client', '~> 0.34'
+
+
 
 group :development, :test do  gem 'pry-byebug'
   gem 'pry-rails'
