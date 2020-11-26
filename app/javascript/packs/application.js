@@ -35,6 +35,7 @@ import { authorizeTrello } from '../components/authorize_trello';
 import { initTrelloCard } from '../components/init_trello_card';
 import { recordAudio } from '../components/record_audio';
 import { initNav } from '../components/speech-navigation';
+import { initCurrentAgenda } from '../components/currentagenda';
 
 document.addEventListener('turbolinks:load', () => {
   initNav()
@@ -43,6 +44,7 @@ document.addEventListener('turbolinks:load', () => {
   initAgendaForm();
   authorizeTrello();
   initTrelloCard();
+  initCurrentAgenda();
   // recordAudio();
   AOS.init();
 });

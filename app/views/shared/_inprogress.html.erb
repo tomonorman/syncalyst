@@ -5,28 +5,28 @@
 </div>
 <h3 class="ml-3">Agenda Items</h3>
 <div class="agenda">
-    <% i = 0 %>
-    <% @meeting.agendas.each do |agenda| %>
-    <div data-agenda="<%= agenda.id %>" id="<%=" agenda#{i}" %>"class="agenda-cards-inprogress btn btn-secondary m-1 d-flex justify-content-between">
-        <div class="agenda-info">
-            <p>
-                <%= agenda.title %>
-            </p>
-            <p>
-                <%= agenda.description %>
-            </p>
-        </div>
-        <div class="agenda-time">
-            <p>
-                <%= agenda.est_duration %> min.
-            </p>
-        </div>
+  <% i = 0 %>
+  <% @meeting.agendas.each do |agenda| %>
+    <div data-agenda="<%= agenda.id %>" id="<%="agenda#{i}" %>"class="agenda-cards-inprogress btn btn-secondary m-1 d-flex justify-content-between">
+      <div class="agenda-info">
+        <p>
+          <%= agenda.title %>
+        </p>
+        <p>
+          <%= agenda.description %>
+        </p>
+      </div>
+      <div class="agenda-time">
+        <p>
+          <%= agenda.est_duration %> min.
+        </p>
+      </div>
     </div>
     <% i += 1 %>
-    <% end %>
+  <% end %>
 </div>
 <% if @meeting.user == current_user %>
-<div class="d-flex justify-content-center">
+  <div class="d-flex justify-content-center">
     <%= link_to "All done? Let's wrap up", finish_meeting_path(@meeting), :method=> :put, id: "wrap-up", style: "visibility:hidden;", class: "btn btn-primary btn-block mt-5"  %>
-</div>
+  </div>
 <% end %>

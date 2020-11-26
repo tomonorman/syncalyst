@@ -4,7 +4,7 @@ const stop = document.querySelector('.stop');
 const stopRecordingBtn = document.querySelector('.stopRecording');
 const recordBtn = document.querySelector('.record');
 const soundClips = document.querySelector('.sound-clips');
-const agendaItems = document.querySelectorAll(".agenda-cards-inprogress");
+const agendaItems = document.querySelectorAll(".postit");
 
 
 const transcription = (index) => {
