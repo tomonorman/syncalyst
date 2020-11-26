@@ -1,5 +1,7 @@
 import { recordAudio } from './record_audio.js';
 import { initNav } from './speech-navigation.js';
+import Rails from '@rails/ujs'
+
 
 const stop = document.querySelector('.stop');
 const stopRecordingBtn = document.querySelector('.stopRecording');
@@ -54,6 +56,8 @@ const initSpeech = (i) => {
         instructions.text("Try again");
     }
 
+    let taskspeech
+
     recognition.onresult = function(event) {
         var current = event.resultIndex;
         var transcript = event.results[current][0].transcript;
@@ -90,10 +94,28 @@ const initSpeech = (i) => {
             setTimeout(function() {
                 voiceAlert.remove();
             }, 3000);
+        } else if (transcript.includes("can you")) {
+          console.log(transcript);
+          taskspeech = transcript;
+
         } else {
             textbox.val(content);
         }
     }
+
+       const people = document.querySelectorAll('.task-owner');
+          people.forEach((person) => {
+            person.addEventListener('click', (event) => {
+              const form = person.querySelector('form');
+              console.log(form);
+              const input = person.querySelector('.task_description').firstChild;
+              input.value = taskspeech;
+              input.focus();
+              Rails.fire(form,'submit');
+              form.reset();
+
+            });
+          });
 
     if (content.length) {
         content += '';
