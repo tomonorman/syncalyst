@@ -1,6 +1,0 @@
-<div class="task-assign">
-  <%= simple_form_for([@meeting, @task]) do |f| %>
-    <%= f.input :user_id, label: false , :input_html => { :value => attendance.user.id, "data-trelloid" => attendance.user.trello_member_id, "data-meeting" => attendance.meeting.title, :type => 'hidden' } %>
-    <%= f.input :description, placeholder: "Press enter to assign task to #{attendance.user.nickname}", label: false, class: "task-description" %>
-  <% end %>
-</div>
