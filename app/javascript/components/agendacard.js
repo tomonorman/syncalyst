@@ -14,7 +14,7 @@ const transcription = (index) => {
         transcription.innerHTML = "";
     });
 
-    transcriptionItems[index].insertAdjacentHTML("beforeend", "<div class='form-group' id='content-form'><textarea class='form-control' id='textbox' rows='10'></textarea></div><div class='form-group'><button type='button' id='stop-btn' class='btn btn-primary btn-block'>Next Item</button><p id='instructions'>Press start to record</p></div>")
+    transcriptionItems[index].insertAdjacentHTML("beforeend", "<div class='form-group' id='content-form'><textarea class='form-control hide' id='textbox' rows='10'></textarea></div><div class='form-group'><button type='button' id='stop-btn' class='btn btn-primary btn-block'>Stop Recording</button><p id='instructions'>Press start to record</p></div>")
 };
 
 const initSpeech = (i) => {
@@ -45,6 +45,10 @@ const initSpeech = (i) => {
         content += transcript;
         if (transcript.includes("stop")) {
           document.querySelector("#stop-btn").click();
+        } else if (transcript.includes("show transcript")) {
+          document.querySelector("#textbox").classList.remove("hide");
+        } else if (transcript.includes("hide transcript")) {
+          document.querySelector("#textbox").classList.add("hide");
         } else {
           textbox.val(content);
         }
@@ -109,10 +113,6 @@ const initAgenda = () => {
                 transcription(index);
                 initSpeech(i);
                 const finish = document.querySelector(`#agenda${i}`)
-                if (finish === null) {
-                    const finishbtn = document.querySelector("#stop-btn");
-                    finishbtn.innerText = "Move to Task Assignment";
-                }
                 i += 1;
             });
         });
