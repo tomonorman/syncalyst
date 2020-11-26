@@ -108,7 +108,7 @@ class MeetingsController < ApplicationController
     end_time = meeting.date_time + meeting.duration.minutes
     event = Google::Apis::CalendarV3::Event.new(
       summary: meeting.title,
-      description: meeting.description,
+      description: "Meeting description: #{meeting.description}.\nMeeting link: https://www.syncalyst.com://www.syncalyst.com/meetings/#{meeting.id}",
       start: Google::Apis::CalendarV3::EventDateTime.new(
         date_time: "#{meeting.date_time.strftime('%F')}T#{meeting.date_time.strftime("%k")}:#{meeting.date_time.strftime("%M")}:00",
         time_zone: TIME_ZONE
