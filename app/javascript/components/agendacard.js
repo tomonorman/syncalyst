@@ -74,6 +74,22 @@ const initSpeech = (i) => {
         } else if (transcript.includes("hide transcript")) {
             document.querySelector("#textbox").classList.add("hide");
 
+        } else if (transcript.includes("order coffee")) {
+          const recordForm = document.querySelector('.inprogress-card');
+            recordForm.insertAdjacentHTML('afterBegin', "<p class='voice-alert'><i class='fas fa-coffee'></i>Intern is fetching coffee</p>");
+            const voiceAlert = document.querySelector('.voice-alert');
+            fadeOutEffect(voiceAlert);
+            setTimeout(function() {
+                voiceAlert.remove();
+            }, 3000);
+        } else if (transcript.includes("I don't like you")) {
+          const recordForm = document.querySelector('.inprogress-card');
+            recordForm.insertAdjacentHTML('afterBegin', "<p class='voice-alert'><i class='fas fa-hand-middle-finger'></i>Fuck you Yann</p>");
+            const voiceAlert = document.querySelector('.voice-alert');
+            fadeOutEffect(voiceAlert);
+            setTimeout(function() {
+                voiceAlert.remove();
+            }, 3000);
         } else {
             textbox.val(content);
         }
