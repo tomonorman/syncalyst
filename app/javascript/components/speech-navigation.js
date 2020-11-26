@@ -58,6 +58,10 @@ const initNav = () => {
       const spin = document.querySelector("#spin");
       spin.classList.add("spin");
     }
+    else if (transcript.includes("next on the agenda")){
+      const active = document.querySelector(".active")
+      active.nextElementSibling.click();
+    }
   }
 }
 
