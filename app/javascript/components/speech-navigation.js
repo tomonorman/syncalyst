@@ -2,7 +2,6 @@ const initNav = () => {
   console.log("Hello From Speech Recognition")
   var speechRecognition = window.webkitSpeechRecognition;
   let recognition = new speechRecognition();
-  // var textbox = $("#textbox");
   let activity = $("#activity");
   let content = '';
   let recognizing = false;

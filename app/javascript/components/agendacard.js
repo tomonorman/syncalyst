@@ -1,4 +1,5 @@
 import { recordAudio } from './record_audio.js';
+import { initNav }     from './speech-navigation.js';
 
 const stop = document.querySelector('.stop');
 const stopRecordingBtn = document.querySelector('.stopRecording');
@@ -10,13 +11,9 @@ const agendaItems = document.querySelectorAll(".postit");
 const transcription = (index) => {
     const transcriptionItems = document.querySelectorAll(".transcription");
     transcriptionItems.forEach((transcription) => {
-        transcription.classList.add("transcription-display");
         transcription.innerHTML = "";
     });
-    const show = document.querySelector("#show-btn");
-    show.addEventListener('click', (event) => {
-        transcriptionItems[index].classList.toggle("transcription-display");
-    });
+
     transcriptionItems[index].insertAdjacentHTML("beforeend", "<div class='form-group' id='content-form'><textarea class='form-control' id='textbox' rows='10'></textarea></div><div class='form-group'><button type='button' id='stop-btn' class='btn btn-primary btn-block'>Next Item</button><p id='instructions'>Press start to record</p></div>")
 };
 
@@ -58,6 +55,7 @@ const initSpeech = (i) => {
         event.preventDefault();
         recognition.stop();
         console.log(content);
+        stopRecordingBtn.click();
         // send content to rails:
         const contentForm = document.querySelector("#content-form")
         const agendaId = contentForm.parentElement.dataset.agenda
@@ -71,18 +69,8 @@ const initSpeech = (i) => {
         });
         // reset content
         content = '';
-        const item = document.querySelector(`#agenda${i}`);
-        if (item === null) {
-            const wrapUp = document.querySelector("#wrap-up");
-            stopRecordingBtn.click();
-            setTimeout(function() {
-                console.log('5 seconds have passed!');
-                wrapUp.click();
-            }, 2000);
-
-        } else {
-            item.click();
-        }
+        // reset Navigation Bot
+        initNav();
     })
 
     textbox.on('input', function() {
@@ -98,9 +86,6 @@ const initAgenda = () => {
         agendaItems.forEach((item) => {
 
             item.addEventListener('click', (event) => {
-                if (recordBtn.disabled === true) {
-                    stopRecordingBtn.click();
-                }
                 recordBtn.click();
 
                 event.preventDefault();
