@@ -27,7 +27,6 @@
             <%= simple_form_for [@meeting, @agenda] do |f| %>
               <div class="agenda-input">
                 <%= f.input :title, label: false, placeholder: 'Agenda Item' %>
-                <%= f.input :description, label: false, placeholder: 'Additional Info' %>
                 <div class="text-center">
                   <%= f.submit 'Create', :class => 'btn btn-primary' %>
                 </div>
