@@ -1,18 +1,18 @@
 <div class="d-flex justify-content-between align-items-center">
-  <h2 style="font-size: 24px">
+ <h2 style="font-size: 24px">
     <%= @meeting.title %> |
-    <span style="font-size: 20px;"><%= @meeting.date_time.strftime("%A, %d %b %Y at %l:%M %p") %></span><span style="font-size: 16px;">(
-      <%= @meeting.duration%> mins.)</span></h2>
+    <span style="font-size: 20px;"><%= @meeting.date_time.strftime("%A, %d %b %Y at %l:%M %p") %></span><span style="font-style:italic;"><span class="ml-3" style="font-size: 16px; ">
+         <%= @meeting.duration%> mins.</span></span></h2>
   <div class="trello-btn">
     <% if @meeting.trello_board == "" %>
       <p>""</p>
     <% else %>
-      <%= link_to 'Trello board linked', @meeting.trello_board, target: "_blank", class: "btn btn-secondary" %>
+      <%= link_to 'Trello board linked', @meeting.trello_board, target: "_blank", class: "btn btn-secondary mb-2" %>
     <% end %>
   </div>
-  <p>Hosted By:
+  <p class="mb-1">Hosted By:
     <%= cl_image_tag "#{@meeting.user.photo.key}", alt: "alttext", class: "avatar" %>
-  </h4>
+  </p>
 </div>
 <div class="agenda-card">
   <div class="agenda">
