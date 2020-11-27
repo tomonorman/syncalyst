@@ -4,7 +4,7 @@ require "googleauth/stores/file_token_store"
 require "date"
 require "fileutils"
 
-class GoogleCalendar
+class GoogleCalendarService
   attr_reader :service, :credentials
 
   OOB_URI = "urn:ietf:wg:oauth:2.0:oob".freeze

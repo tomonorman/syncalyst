@@ -5,9 +5,7 @@ class TasksController < ApplicationController
     @task = Task.new(task_params)
     authorize @task
     @task.meeting = @meeting
-    if @task.save
-      redirect_to meeting_path(@meeting)
-    end
+    @task.save
   end
 
   private

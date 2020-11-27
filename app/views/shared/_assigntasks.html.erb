@@ -17,7 +17,6 @@
 <div class="agenda-card">
   <div class="agenda">
     <div class="heading d-flex justify-content-between">
-      <h2 class="mt-1 ml-1">Agenda</h2>
       <div class="finish-actions">
         <!-- Back to Dashboard -->
         <%= link_to meetings_path, class: "btn btn-primary"  do %>
@@ -52,11 +51,15 @@
           <p>
             <%= agenda.description %>
           </p>
-          <% url = cl_video_path(agenda.audio.key) %>
-          <audio controls class="audio">
-            <source src="<%= url %>" type="audio/mpeg">
-            Your browser does not support the audio tag.
-          </audio>
+
+          <% if agenda.audio.attached? %>
+                <% url = cl_video_path(agenda.audio.key) %>
+                <audio controls class="audio" style="width: 100%;">
+                    <source src="<%= url %>" type="audio/mpeg">
+                    Your browser does not support the audio tag.
+                </audio>
+                <% end %>
+
         </li>
         <% i += 1 %>
       <% end %>
@@ -64,6 +67,9 @@
   </div>
   <div class="d-flex justify-content-center">
     <div class="meeting-table" style="background-image: url('<%= asset_path 'table.jpg' %>');">
+      <div class="mtgtableattendee">
+        <%= cl_image_tag "#{@meeting.user.photo.key}", alt: "alttext", class: "avatar-large mx-1 align-self-start" %>
+      </div>
       <% @meeting.attendances.each do |attendance| %>
         <% if attendance.user.photo.attached? %>
           <div class="mtgtableattendee">
@@ -75,15 +81,6 @@
           </div>
         <% end %>
       <% end %>
-      <div class="task-assign">
-        <% @meeting.attendances.each do |attendance| %>
-          <%= simple_form_for([@meeting, @task]) do |f| %>
-            <%= f.input :user_id, label: false , :input_html => { :value => attendance.user.id, "data-trelloid" => attendance.user.trello_member_id, "data-meeting" => attendance.meeting.title, :type => 'hidden' } %>
-            <%= f.input :description, placeholder: "Assign task to #{attendance.user.nickname}", label: false, class: "task-description" %>
-          <% end %>
-        <% end %>
-      </div>
-    </div>
-  </div>
+
 </div>
 <div id="taskhidden"></div>
