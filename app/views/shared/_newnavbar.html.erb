@@ -2,7 +2,10 @@
   <nav class='navbar-inner header'>
     <div class="container">
       <div class='brand'>
+      <%= link_to root_path do  %>
         <%= image_tag "syncalyst_logo.jpg", :size => "80x40", alt: "logo" %>
+      <% end %>
+
       </div>
       <ul class='nav pull-right'>
         <% if user_signed_in? %>
