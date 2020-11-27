@@ -27,11 +27,16 @@
           <p>
             <%= agenda.description %>
           </p>
+
+          <% if agenda.audio.attached? %>
           <% url = cl_video_path(agenda.audio.key) %>
           <audio controls class="audio" style="width: 100%;">
             <source src="<%= url %>" type="audio/mpeg">
             Your browser does not support the audio tag.
           </audio>
+
+          <% end %>
+
         </li>
         <% i += 1 %>
       <% end %>
