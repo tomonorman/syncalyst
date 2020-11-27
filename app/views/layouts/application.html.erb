@@ -1,8 +1,7 @@
 <!DOCTYPE html>
 <html>
-
-<head>
-    <title>Syncalyst</title>
+  <head>
+    <title>Syncalyst - Less stress on your meetings!</title>
     <%= favicon_link_tag asset_path('favicon.png') %>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
@@ -11,13 +10,11 @@
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload', defer: true %>
     <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
     <script src="https://api.trello.com/1/client.js?key=2bb18f628e0eeb7bdbfffdd3f8636ad1"></script>
-</head>
-
-<body>
+  </head>
+  <body>
     <%= render 'shared/newnavbar' %>
     <%= render 'shared/flashes' %>
     <p class="ml-3" id="activity"></p>
     <%= yield %>
-</body>
-
+  </body>
 </html>
