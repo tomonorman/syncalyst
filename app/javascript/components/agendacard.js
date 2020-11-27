@@ -2,6 +2,7 @@ import { recordAudio } from './record_audio.js';
 import { initNav } from './speech-navigation.js';
 import Rails from '@rails/ujs'
 
+let taskspeech
 
 const stop = document.querySelector('.stop');
 const stopRecordingBtn = document.querySelector('.stopRecording');
@@ -56,7 +57,7 @@ const initSpeech = (i) => {
         instructions.text("Try again");
     }
 
-    let taskspeech
+
 
     recognition.onresult = function(event) {
         var current = event.resultIndex;
@@ -103,19 +104,7 @@ const initSpeech = (i) => {
         }
     }
 
-       const people = document.querySelectorAll('.task-owner');
-          people.forEach((person) => {
-            person.addEventListener('click', (event) => {
-              const form = person.querySelector('form');
-              console.log(form);
-              const input = person.querySelector('.task_description').firstChild;
-              input.value = taskspeech;
-              input.focus();
-              Rails.fire(form,'submit');
-              form.reset();
 
-            });
-          });
 
     if (content.length) {
         content += '';
@@ -153,6 +142,19 @@ const initAgenda = () => {
     let i = 1;
     //calls audio recording function
     recordAudio();
+      const people = document.querySelectorAll('.task-owner');
+          people.forEach((person) => {
+            person.addEventListener('click', (event) => {
+              const form = person.querySelector('form');
+              console.log(form);
+              const input = person.querySelector('.task_description').firstChild;
+              taskspeech = taskspeech.substring(taskspeech.indexOf('you') + 4);
+              input.value = taskspeech;
+              input.focus();
+              Rails.fire(form,'submit');
+              form.reset();
+            });
+          });
     if (agendaItems) {
         agendaItems.forEach((item) => {
 
