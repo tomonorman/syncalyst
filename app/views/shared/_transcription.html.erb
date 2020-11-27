@@ -1,8 +1,8 @@
 <div class="d-flex justify-content-between align-items-center">
- <h2 style="font-size: 24px">
+  <h2 style="font-size: 24px">
     <%= @meeting.title %> |
     <span style="font-size: 20px;"><%= @meeting.date_time.strftime("%A, %d %b %Y at %l:%M %p") %></span><span style="font-style:italic;"><span class="ml-3" style="font-size: 16px; ">
-         <%= @meeting.duration%> mins.</span></span></h2>
+        <%= @meeting.duration%> mins.</span></span></h2>
   <div class="trello-btn">
     <% if @meeting.trello_board == "" %>
       <p>""</p>
@@ -70,7 +70,7 @@
       <div class="meetingend">
         <% if @meeting.user == current_user %>
           <div class="d-flex justify-content-center">
-            <%= link_to "All done? Let's wrap up", finish_meeting_path(@meeting), :method=> :put, id: "wrap-up", class: "btn btn-primary"  %>
+            <%= link_to "Finish", finish_meeting_path(@meeting), :method=> :put, id: "wrap-up", class: "btn btn-primary"  %>
           </div>
         <% end %>
       </div>
