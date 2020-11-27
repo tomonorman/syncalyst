@@ -17,11 +17,11 @@ function fadeOutEffect(element) {
             fadeTarget.style.opacity = 1;
         }
         if (fadeTarget.style.opacity > 0) {
-            fadeTarget.style.opacity -= 0.05;
+            fadeTarget.style.opacity -= 0.04;
         } else {
             clearInterval(fadeEffect);
         }
-    }, 100);
+    }, 200);
 }
 
 
@@ -66,13 +66,13 @@ const initSpeech = (i) => {
         if (transcript.includes("stop")) {
 
             document.querySelector("#stop-btn").click();
-            const recordForm = document.querySelector('.inprogress-card');
+            const recordForm = document.querySelector('.currentagendaitem');
             recordForm.insertAdjacentHTML('afterBegin', "<p class='voice-alert'><i class='fas fa-stop-circle mr-1'></i>Recording has stopped.</p>");
             const voiceAlert = document.querySelector('.voice-alert');
             fadeOutEffect(voiceAlert);
             setTimeout(function() {
                 voiceAlert.remove();
-            }, 3000);
+            }, 6000);
 
         } else if (transcript.includes("show transcript")) {
             document.querySelector("#textbox").classList.remove("hide");
@@ -80,29 +80,29 @@ const initSpeech = (i) => {
             document.querySelector("#textbox").classList.add("hide");
 
         } else if (transcript.includes("order coffee")) {
-          const recordForm = document.querySelector('.inprogress-card');
+          const recordForm = document.querySelector('.currentagendaitem');
             recordForm.insertAdjacentHTML('afterBegin', "<p class='voice-alert'><i class='fas fa-coffee'></i>Intern is fetching coffee</p>");
             const voiceAlert = document.querySelector('.voice-alert');
             fadeOutEffect(voiceAlert);
             setTimeout(function() {
                 voiceAlert.remove();
-            }, 3000);
+            }, 6000);
         } else if (transcript.includes("I don't like you")) {
-          const recordForm = document.querySelector('.inprogress-card');
+          const recordForm = document.querySelector('.currentagendaitem');
             recordForm.insertAdjacentHTML('afterBegin', "<p class='voice-alert'><i class='fas fa-hand-middle-finger'></i>Fuck you Yann</p>");
             const voiceAlert = document.querySelector('.voice-alert');
             fadeOutEffect(voiceAlert);
             setTimeout(function() {
                 voiceAlert.remove();
-            }, 3000);
+            }, 6000);
         } else if (transcript.includes("can you")) {
-          const recordForm = document.querySelector('.inprogress-card');
+          const recordForm = document.querySelector('.currentagendaitem');
             recordForm.insertAdjacentHTML('afterBegin', "<p class='voice-alert'><i class='fas fa-clipboard-check'></i>Task ready!! Click to assign</p>");
             const voiceAlert = document.querySelector('.voice-alert');
             fadeOutEffect(voiceAlert);
             setTimeout(function() {
                 voiceAlert.remove();
-            }, 5000);
+            }, 6000);
           taskspeech = transcript;
 
         } else {
@@ -120,6 +120,8 @@ const initSpeech = (i) => {
     $("#stop-btn").click(function(event) {
         event.preventDefault();
         recognition.stop();
+        const record = document.querySelector("#record");
+        record.classList.add("record-hidden");
         console.log(content);
         stopRecordingBtn.click();
         // send content to rails:
@@ -159,6 +161,14 @@ const initAgenda = () => {
               input.focus();
               Rails.fire(form,'submit');
               form.reset();
+              const recordForm = document.querySelector('.currentagendaitem');
+              recordForm.innerHTML = "";
+              recordForm.insertAdjacentHTML('afterBegin', `<p class='voice-alert'><i class='fas fa-clipboard-check'></i>Task: ${taskspeech} Assigned!</p>`);
+              const voiceAlert = document.querySelector('.voice-alert');
+              fadeOutEffect(voiceAlert);
+              setTimeout(function() {
+                voiceAlert.remove();
+            }, 6000);
             });
           });
     if (agendaItems) {

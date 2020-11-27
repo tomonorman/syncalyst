@@ -1,16 +1,18 @@
 .agenda-card {
     width: 100%;
     height: 88vh;
-    background-color: #FBFAFA;
+    background-color: white;
+
     border-radius: 4px;
     box-shadow: 2px 2px 2px 2px rgba(112, 51, 255, 0.4);
+    margin-bottom: 8px;
 
 }
 
 .inprogress-card {
     position: relative;
     width: 88%;
-    padding: 36px;
+    padding: 20px;
     background-color: #FBFAFA;
     border-radius: 4px;
     box-shadow: 2px 2px 2px 2px rgba(112, 51, 255, 0.4);
@@ -18,10 +20,10 @@
 
 
 .voice-alert {
-    color: $purple;
-    font-size: 16px;
-    position: absolute;
-    top: -27px;
-    right: 2px;
+    color: #FBFAFA;
+    font-size: 32px;
+    // position: absolute;
+    // top: 50%;
+    // right: 50%;
     font-style: italic;
 }

@@ -1,4 +1,4 @@
-<div class="d-flex justify-content-between align-items-center">
+<div class="d-flex justify-content-between align-items-center mt-3">
   <h2 style="font-size: 24px">
     <%= @meeting.title %> |
     <span style="font-size: 20px;"><%= @meeting.date_time.strftime("%A, %d %b %Y at %l:%M %p") %></span><span style="font-style:italic;"><span class="ml-3" style="font-size: 16px; ">
@@ -14,7 +14,7 @@
     <%= cl_image_tag "#{@meeting.user.photo.key}", alt: "alttext", class: "avatar" %>
   </p>
 </div>
-<div class="agenda-card">
+<div class="agenda-card mt-3">
   <div class="agenda progress-container">
     <!--  <h2 class="mt-1 ml-1">Agenda</h2> -->
     <ol class="row justify-content-center postitul progress-tracker">
