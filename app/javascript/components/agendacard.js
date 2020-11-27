@@ -8,7 +8,7 @@ const stop = document.querySelector('.stop');
 const stopRecordingBtn = document.querySelector('.stopRecording');
 const recordBtn = document.querySelector('.record');
 const soundClips = document.querySelector('.sound-clips');
-const agendaItems = document.querySelectorAll(".postit");
+const agendaItems = document.querySelectorAll(".progress-step");
 
 function fadeOutEffect(element) {
     var fadeTarget = element;
@@ -165,6 +165,13 @@ const initAgenda = () => {
         agendaItems.forEach((item) => {
 
             item.addEventListener('click', (event) => {
+                // to style the current agenda topic:
+                const active = document.querySelector('.is-active')
+                if (active) {
+                  active.classList.remove('is-active');
+                }
+                item.classList.add('is-active');
+                // end
                 recordBtn.click();
 
                 event.preventDefault();
