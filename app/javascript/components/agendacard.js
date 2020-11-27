@@ -120,6 +120,8 @@ const initSpeech = (i) => {
     $("#stop-btn").click(function(event) {
         event.preventDefault();
         recognition.stop();
+        const record = document.querySelector("#record");
+        record.classList.add("record-hidden");
         console.log(content);
         stopRecordingBtn.click();
         // send content to rails:
