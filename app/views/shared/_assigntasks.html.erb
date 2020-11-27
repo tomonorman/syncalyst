@@ -50,16 +50,18 @@
       <% i = 0 %>
       <% @meeting.agendas.each do |agenda| %>
         <li id='<%= "agenda#{i}" %>' class="postit progress-step">
-          <div class="progress-marker"><%= i+1 %></div>
-          <div class="progress-text"><%= agenda.title %></div>
+          <div class="postit-card d-flex flex-column justify-content-center">
+            <div class="progress-marker"><%= i+1 %></div>
+            <div class="progress-text"><%= agenda.title %></div>
 
-          <% if agenda.audio.attached? %>
-            <% url = cl_video_path(agenda.audio.key) %>
-            <audio controls class="audio" style="width: 100%;">
-              <source src="<%= url %>" type="audio/mpeg">
-              Your browser does not support the audio tag.
-            </audio>
-          <% end %>
+            <% if agenda.audio.attached? %>
+              <% url = cl_video_path(agenda.audio.key) %>
+              <audio controls class="audio" style="width: 100%;">
+                <source src="<%= url %>" type="audio/mpeg">
+                Your browser does not support the audio tag.
+              </audio>
+            <% end %>
+          </div>
         </li>
       <% end %>
     </ol>
