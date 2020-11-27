@@ -159,6 +159,13 @@ const initAgenda = () => {
               input.focus();
               Rails.fire(form,'submit');
               form.reset();
+              const recordForm = document.querySelector('.inprogress-card');
+              recordForm.insertAdjacentHTML('afterBegin', `<p class='voice-alert'><i class='fas fa-clipboard-check'></i>Task: ${taskspeech} Assigned!</p>`);
+              const voiceAlert = document.querySelector('.voice-alert');
+              fadeOutEffect(voiceAlert);
+              setTimeout(function() {
+                voiceAlert.remove();
+            }, 5000);
             });
           });
     if (agendaItems) {
