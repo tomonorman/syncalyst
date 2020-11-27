@@ -32,6 +32,11 @@
                 <source src="<%= url %>" type="audio/mpeg">
                 Your browser does not support the audio tag.
               </audio>
+              <% else %>
+              <audio controls class="audio" style="width: 100%;">
+                <source src="" type="audio/mpeg">
+                Your browser does not support the audio tag.
+              </audio>
             <% end %>
           </div>
         </li>
