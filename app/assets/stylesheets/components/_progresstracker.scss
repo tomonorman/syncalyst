@@ -40,8 +40,9 @@ $line-offset: calc((#{$tracker-marker-size}/2) + 0.9em);
 .progress-step {
   display: block;
   position: relative;
-  flex: 1 1 0%;
-  padding: 0px 12px;
+  justify-content: center;
+  align-items: center;
+  padding: 0px 46px;
   min-width: $tracker-marker-size;
 }
 
@@ -65,15 +66,26 @@ $line-offset: calc((#{$tracker-marker-size}/2) + 0.9em);
 .progress-marker {
   box-sizing: border-box;
   display: flex;
-  justify-content: center;
+  justify-content: space-around;
   align-items: center;
-  position: relative;
+  text-align: center;
   z-index: 20;
   width: $tracker-marker-size;
   height: $tracker-marker-size;
   font-weight: bold;
   border-radius: 50%;
-  margin-left: 20px;
+  margin-left: calc(50% - (#{$tracker-marker-size}/2));
+}
+
+.progress-text {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  text-align: center;
+  display: inline-block;
+  white-space: nowrap;
+  font-size: 15px;
+  font-weight: lighter;
+  padding: 12px 0px;
 }
 
 .progress-step .progress-marker {
@@ -105,16 +117,6 @@ $line-offset: calc((#{$tracker-marker-size}/2) + 0.9em);
 //   background: linear-gradient(to right,$progress-marker-complete, $tracker-colour);
 // }
 
-.progress-text {
-  overflow: hidden;
-  text-overflow: ellipsis;
-  text-align: center;
-  display: inline-block;
-  white-space: nowrap;
-  font-size: 15px;
-  font-weight: lighter;
-  padding: 12px 0px;
-}
 
 // .progress-text.multi-line {
 //   display: flex;
