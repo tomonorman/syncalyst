@@ -96,7 +96,13 @@ const initSpeech = (i) => {
                 voiceAlert.remove();
             }, 3000);
         } else if (transcript.includes("can you")) {
-          console.log(transcript);
+          const recordForm = document.querySelector('.inprogress-card');
+            recordForm.insertAdjacentHTML('afterBegin', "<p class='voice-alert'><i class='fas fa-clipboard-check'></i>Task ready!! Click to assign</p>");
+            const voiceAlert = document.querySelector('.voice-alert');
+            fadeOutEffect(voiceAlert);
+            setTimeout(function() {
+                voiceAlert.remove();
+            }, 5000);
           taskspeech = transcript;
 
         } else {

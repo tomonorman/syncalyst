@@ -31,7 +31,6 @@ import { authorizeTrello } from '../components/authorize_trello';
 import { initTrelloCard } from '../components/init_trello_card';
 import { initNav } from '../components/speech-navigation';
 import { initCurrentAgenda } from '../components/currentagenda';
-import { initTaskForm } from '../components/init_task_form';
 
 document.addEventListener('turbolinks:load', () => {
   initNav()
@@ -41,6 +40,5 @@ document.addEventListener('turbolinks:load', () => {
   authorizeTrello();
   initTrelloCard();
   initCurrentAgenda();
-  initTaskForm();
 });
 
