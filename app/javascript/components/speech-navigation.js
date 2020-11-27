@@ -53,13 +53,13 @@ const initNav = () => {
         } else if (transcript.includes("first on the agenda")) {
             const item = document.querySelector("#agenda0");
             item.click();
-            const recordForm = document.querySelector('.inprogress-card');
+            const recordForm = document.querySelector('.currentagendaitem');
             recordForm.insertAdjacentHTML('afterBegin', "<p class='voice-alert'><i class='fas fa-play mr-1'></i></i>Transcription has started.</p>");
             const voiceAlert = document.querySelector('.voice-alert');
             fadeOutEffect(voiceAlert);
             setTimeout(function() {
                 voiceAlert.remove();
-            }, 3000);
+            }, 6000);
 
         } else if (transcript.includes("thank you everyone")) {
             const spin = document.querySelector("#spin");
@@ -67,13 +67,13 @@ const initNav = () => {
         } else if (transcript.includes("next on the agenda")) {
             const active = document.querySelector(".active")
             active.nextElementSibling.click();
-            const recordForm = document.querySelector('.inprogress-card');
+            const recordForm = document.querySelector('.currentagendaitem');
             recordForm.insertAdjacentHTML('afterBegin', "<p class='voice-alert'><i class='fas fa-play mr-1'></i></i>Transcription has started.</p>");
             const voiceAlert = document.querySelector('.voice-alert');
             fadeOutEffect(voiceAlert);
             setTimeout(function() {
                 voiceAlert.remove();
-            }, 3000);
+            }, 6000);
         }
     }
 }

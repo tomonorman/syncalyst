@@ -38,6 +38,7 @@
           <%= simple_form_for([@meeting, @task]) do |f| %>
             <%= f.input :user_id, label: false , :input_html => { :value => @meeting.user.id, "data-trelloid" => @meeting.user.trello_member_id, "data-meeting" => @meeting.title, :type => 'hidden' } %>
             <%= f.input :description, label: false, class: "task-description" %>
+            <%= f.submit %>
           <% end %>
         </div>
       </div>
@@ -49,6 +50,7 @@
               <%= simple_form_for([@meeting, @task]) do |f| %>
                 <%= f.input :user_id, label: false , :input_html => { :value => attendance.user.id, "data-trelloid" => attendance.user.trello_member_id, "data-meeting" => attendance.meeting.title, :type => 'hidden' } %>
                 <%= f.input :description, label: false, class: "task-description" %>
+                <%= f.submit %>
               <% end %>
             </div>
           </div>
@@ -59,13 +61,13 @@
               <%= simple_form_for([@meeting, @task]) do |f| %>
                 <%= f.input :user_id, label: false , :input_html => { :value => attendance.user.id, "data-trelloid" => attendance.user.trello_member_id, "data-meeting" => attendance.meeting.title, :type => 'hidden' } %>
                 <%= f.input :description, label: false, class: "task-description" %>
+                <%= f.submit %>
               <% end %>
             </div>
           </div>
         <% end %>
       <% end %>
       <div class="currentagendaitem" id="currentpostit">
-        <p class="p-2">Click on the first agenda item to start</p>
       </div>
       <div class="meetingend">
         <% if @meeting.user == current_user %>
