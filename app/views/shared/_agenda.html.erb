@@ -63,7 +63,7 @@
       <% end %>
       <% if @meeting.user == current_user %>
         <div class="meetingstart">
-          <%= link_to "Everyone here? Let's get started!", start_meeting_path(@meeting), :method=> :put, id: "start-agenda", class: "btn btn-primary"  %>
+          <%= link_to "Start!", start_meeting_path(@meeting), :method=> :put, id: "start-agenda", class: "btn btn-primary"  %>
         </div>
       <% end %>
     </div>
