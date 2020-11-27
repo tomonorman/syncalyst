@@ -8,9 +8,27 @@
   padding:0em;
 }
 
+.button-list {
+  position: absolute;
+  top: 40%;
+  left: 36%;
+  font-size: 32px;
+
+  a {
+    min-width:48px;
+  }
+}
+
 .postit-card {
   min-width: 160px;
 }
+
+// .fa {
+//   // transform: scale(1.5, 1);
+//   min-width: 40px;
+//   max-width: 40px
+// }
+
 
 //.postit {
   // text-decoration:none;
