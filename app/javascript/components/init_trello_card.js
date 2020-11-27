@@ -1,7 +1,7 @@
 // get idlist from https://trello.com/b/hmiXsuho/syncalyst.json
 
 const initTrelloCard = () => {
-  const myList = '5fbdad60d7d2747a083323e7';
+  const myList = '5fc0568a36aa4d0b6dda9613';
   const taskForm = document.querySelectorAll('.new_task');
 
   const creationSuccess = function (data) {
