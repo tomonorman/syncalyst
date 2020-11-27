@@ -12,17 +12,20 @@
   </h4>
 </div>
 <div class="agenda-card">
-  <div class="agenda">
-    <ul class="row justify-content-center postitul">
+  <div class="progress-container">
+    <ol class="progress-tracker">
       <% i = 0 %>
       <% @meeting.agendas.each do |agenda| %>
-        <li id='<%= "agenda#{i}" %>' data-agenda="<%= agenda.id %>" class="postit postit-pointer col-2 m-3 p-1">
-          <p><%= agenda.title %></p>
-          <p><%= agenda.description %></p>
+        <li id='<%= "agenda#{i}" %>' data-agenda="<%= agenda.id %>" class=" postit postit-pointer progress-step">
+          <!-- add .is-complete if the agenda is finished -->
+          <!-- add .is-active on the current agenda -->
+          <div class="progress-marker"><%= i+1 %></div>
+          <div class="progress-text"><%= agenda.title %></div>
+          <!-- remove .count and add .checkmark if the agenda is finished -->
         </li>
         <% i += 1 %>
       <% end %>
-    </ul>
+    </ol>
   </div>
   <div class="d-flex justify-content-center">
     <div class="meeting-table" style="background-image: url('<%= asset_path 'table.jpg' %>');">

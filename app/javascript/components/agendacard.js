@@ -2,12 +2,13 @@ import { recordAudio } from './record_audio.js';
 import { initNav } from './speech-navigation.js';
 import Rails from '@rails/ujs'
 
+let taskspeech
 
 const stop = document.querySelector('.stop');
 const stopRecordingBtn = document.querySelector('.stopRecording');
 const recordBtn = document.querySelector('.record');
 const soundClips = document.querySelector('.sound-clips');
-const agendaItems = document.querySelectorAll(".postit");
+const agendaItems = document.querySelectorAll(".progress-step");
 
 function fadeOutEffect(element) {
     var fadeTarget = element;
@@ -56,7 +57,7 @@ const initSpeech = (i) => {
         instructions.text("Try again");
     }
 
-    let taskspeech
+
 
     recognition.onresult = function(event) {
         var current = event.resultIndex;
@@ -95,7 +96,13 @@ const initSpeech = (i) => {
                 voiceAlert.remove();
             }, 3000);
         } else if (transcript.includes("can you")) {
-          console.log(transcript);
+          const recordForm = document.querySelector('.inprogress-card');
+            recordForm.insertAdjacentHTML('afterBegin', "<p class='voice-alert'><i class='fas fa-clipboard-check'></i>Task ready!! Click to assign</p>");
+            const voiceAlert = document.querySelector('.voice-alert');
+            fadeOutEffect(voiceAlert);
+            setTimeout(function() {
+                voiceAlert.remove();
+            }, 5000);
           taskspeech = transcript;
 
         } else {
@@ -103,19 +110,7 @@ const initSpeech = (i) => {
         }
     }
 
-       const people = document.querySelectorAll('.task-owner');
-          people.forEach((person) => {
-            person.addEventListener('click', (event) => {
-              const form = person.querySelector('form');
-              console.log(form);
-              const input = person.querySelector('.task_description').firstChild;
-              input.value = taskspeech;
-              input.focus();
-              Rails.fire(form,'submit');
-              form.reset();
 
-            });
-          });
 
     if (content.length) {
         content += '';
@@ -153,10 +148,30 @@ const initAgenda = () => {
     let i = 1;
     //calls audio recording function
     recordAudio();
+      const people = document.querySelectorAll('.task-owner');
+          people.forEach((person) => {
+            person.addEventListener('click', (event) => {
+              const form = person.querySelector('form');
+              console.log(form);
+              const input = person.querySelector('.task_description').firstChild;
+              taskspeech = taskspeech.substring(taskspeech.indexOf('you') + 4);
+              input.value = taskspeech;
+              input.focus();
+              Rails.fire(form,'submit');
+              form.reset();
+            });
+          });
     if (agendaItems) {
         agendaItems.forEach((item) => {
 
             item.addEventListener('click', (event) => {
+                // to style the current agenda topic:
+                const active = document.querySelector('.is-active')
+                if (active) {
+                  active.classList.remove('is-active');
+                }
+                item.classList.add('is-active');
+                // end
                 recordBtn.click();
 
                 event.preventDefault();
