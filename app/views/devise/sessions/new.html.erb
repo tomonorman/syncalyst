@@ -15,6 +15,5 @@
         <%= f.button :submit, "Log in", class: 'btn btn-primary' %>
     </div>
     <% end %>
-    <%= render "devise/shared/links" %>
+  <%= link_to "Sign in with Google", user_google_oauth2_omniauth_authorize_path %>
 </div>
-<%= link_to "Sign in with Google", user_google_oauth2_omniauth_authorize_path %>
