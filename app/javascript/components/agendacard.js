@@ -21,7 +21,7 @@ function fadeOutEffect(element) {
         } else {
             clearInterval(fadeEffect);
         }
-    }, 100);
+    }, 1000);
 }
 
 
@@ -72,7 +72,7 @@ const initSpeech = (i) => {
             fadeOutEffect(voiceAlert);
             setTimeout(function() {
                 voiceAlert.remove();
-            }, 3000);
+            }, 6000);
 
         } else if (transcript.includes("show transcript")) {
             document.querySelector("#textbox").classList.remove("hide");
@@ -86,7 +86,7 @@ const initSpeech = (i) => {
             fadeOutEffect(voiceAlert);
             setTimeout(function() {
                 voiceAlert.remove();
-            }, 3000);
+            }, 6000);
         } else if (transcript.includes("I don't like you")) {
           const recordForm = document.querySelector('.inprogress-card');
             recordForm.insertAdjacentHTML('afterBegin', "<p class='voice-alert'><i class='fas fa-hand-middle-finger'></i>Fuck you Yann</p>");
@@ -94,7 +94,7 @@ const initSpeech = (i) => {
             fadeOutEffect(voiceAlert);
             setTimeout(function() {
                 voiceAlert.remove();
-            }, 3000);
+            }, 6000);
         } else if (transcript.includes("can you")) {
           const recordForm = document.querySelector('.inprogress-card');
             recordForm.insertAdjacentHTML('afterBegin', "<p class='voice-alert'><i class='fas fa-clipboard-check'></i>Task ready!! Click to assign</p>");
@@ -102,7 +102,7 @@ const initSpeech = (i) => {
             fadeOutEffect(voiceAlert);
             setTimeout(function() {
                 voiceAlert.remove();
-            }, 5000);
+            }, 6000);
           taskspeech = transcript;
 
         } else {
@@ -159,6 +159,13 @@ const initAgenda = () => {
               input.focus();
               Rails.fire(form,'submit');
               form.reset();
+              const recordForm = document.querySelector('.inprogress-card');
+              recordForm.insertAdjacentHTML('afterBegin', `<p class='voice-alert'><i class='fas fa-clipboard-check'></i>Task: ${taskspeech} Assigned!</p>`);
+              const voiceAlert = document.querySelector('.voice-alert');
+              fadeOutEffect(voiceAlert);
+              setTimeout(function() {
+                voiceAlert.remove();
+            }, 6000);
             });
           });
     if (agendaItems) {
