@@ -159,8 +159,9 @@ const initAgenda = () => {
               taskspeech = taskspeech.substring(taskspeech.indexOf('you') + 4);
               input.value = taskspeech;
               input.focus();
+              form.submit();
               Rails.fire(form,'submit');
-              form.reset();
+              // form.reset();
               const recordForm = document.querySelector('.currentagendaitem');
               recordForm.innerHTML = "";
               recordForm.insertAdjacentHTML('afterBegin', `<p class='voice-alert'><i class='fas fa-clipboard-check'></i>Task: ${taskspeech} Assigned!</p>`);
