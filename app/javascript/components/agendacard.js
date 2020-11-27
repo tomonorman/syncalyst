@@ -80,7 +80,7 @@ const initSpeech = (i) => {
             document.querySelector("#textbox").classList.add("hide");
 
         } else if (transcript.includes("order coffee")) {
-          const recordForm = document.querySelector('.currentagendaitem');
+            const recordForm = document.querySelector('.currentagendaitem');
             recordForm.insertAdjacentHTML('afterBegin', "<p class='voice-alert'><i class='fas fa-coffee'></i>Intern is fetching coffee</p>");
             const voiceAlert = document.querySelector('.voice-alert');
             fadeOutEffect(voiceAlert);
@@ -88,7 +88,7 @@ const initSpeech = (i) => {
                 voiceAlert.remove();
             }, 6000);
         } else if (transcript.includes("I don't like you")) {
-          const recordForm = document.querySelector('.currentagendaitem');
+            const recordForm = document.querySelector('.currentagendaitem');
             recordForm.insertAdjacentHTML('afterBegin', "<p class='voice-alert'><i class='fas fa-hand-middle-finger'></i>Fuck you Yann</p>");
             const voiceAlert = document.querySelector('.voice-alert');
             fadeOutEffect(voiceAlert);
@@ -96,14 +96,14 @@ const initSpeech = (i) => {
                 voiceAlert.remove();
             }, 6000);
         } else if (transcript.includes("can you")) {
-          const recordForm = document.querySelector('.currentagendaitem');
+            const recordForm = document.querySelector('.currentagendaitem');
             recordForm.insertAdjacentHTML('afterBegin', "<p class='voice-alert'><i class='fas fa-clipboard-check'></i>Task ready!! Click to assign</p>");
             const voiceAlert = document.querySelector('.voice-alert');
             fadeOutEffect(voiceAlert);
             setTimeout(function() {
                 voiceAlert.remove();
             }, 6000);
-          taskspeech = transcript;
+            taskspeech = transcript;
 
         } else {
             textbox.val(content);
@@ -150,27 +150,27 @@ const initAgenda = () => {
     let i = 1;
     //calls audio recording function
     recordAudio();
-      const people = document.querySelectorAll('.task-owner');
-          people.forEach((person) => {
-            person.addEventListener('click', (event) => {
-              const form = person.querySelector('form');
-              console.log(form);
-              const input = person.querySelector('.task_description').firstChild;
-              taskspeech = taskspeech.substring(taskspeech.indexOf('you') + 4);
-              input.value = taskspeech;
-              input.focus();
-              Rails.fire(form,'submit');
-              form.reset();
-              const recordForm = document.querySelector('.currentagendaitem');
-              recordForm.innerHTML = "";
-              recordForm.insertAdjacentHTML('afterBegin', `<p class='voice-alert'><i class='fas fa-clipboard-check'></i>Task: ${taskspeech} Assigned!</p>`);
-              const voiceAlert = document.querySelector('.voice-alert');
-              fadeOutEffect(voiceAlert);
-              setTimeout(function() {
+    const people = document.querySelectorAll('.task-owner');
+    people.forEach((person) => {
+        person.addEventListener('click', (event) => {
+            const form = person.querySelector('form');
+            console.log(form);
+            const input = person.querySelector('.task_description').firstChild;
+            taskspeech = taskspeech.substring(taskspeech.indexOf('you') + 4);
+            input.value = taskspeech;
+            input.focus();
+            Rails.fire(form, 'submit');
+            form.reset();
+            const recordForm = document.querySelector('.currentagendaitem');
+            recordForm.innerHTML = "";
+            recordForm.insertAdjacentHTML('afterBegin', `<p class='voice-alert'><i class='fas fa-clipboard-check'></i>Task: ${taskspeech} Assigned!</p>`);
+            const voiceAlert = document.querySelector('.voice-alert');
+            fadeOutEffect(voiceAlert);
+            setTimeout(function() {
                 voiceAlert.remove();
             }, 6000);
-            });
-          });
+        });
+    });
     if (agendaItems) {
         agendaItems.forEach((item) => {
 
@@ -178,10 +178,13 @@ const initAgenda = () => {
                 // to style the current agenda topic:
                 const active = document.querySelector('.is-active')
                 if (active) {
-                  active.classList.remove('is-active');
+                    active.classList.remove('is-active');
                 }
                 item.classList.add('is-active');
                 // end
+                if (recordBtn.disabled == true) {
+                    stopRecordingBtn.click();
+                }
                 recordBtn.click();
 
                 event.preventDefault();
