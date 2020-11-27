@@ -1,13 +1,9 @@
 .wrapup-list-item {
-  display: flex;
   line-height: 80%;
   text-align: center;
 }
 
-.task-form {
-  width: 100%;
-}
-
+// task-form moved to _meeting.scss
 .spin {
    -webkit-animation:spin 2s ease-in-out;
     -moz-animation:spin 2s ease-in-out;
