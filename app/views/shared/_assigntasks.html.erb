@@ -1,87 +1,82 @@
 <div class="d-flex justify-content-between align-items-center">
-    <p style="font-size: 24px">
-        <%= @meeting.title %> |
-        <%= @meeting.date_time.strftime("%A, %d %b %Y at %l:%M %p") %> <span style="font-size: 16px;">(
-            <%= @meeting.duration%> mins.)</span></p>
-    <div class="trello-btn">
-        <% if @meeting.trello_board == "" %>
-        <p>""</p>
-        <% else %>
-        <%= link_to 'Trello board linked', @meeting.trello_board, target: "_blank", class: "btn btn-secondary" %>
-        <% end %>
-    </div>
-    <p>Hosted By:
-        <%= cl_image_tag "#{@meeting.user.photo.key}", alt: "alttext", class: "avatar" %>
-        </h4>
+  <p style="font-size: 24px">
+    <%= @meeting.title %> |
+    <%= @meeting.date_time.strftime("%A, %d %b %Y at %l:%M %p") %> <span style="font-size: 16px;">(
+      <%= @meeting.duration%> mins.)</span></p>
+  <div class="trello-btn">
+    <% if @meeting.trello_board == "" %>
+      <p>""</p>
+    <% else %>
+      <%= link_to 'Trello board linked', @meeting.trello_board, target: "_blank", class: "btn btn-secondary" %>
+    <% end %>
+  </div>
+  <p>Hosted By:
+    <%= cl_image_tag "#{@meeting.user.photo.key}", alt: "alttext", class: "avatar" %>
+  </h4>
 </div>
 <div class="agenda-card">
-    <div class="agenda">
-        <h2 class="mt-1 ml-1">Agenda</h2>
-        <ul class="row justify-content-center postitul">
-            <% i = 0 %>
-            <% @meeting.agendas.each do |agenda| %>
-            <li id='<%= "agenda#{i}" %>' class="postit col-2 m-3 p-1">
-                <p>
-                    <%= agenda.title %>
-                </p>
-                <p>
-                    <%= agenda.description %>
-                </p>
-                <% if agenda.audio.attached? %>
+  <div class="agenda">
+    <h2 class="mt-1 ml-1">Agenda</h2>
+    <ul class="row justify-content-center postitul">
+      <% i = 0 %>
+      <% @meeting.agendas.each do |agenda| %>
+        <li id='<%= "agenda#{i}" %>' class="postit col-2 m-3 p-1">
+          <p>
+            <%= agenda.title %>
+          </p>
+          <p>
+            <%= agenda.description %>
+          </p>
+          <% if agenda.audio.attached? %>
                 <% url = cl_video_path(agenda.audio.key) %>
                 <audio controls class="audio" style="width: 100%;">
                     <source src="<%= url %>" type="audio/mpeg">
                     Your browser does not support the audio tag.
                 </audio>
                 <% end %>
-            </li>
-            <% i += 1 %>
-            <% end %>
-        </ul>
+        </li>
+        <% i += 1 %>
+      <% end %>
+    </ul>
+  </div>
+  <div class="d-flex justify-content-center">
+    <div class="meeting-table" style="background-image: url('<%= asset_path 'table.jpg' %>');">
+      <div class="mtgtableattendee">
+        <%= cl_image_tag "#{@meeting.user.photo.key}", alt: "alttext", class: "avatar-large mx-1 align-self-start" %>
+      </div>
+      <% @meeting.attendances.each do |attendance| %>
+        <% if attendance.user.photo.attached? %>
+          <div class="mtgtableattendee">
+            <%= cl_image_tag "#{attendance.user.photo.key}", alt: "alttext", class: "avatar-large mx-1 align-self-start" %>
+          </div>
+        <% else %>
+          <div class="mtgtableattendee">
+            <%= image_tag "avatar.jpg", alt: "avatar", class: 'avatar-large mx-1 align-self-start' %>
+          </div>
+        <% end %>
+      <% end %>
     </div>
-    <div class="d-flex justify-content-center">
-        <div class="meeting-table" style="background-image: url('<%= asset_path 'table.jpg' %>');">
-            <% @meeting.attendances.each do |attendance| %>
-            <% if attendance.user.photo.attached? %>
-            <div class="mtgtableattendee">
-                <%= cl_image_tag "#{attendance.user.photo.key}", alt: "alttext", class: "avatar-large mx-1 align-self-start" %>
-            </div>
-            <% else %>
-            <div class="mtgtableattendee">
-                <%= image_tag "avatar.jpg", alt: "avatar", class: 'avatar-large mx-1 align-self-start' %>
-            </div>
-            <% end %>
-            <% end %>
-            <div class="task-assign">
-                <% @meeting.attendances.each do |attendance| %>
-                <%= simple_form_for([@meeting, @task]) do |f| %>
-                <%= f.input :user_id, label: false , :input_html => { :value => attendance.user.id, "data-trelloid" => attendance.user.trello_member_id, "data-meeting" => attendance.meeting.title, :type => 'hidden' } %>
-                <%= f.input :description, placeholder: "Assign task to #{attendance.user.nickname}", label: false, class: "task-description" %>
-                <% end %>
-                <% end %>
-            </div>
-        </div>
-    </div>
-    <!-- Back to Dashboard -->
-    <%= link_to meetings_path, class: "btn btn-primary"  do %>
+  </div>
+  <!-- Back to Dashboard -->
+  <%= link_to meetings_path, class: "btn btn-primary"  do %>
     <i class="fas fa-door-open"> Back to Dashboard</i>
-    <% end %>
-    <!--  pdf generator -->
-    <%= link_to meeting_report_path(format: :pdf), target: :_blank, class: "btn btn-primary mt-2 mb-1" do %>
+  <% end %>
+  <!--  pdf generator -->
+  <%= link_to meeting_report_path(format: :pdf), target: :_blank, class: "btn btn-primary mt-2 mb-1" do %>
     <i class="fas fa-file-download"> Export as PDF</i>
-    <% end %>
-    <!-- share through email -->
-    <% team_email = [] %>
-    <% @meeting.attendances.each do |attendance| %>
+  <% end %>
+  <!-- share through email -->
+  <% team_email = [] %>
+  <% @meeting.attendances.each do |attendance| %>
     <% team_email << attendance.user.email %>
-    <% end %>
-    <% emails = team_email.join(', ') %>
-    <% subject = @meeting.date_time.strftime('%Y%m%d') + '_Minutes: ' + @meeting.title %>
-    <% host_email = @meeting.user.email %>
-    <% link = "(https://www.syncalyst.com/meetings/#{@meeting.id}/report.pdf)" %>
-    <% body =  "Hi all,\nThank you for time in the meeting just now.\n\nThe minutes is ready for this meeting: #{@meeting.title}.\n\nPlease find the PDF document from this link: https://www.syncalyst.com/meetings/#{@meeting.id}/report.pdf.\n\nHave a nice day.\n\n(This is an email generated by Syncalyst.)" %>
-    <%= mail_to emails, subject: subject, cc: host_email, body: body, reply_to: host_email, class: 'btn btn-primary mt-1 mb-1' do %>
+  <% end %>
+  <% emails = team_email.join(', ') %>
+  <% subject = @meeting.date_time.strftime('%Y%m%d') + '_Minutes: ' + @meeting.title %>
+  <% host_email = @meeting.user.email %>
+  <% link = "(https://www.syncalyst.com/meetings/#{@meeting.id}/report.pdf)" %>
+  <% body =  "Hi all,\nThank you for time in the meeting just now.\n\nThe minutes is ready for this meeting: #{@meeting.title}.\n\nPlease find the PDF document from this link: https://www.syncalyst.com/meetings/#{@meeting.id}/report.pdf.\n\nHave a nice day.\n\n(This is an email generated by Syncalyst.)" %>
+  <%= mail_to emails, subject: subject, cc: host_email, body: body, reply_to: host_email, class: 'btn btn-primary mt-1 mb-1' do %>
     <i class="far fa-envelope"> Share with the attendees</i>
-    <% end %>
+  <% end %>
 </div>
 <div id="taskhidden"></div>
