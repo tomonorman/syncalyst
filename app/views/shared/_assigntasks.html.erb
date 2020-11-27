@@ -5,7 +5,7 @@
         <%= @meeting.duration%> mins.</span></span></h2>
   <div class="trello-btn">
     <% if @meeting.trello_board == "" %>
-      <% nil %>
+       <p>""</p>
     <% else %>
       <%= link_to 'Trello board linked', @meeting.trello_board, target: "_blank", class: "btn btn-secondary mb-2" %>
     <% end %>
@@ -14,30 +14,13 @@
     <%= cl_image_tag "#{@meeting.user.photo.key}", alt: "alttext", class: "avatar" %>
   </p>
 </div>
+
 <div class="agenda-card">
-  <div class="agenda progress-container">
-    <ol class="row justify-content-center postitul progress-tracker">
-      <% i = 0 %>
-      <% @meeting.agendas.each do |agenda| %>
-        <li id='<%= "agenda#{i}" %>' class="postit progress-step">
-          <div class="progress-marker"><%= i+1 %></div>
-          <div class="progress-text"><%= agenda.title %></div>
-          <% url = cl_video_path(agenda.audio.key) %>
-          <% if agenda.audio.attached? %>
-            <% url = cl_video_path(agenda.audio.key) %>
-            <audio controls class="audio" style="width: 100%;">
-              <source src="<%= url %>" type="audio/mpeg">
-              Your browser does not support the audio tag.
-            </audio>
-          <% end %>
-        </li>
-      <% end %>
-    </ol>
-  </div>
   <div class="agenda">
     <div class="heading d-flex justify-content-between">
       <div class="finish-actions">
         <!-- Back to Dashboard -->
+
         <%= link_to meetings_path, class: "btn btn-primary m-1"  do %>
           <i class="fas fa-door-open"> </i>
         <% end %>
@@ -58,9 +41,31 @@
         <%= mail_to emails, subject: subject, cc: host_email, body: body, reply_to: host_email, class: 'btn btn-primary m-1' do %>
           <i class="far fa-envelope"></i>
         <% end %>
+
       </div>
     </div>
   </div>
+  <div class="agenda progress-container">
+    <ol class="row justify-content-center postitul progress-tracker">
+      <% i = 0 %>
+      <% @meeting.agendas.each do |agenda| %>
+        <li id='<%= "agenda#{i}" %>' class="postit progress-step">
+          <div class="progress-marker"><%= i+1 %></div>
+          <div class="progress-text"><%= agenda.title %></div>
+
+          <% if agenda.audio.attached? %>
+            <% url = cl_video_path(agenda.audio.key) %>
+            <audio controls class="audio" style="width: 100%;">
+              <source src="<%= url %>" type="audio/mpeg">
+              Your browser does not support the audio tag.
+            </audio>
+          <% end %>
+        </li>
+      <% end %>
+    </ol>
+  </div>
+
+
   <div class="d-flex justify-content-center">
     <div class="meeting-table" style="background-image: url('<%= asset_path 'table.jpg' %>');">
       <div class="mtgtableattendee">
