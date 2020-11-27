@@ -12,7 +12,7 @@ const initNav = () => {
     recognition.start();
 
     recognition.onstart = function() {
-        activity.text("Voice Recognition on, click to turn off");
+        activity.text("Voice Recognition on, \n click to turn off");
         recognizing = true;
     }
 
