@@ -51,10 +51,7 @@ class MeetingsController < ApplicationController
     authorize @meeting
     if @meeting.save
       client = get_google_calendar_client(current_user)
-      @test = client.list_events('primary')
-      event = get_event(@meeting,client)
-      # event = Google::Apis::CalendarV3::Event.new(event)
-      # client.insert_event('primary', event)
+      get_event(@meeting,client) if client
       redirect_to meeting_path(@meeting)
     else
       render 'new'

@@ -11,7 +11,12 @@
     <% end %>
   </div>
   <p class="mb-1">Hosted By:
+  <% if @meeting.user.photo.attached? %>
     <%= cl_image_tag "#{@meeting.user.photo.key}", alt: "alttext", class: "avatar" %>
+    <% else %>
+    <%= image_tag "avatar.jpg", alt: "avatar", class: 'avatar dropdown-toggle avatar mx-1',id: "navbarDropdown", data: { toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
+    <% end %>
+
   </p>
 </div>
 <div class="agenda-card mt-3">
@@ -45,7 +50,11 @@
   <div class="d-flex justify-content-center">
     <div class="meeting-table" style="background-image: url('<%= asset_path 'table.jpg' %>');">
       <div class="mtgtableattendee">
+      <% if @meeting.user.photo.attached? %>
         <%= cl_image_tag "#{@meeting.user.photo.key}", alt: "alttext", class: "avatar-large mx-1 align-self-start" %>
+      <% else %>
+        <%= image_tag "avatar.jpg", alt: "avatar", class: 'avatar-large mx-1 align-self-start' %>
+      <% end %>
       </div>
       <% @meeting.attendances.each do |attendance| %>
         <% if attendance.user.photo.attached? %>
