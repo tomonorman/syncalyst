@@ -1,13 +1,13 @@
-<div class="homepage-banner" style="background-image: url('<%= asset_path 'background.png' %>');">
+<div class="homepage-banner" class="img-fluid" style="background-image: url('<%= asset_path 'background.png' %>');">
   <div class="container d-flex align-items-start flex-column">
     <h1>Syncalyst</h1>
     <p>Less Stress<br>
       More Impactful Meetings</p>
     <%= link_to 'Try it free!', 'mailto:demo@syncalyst.com?subject=Demo Request from homepage',  class: 'btn btn-primary' %>
   </div>
-  <%= image_tag("meeting.png", class: "banner-img") %>
+  <%= image_tag("meeting.png", class: "banner-img img-fluid") %>
 </div>
-<div class="homepage-info d-flex justify-content-around">
+<!-- <div class="homepage-info d-flex justify-content-around">
   <div>
     <%= image_tag("pcaward.png", height: '70', width: '150', alt: "pc_award") %>
   </div>
@@ -20,6 +20,6 @@
   <div>
     <%= image_tag("award-apple.png", height: '70', width: '150', alt: "apple_award") %>
   </div>
-</div>
+</div> -->
 <!-- Hide The Recording -->
 <div id="taskhidden"></div>
